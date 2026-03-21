@@ -10,7 +10,7 @@ export const productData = {
     gallery: [
       '/products/bi-fold-1.jpg',
       '/products/73250EF7-0129-455F-80E3-49A5F137220F-950x726.jpg.webp',
-      '/products/1B-Alverston-Road-331960-Rear-elevation_RGB-950x726.jpg.webp',
+      '/products/1B-Alverston-Road-331960-Rear-elevation_RGB-950x726.jpg',
       '/products/bi-fold-19-950x726.jpg.webp',
     ],
     description: 'Bring modern style and strength to your property with our expertly crafted aluminium bifold doors. Designed for both homes and commercial spaces, these slim-framed doors offer maximum light, smooth operation, and exceptional durability. Aluminium is the premium choice for external bifold doors, offering unmatched strength whilst maintaining sleek, contemporary aesthetics. Every set of bespoke aluminium bifold doors is built to your exact specifications, meeting the highest standards for energy efficiency, weather resistance, and security.',
@@ -85,7 +85,7 @@ export const productData = {
       '/products/1DFEA1D8-B241-4F40-8C52-F672205DC0DB.jpg',
       '/products/BI_FOLD_02-950x726.jpg',
       '/products/Burks-Drive-Beaconsfield020-950x667.jpg',
-      '/products/bi-fold-9-950x726.jpeg',
+      '/products/bi-fold-9.jpeg',
     ],
     description: 'Enhance your interiors with our sleek internal bifold doors, crafted exclusively in premium aluminium. These versatile folding doors provide an elegant solution for dividing or connecting rooms whilst maximising natural light and floor space. Internal bi-fold doors are perfect for modern homes and commercial properties where space efficiency meets contemporary design. Unlike traditional french doors or standard internal doors, bifold door systems fold neatly to one side, creating wide, unobstructed openings that transform how you use your space.',
     features: [
@@ -119,7 +119,7 @@ export const productData = {
     gallery: [
       '/products/bi-fold-7.jpg',
       '/products/MClayton_2012-SCH-SLO_031-950x726.jpg.webp',
-      '/products/1B-Alverston-Road-331960-Rear-elevation_RGB-950x726.jpg.webp',
+      '/products/1B-Alverston-Road-331960-Rear-elevation_RGB-950x726.jpg',
       '/products/bi-fold-8-950x726.jpeg.webp',
     ],
     description: 'Let more light in – even in smaller spaces – with our expertly crafted 2 panel bifold doors. Available in premium aluminium or uPVC, every two-panel bifold door is made to measure, secure, and designed to glide effortlessly into place. With a typical span of around 1.5–1.8 metres, this configuration fits perfectly into compact openings, without compromising on light, views or functionality.',
@@ -150,8 +150,8 @@ export const productData = {
     gallery: [
       '/products/bi-fold-25.jpg',
       '/products/ParkRoad-15-scaled-e1700599470569-950x726.jpg.webp',
-      '/products/1B-Alverston-Road-331960-Rear-elevation_RGB-950x726.jpg.webp',
-      '/products/bi-fold-25-950x726.jpg.webp',
+      '/products/1B-Alverston-Road-331960-Rear-elevation_RGB-950x726.jpg',
+      '/products/bi-fold-25.jpg',
     ],
     description: 'Make the most of your space with our expertly crafted 3 panel bifold door. Designed to maximise light and flexibility, this popular configuration offers a generous opening and a smooth, space-saving folding mechanism. With a typical span of around 2.2–2.8 metres, bifold doors 3 panels are ideal for creating a seamless transition between inside and out – especially in kitchens, dining areas and garden rooms.',
     features: [
@@ -181,7 +181,7 @@ export const productData = {
     gallery: [
       '/products/bi-fold-9.jpeg',
       '/products/3afe4ffd-b79c-420e-a67d-102c03f09bd5-950x726.jpg.webp',
-      '/products/1B-Alverston-Road-331960-Rear-elevation_RGB-950x726.jpg.webp',
+      '/products/1B-Alverston-Road-331960-Rear-elevation_RGB-950x726.jpg',
       '/products/ParkRoad-10-950x726.jpg.webp',
     ],
     description: 'Looking to open up a wider space? Our expertly crafted 4 panel bifold door is the perfect choice for larger openings and modern home extensions. Available in premium aluminium or energy-efficient uPVC, each door set is made to measure. With a typical span of around 2.5–4 metres, 4 panel bi folding doors are ideal for creating an expansive connection between your home and garden, or dividing large interior spaces.',
@@ -244,7 +244,7 @@ export const productData = {
     gallery: [
       '/products/ParkRoad-15-1-scaled.jpg',
       '/products/A6E51EFA-FD4B-45AD-B63B-95C0A5D6830F-950x726.jpg.webp',
-      '/products/1B-Alverston-Road-331960-Rear-elevation_RGB-950x726.jpg.webp',
+      '/products/1B-Alverston-Road-331960-Rear-elevation_RGB-950x726.jpg',
       '/products/3afe4ffd-b79c-420e-a67d-102c03f09bd5-950x726.jpg.webp',
       '/products/Block--950x726.jpg.webp',
     ],
@@ -343,7 +343,7 @@ export const productData = {
     gallery: [
       '/products/cortizo-bifold-door-banner.jpg.webp',
       '/products/GoogleDrive_Schuco-bifold-corner.jpg.webp',
-      '/products/bi-fold-20-950x726.jpg.webp',
+      '/products/bi-fold-20-950x726.jpg',
       '/products/cortizo-bifold-2.jpg.webp',
       '/products/AB1439CE-01E9-4CD0-AD7A-59E83367460A_4_5005_c.jpeg.webp',
     ],
@@ -688,7 +688,7 @@ export const productData = {
       '/products/D29A778C-8077-44D4-A408-1A98E2676EF2_1_102_o.jpeg',
       '/products/schuco-window-aws-70-hi-950x726.webp',
       '/products/schuco-windows-16-950x726.jpg.webp',
-      '/products/windows-480x320-1.jpg.webp',
+      '/products/windows-480x320-1.jpg',
     ],
     description: 'The Schuco AWS 70 HI is a highly thermally insulated aluminium window system with a 70mm basic depth. It delivers outstanding thermal insulation performance while maintaining narrow face widths and elegant sightlines. Suitable for punched openings in residential developments, ribbon windows for commercial buildings, and barrier-free window doors. Achieves excellent thermal performance with frame U-value (Uf) starting from 1.6 W/m²K.',
     features: [
