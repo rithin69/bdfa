@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&display=swap');
 
 @font-face {
   font-family: 'ErasMedium';
@@ -21,8 +21,8 @@
   }
   html { scroll-behavior: smooth; }
   body {
-    background-color: #080808;
-    color: #F5F0E8;
+    background-color: #F7F4F0;
+    color: #1C2B2B;
     font-family: 'ErasMedium', sans-serif;
     overflow-x: hidden;
   }
@@ -54,6 +54,10 @@
   0%   { background-position: -200% center; }
   100% { background-position: 200% center; }
 }
+@keyframes portfolioSlowZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
 
 .animate-fade-up         { animation: fadeUp 1.2s ease both; }
 .animate-fade-up-delay   { animation: fadeUp 1.2s ease 0.3s both; }
@@ -67,7 +71,7 @@
   position: absolute;
   bottom: -2px; left: 0; right: 0;
   height: 1px;
-  background: #C9A84C;
+  background: #0ABAB5;
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -79,7 +83,7 @@
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 2px;
-  background: #C9A84C;
+  background: #0ABAB5;
   transform: scaleX(0);
   transition: transform 0.4s ease;
 }
@@ -89,6 +93,11 @@
 .portfolio-item:hover .portfolio-overlay { opacity: 1; }
 .portfolio-img { transition: transform 0.6s ease; }
 .portfolio-item:hover .portfolio-img { transform: scale(1.05); }
+.portfolio-card-img {
+  animation: portfolioSlowZoom 12s ease-in-out infinite alternate;
+  will-change: transform;
+  transform: translateZ(0);
+}
 
 .nav-flip {
   position: relative;
@@ -108,8 +117,19 @@
 .nav-flip .flip-back {
   position: absolute;
   top: 0; left: 0;
-  color: #C9A84C;
+  color: #0ABAB5;
   transform: translateY(100%);
 }
 .nav-link:hover .nav-flip .flip-front { transform: translateY(-100%); }
 .nav-link:hover .nav-flip .flip-back  { transform: translateY(0%); }
+
+/* Leaflet map tooltip */
+.bdf-map-tooltip {
+  background: #F7F4F0 !important;
+  border: 1px solid rgba(10,186,181,0.4) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25) !important;
+  padding: 8px 12px !important;
+}
+.bdf-map-tooltip::before { display: none !important; }
+.leaflet-container { background: #0D1B2A !important; }

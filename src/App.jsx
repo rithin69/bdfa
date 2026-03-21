@@ -5,15 +5,39 @@ import Hero from './components/Hero'
 import Stats from './components/Stats'
 import Services from './components/Services'
 import Portfolio from './components/Portfolio'
-import WhyUs from './components/WhyUs'
-import { Process, CTABanner, Footer } from './components/Process'
+import { Process, Footer } from './components/Process'
 import AboutUs from './components/AboutUs'
 import QuotePopup from './components/QuotePopup'
 import Contact from './components/Contact'
+import Careers from './components/Careers'
+import Products from './components/Products'
+import ProductDetail from './components/ProductDetail'
 
 function ScrollToTop() {
-  const { pathname } = useLocation()
-  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  const { pathname, hash } = useLocation()
+
+  useEffect(() => {
+    if (hash) return
+    window.scrollTo(0, 0)
+  }, [pathname, hash])
+
+  useEffect(() => {
+    if (!hash) return
+
+    const id = hash.replace('#', '')
+    const scrollToTarget = () => {
+      const el = document.getElementById(id)
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }
+
+    scrollToTarget()
+    const timeoutId = window.setTimeout(scrollToTarget, 120)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [hash, pathname])
+
   return null
 }
 
@@ -24,9 +48,7 @@ function HomePage() {
       <Stats />
       <Services />
       <Portfolio />
-      <WhyUs />
       <Process />
-      <CTABanner />
     </>
   )
 }
@@ -41,6 +63,9 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/careers" element={<Careers />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:slug" element={<ProductDetail />} />
       </Routes>
       <Footer />
     </main>

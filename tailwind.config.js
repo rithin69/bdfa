@@ -4,12 +4,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gold: '#C9A84C',
-        'gold-light': '#E8D5A3',
-        'bdf-black': '#080808',
-        'bdf-dark': '#0F0F0F',
-        'bdf-dark2': '#161616',
-        'bdf-white': '#F5F0E8',
+        gold: '#0ABAB5',
+        'gold-light': '#7DD8D6',
+        'bdf-black': '#F7F4F0',
+        'bdf-dark': '#EDF8F8',
+        'bdf-dark2': '#E4F2F2',
+        'bdf-white': '#1C2B2B',
       },
       fontFamily: {
         montserrat: ['ErasMedium', 'sans-serif'],

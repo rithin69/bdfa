@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 
+const showroomAddress = 'Bingley, The Common, West Drayton, Middlesex, UB7 7HQ'
+const mapQuery = encodeURIComponent(`BDF Architectural, ${showroomAddress}`)
+const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`
+const embedMapUrl = `https://www.google.com/maps?q=${mapQuery}&z=17&output=embed`
+
 const contactInfo = [
   {
     label: 'OFFICE PHONE',
     value: '01895 439 199',
     href: 'tel:01895439199',
     icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1.8">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0ABAB5" strokeWidth="1.8">
         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.1 6.1l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
       </svg>
     ),
@@ -16,9 +21,9 @@ const contactInfo = [
     value: '0800 999 5575',
     href: 'tel:08009995575',
     icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1.8">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0ABAB5" strokeWidth="1.8">
         <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 012 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.91a16 16 0 006.1 6.1l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
-        <circle cx="12" cy="12" r="3" stroke="#C9A84C" strokeWidth="1.5" fill="none"/>
+        <circle cx="12" cy="12" r="3" stroke="#0ABAB5" strokeWidth="1.5" fill="none"/>
       </svg>
     ),
   },
@@ -27,7 +32,7 @@ const contactInfo = [
     value: 'info@bifolddoorfactory.co.uk',
     href: 'mailto:info@bifolddoorfactory.co.uk',
     icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1.8">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0ABAB5" strokeWidth="1.8">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
         <polyline points="22,6 12,13 2,6"/>
       </svg>
@@ -35,10 +40,10 @@ const contactInfo = [
   },
   {
     label: 'ADDRESS',
-    value: 'Bingley, The Common, West Drayton, Middlesex, UB7 7HQ',
-    href: 'https://maps.google.com/?q=West+Drayton+UB7+7HQ',
+    value: showroomAddress,
+    href: directionsUrl,
     icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1.8">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0ABAB5" strokeWidth="1.8">
         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
         <circle cx="12" cy="10" r="3"/>
       </svg>
@@ -87,16 +92,6 @@ const socials = [
       </svg>
     ),
   },
-  {
-    label: 'Houzz',
-    href: 'https://houzz.com',
-    color: '#7AC142',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 0L2 7.5V24h7.5v-9H15v9h7V7.5z"/>
-      </svg>
-    ),
-  },
 ]
 
 const products = [
@@ -127,9 +122,9 @@ export default function Contact() {
   const inputStyle = (field) => ({
     width: '100%',
     padding: '16px 18px',
-    background: 'rgba(245,240,232,0.04)',
-    border: `1px solid ${focused === field ? '#C9A84C' : 'rgba(201,168,76,0.2)'}`,
-    color: '#F0EBE0',
+    background: 'rgba(28,43,43,0.04)',
+    border: `1px solid ${focused === field ? '#0ABAB5' : 'rgba(10,186,181,0.45)'}`,
+    color: '#1C2B2B',
     fontSize: '13px',
     fontFamily: 'ErasMedium, sans-serif',
     outline: 'none',
@@ -141,10 +136,10 @@ export default function Contact() {
   const today = new Date().toLocaleDateString('en-GB', { weekday: 'long' })
 
   return (
-    <div style={{ background: '#080808', color: '#F0EBE0', fontFamily: 'ErasMedium, sans-serif' }}>
+    <div style={{ background: '#F7F4F0', color: '#1C2B2B', fontFamily: 'ErasMedium, sans-serif' }}>
 
       <style>{`
-        .contact-input::placeholder { color: rgba(245,240,232,0.2); }
+        .contact-input::placeholder { color: rgba(28,43,43,0.45); }
         @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
         @keyframes checkPop { 0%{transform:scale(0)} 70%{transform:scale(1.2)} 100%{transform:scale(1)} }
       `}</style>
@@ -153,20 +148,20 @@ export default function Contact() {
       <section style={{ position: 'relative', height: '55vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
         <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1920&q=90" alt="Contact"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(8,8,8,0.82)' }} />
-        <div style={{ position: 'absolute', left: 0, top: '20%', bottom: '20%', width: '3px', background: 'linear-gradient(to bottom, transparent, #C9A84C 30%, #C9A84C 70%, transparent)' }} />
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '120px', background: 'linear-gradient(to bottom, transparent, #080808)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(28,43,43,0.82)' }} />
+        <div style={{ position: 'absolute', left: 0, top: '20%', bottom: '20%', width: '3px', background: 'linear-gradient(to bottom, transparent, #0ABAB5 30%, #0ABAB5 70%, transparent)' }} />
+        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '40px', background: 'linear-gradient(to bottom, transparent, #F7F4F0)' }} />
 
         <div style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: '0 32px', animation: 'fadeUp 1s ease both' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '24px' }}>
-            <div style={{ width: '40px', height: '1px', background: '#C9A84C' }} />
-            <span style={{ fontSize: '9px', letterSpacing: '5px', color: '#C9A84C', fontFamily: 'ErasMedium, sans-serif' }}>REACH OUT TO US</span>
-            <div style={{ width: '40px', height: '1px', background: '#C9A84C' }} />
+            <div style={{ width: '40px', height: '1px', background: '#0ABAB5' }} />
+            <span style={{ fontSize: '9px', letterSpacing: '5px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif' }}>REACH OUT TO US</span>
+            <div style={{ width: '40px', height: '1px', background: '#0ABAB5' }} />
           </div>
-          <h1 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: 'clamp(56px,8vw,110px)', fontWeight: 300, color: '#FFFFFF', margin: '0 0 16px', lineHeight: 1 }}>
-            Get In <span style={{ color: '#C9A84C' }}>Touch</span>
+          <h1 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: 'clamp(56px,8vw,110px)', fontWeight: 300, color: '#F7F4F0', margin: '0 0 16px', lineHeight: 1 }}>
+            Get In <span style={{ color: '#0ABAB5' }}>Touch</span>
           </h1>
-          <p style={{ fontSize: '12px', letterSpacing: '3px', color: 'rgba(245,240,232,0.5)', fontFamily: 'ErasMedium, sans-serif', textTransform: 'uppercase' }}>
+          <p style={{ fontSize: '12px', letterSpacing: '3px', color: 'rgba(247,244,240,0.8)', fontFamily: 'ErasMedium, sans-serif', textTransform: 'uppercase' }}>
             We'd Love To Hear From You
           </p>
         </div>
@@ -179,25 +174,25 @@ export default function Contact() {
           {/* ── LEFT: FORM ── */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
-              <div style={{ width: '40px', height: '1px', background: '#C9A84C', flexShrink: 0 }} />
-              <span style={{ fontSize: '9px', letterSpacing: '5px', color: '#C9A84C', fontFamily: 'ErasMedium, sans-serif' }}>SEND A MESSAGE</span>
+              <div style={{ width: '40px', height: '1px', background: '#0ABAB5', flexShrink: 0 }} />
+              <span style={{ fontSize: '9px', letterSpacing: '5px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif' }}>SEND A MESSAGE</span>
             </div>
-            <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: 'clamp(32px,3vw,48px)', fontWeight: 300, color: '#FFFFFF', margin: '0 0 12px', lineHeight: 1.2 }}>
-              Fill In The <span style={{ color: '#C9A84C' }}>Form Below</span>
+            <h2 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: 'clamp(32px,3vw,48px)', fontWeight: 300, color: '#1C2B2B', margin: '0 0 12px', lineHeight: 1.2 }}>
+              Fill In The <span style={{ color: '#0ABAB5' }}>Form Below</span>
             </h2>
-            <p style={{ fontSize: '13px', color: 'rgba(245,240,232,0.5)', fontFamily: 'ErasMedium, sans-serif', lineHeight: 1.9, margin: '0 0 36px' }}>
+            <p style={{ fontSize: '13px', color: 'rgba(28,43,43,0.72)', fontFamily: 'ErasMedium, sans-serif', lineHeight: 1.9, margin: '0 0 36px' }}>
               Thank you for considering our bifold doors. If you have any questions or would like to schedule a consultation, please don't hesitate to get in touch.
             </p>
 
             {submitted ? (
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '60px 20px', gap: '20px', textAlign: 'center', border: '1px solid rgba(201,168,76,0.2)', background: 'rgba(201,168,76,0.04)' }}>
-                <div style={{ width: '72px', height: '72px', borderRadius: '50%', background: 'rgba(201,168,76,0.12)', border: '2px solid #C9A84C', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'checkPop 0.5s ease both' }}>
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2.5">
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '60px 20px', gap: '20px', textAlign: 'center', border: '1px solid rgba(10,186,181,0.2)', background: 'rgba(10,186,181,0.04)' }}>
+                <div style={{ width: '72px', height: '72px', borderRadius: '50%', background: 'rgba(10,186,181,0.12)', border: '2px solid #0ABAB5', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'checkPop 0.5s ease both' }}>
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0ABAB5" strokeWidth="2.5">
                     <polyline points="20 6 9 17 4 12"/>
                   </svg>
                 </div>
-                <div style={{ fontSize: '22px', color: '#C9A84C', fontFamily: 'ErasMedium, sans-serif', fontWeight: 700 }}>Message Sent!</div>
-                <div style={{ fontSize: '13px', color: 'rgba(245,240,232,0.5)', fontFamily: 'ErasMedium, sans-serif', lineHeight: 1.9 }}>
+                <div style={{ fontSize: '22px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif', fontWeight: 700 }}>Message Sent!</div>
+                <div style={{ fontSize: '13px', color: 'rgba(28,43,43,0.5)', fontFamily: 'ErasMedium, sans-serif', lineHeight: 1.9 }}>
                   Thank you for reaching out.<br />We'll get back to you very shortly.
                 </div>
               </div>
@@ -206,8 +201,8 @@ export default function Contact() {
 
                 {/* Name */}
                 <div>
-                  <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(245,240,232,0.5)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '8px' }}>
-                    NAME <span style={{ color: '#C9A84C' }}>*</span>
+                  <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(28,43,43,0.8)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '8px' }}>
+                    NAME <span style={{ color: '#0ABAB5' }}>*</span>
                   </label>
                   <input required type="text" placeholder="Your full name"
                     className="contact-input"
@@ -221,8 +216,8 @@ export default function Contact() {
 
                 {/* Email */}
                 <div>
-                  <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(245,240,232,0.5)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '8px' }}>
-                    EMAIL <span style={{ color: '#C9A84C' }}>*</span>
+                  <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(28,43,43,0.8)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '8px' }}>
+                    EMAIL <span style={{ color: '#0ABAB5' }}>*</span>
                   </label>
                   <input required type="email" placeholder="Your email address"
                     className="contact-input"
@@ -236,21 +231,21 @@ export default function Contact() {
 
                 {/* Products */}
                 <div>
-                  <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(245,240,232,0.5)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '12px' }}>
+                  <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(28,43,43,0.8)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '12px' }}>
                     PRODUCTS OF INTEREST
                   </label>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                     {products.map(p => (
                       <div key={p} onClick={() => toggleProduct(p)}
-                        style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', padding: '11px 14px', border: `1px solid ${selected.includes(p) ? '#C9A84C' : 'rgba(201,168,76,0.15)'}`, background: selected.includes(p) ? 'rgba(201,168,76,0.07)' : 'rgba(245,240,232,0.02)', transition: 'all 0.2s', userSelect: 'none' }}>
-                        <div style={{ width: '16px', height: '16px', border: `1.5px solid ${selected.includes(p) ? '#C9A84C' : 'rgba(245,240,232,0.2)'}`, background: selected.includes(p) ? '#C9A84C' : 'transparent', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
+                        style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', padding: '11px 14px', border: `1px solid ${selected.includes(p) ? '#0ABAB5' : 'rgba(10,186,181,0.4)'}`, background: selected.includes(p) ? 'rgba(10,186,181,0.07)' : 'rgba(28,43,43,0.03)', transition: 'all 0.2s', userSelect: 'none' }}>
+                        <div style={{ width: '16px', height: '16px', border: `1.5px solid ${selected.includes(p) ? '#0ABAB5' : 'rgba(28,43,43,0.45)'}`, background: selected.includes(p) ? '#0ABAB5' : 'transparent', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
                           {selected.includes(p) && (
-                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#080808" strokeWidth="3.5">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1C2B2B" strokeWidth="3.5">
                               <polyline points="20 6 9 17 4 12"/>
                             </svg>
                           )}
                         </div>
-                        <span style={{ fontSize: '11px', color: selected.includes(p) ? '#F0EBE0' : 'rgba(245,240,232,0.45)', fontFamily: 'ErasMedium, sans-serif' }}>{p}</span>
+                        <span style={{ fontSize: '11px', color: selected.includes(p) ? '#F7F4F0' : '#1C2B2B', fontFamily: 'ErasMedium, sans-serif', fontWeight: 500 }}>{p}</span>
                       </div>
                     ))}
                   </div>
@@ -258,8 +253,8 @@ export default function Contact() {
 
                 {/* Enquiry */}
                 <div>
-                  <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(245,240,232,0.5)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '8px' }}>
-                    ENQUIRY <span style={{ color: '#C9A84C' }}>*</span>
+                  <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(28,43,43,0.8)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '8px' }}>
+                    ENQUIRY <span style={{ color: '#0ABAB5' }}>*</span>
                   </label>
                   <textarea required rows={5} placeholder="Tell us about your project and requirements..."
                     className="contact-input"
@@ -273,10 +268,10 @@ export default function Contact() {
 
                 {/* Submit */}
                 <button type="submit"
-                  style={{ background: '#C9A84C', border: 'none', padding: '18px', color: '#080808', fontSize: '11px', letterSpacing: '4px', fontWeight: 700, fontFamily: 'ErasMedium, sans-serif', cursor: 'pointer', transition: 'all 0.3s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = '#E8D5A3' }}
-                  onMouseLeave={e => { e.currentTarget.style.background = '#C9A84C' }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#080808" strokeWidth="2.5">
+                  style={{ background: '#0ABAB5', border: 'none', padding: '18px', color: '#1C2B2B', fontSize: '11px', letterSpacing: '4px', fontWeight: 700, fontFamily: 'ErasMedium, sans-serif', cursor: 'pointer', transition: 'all 0.3s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = '#7DD8D6' }}
+                  onMouseLeave={e => { e.currentTarget.style.background = '#0ABAB5' }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C2B2B" strokeWidth="2.5">
                     <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
                   </svg>
                   SEND MESSAGE
@@ -292,23 +287,23 @@ export default function Contact() {
             {/* Contact details */}
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
-                <div style={{ width: '40px', height: '1px', background: '#C9A84C', flexShrink: 0 }} />
-                <span style={{ fontSize: '9px', letterSpacing: '5px', color: '#C9A84C', fontFamily: 'ErasMedium, sans-serif' }}>CONTACT DETAILS</span>
+                <div style={{ width: '40px', height: '1px', background: '#0ABAB5', flexShrink: 0 }} />
+                <span style={{ fontSize: '9px', letterSpacing: '5px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif' }}>CONTACT DETAILS</span>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                 {contactInfo.map((item, i) => (
                   <a key={i} href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined}
                     rel="noreferrer"
-                    style={{ display: 'flex', alignItems: 'flex-start', gap: '16px', padding: '16px 20px', border: '1px solid rgba(201,168,76,0.1)', textDecoration: 'none', transition: 'all 0.3s', background: 'rgba(245,240,232,0.02)' }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.4)'; e.currentTarget.style.background = 'rgba(201,168,76,0.05)' }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.1)'; e.currentTarget.style.background = 'rgba(245,240,232,0.02)' }}>
-                    <div style={{ width: '40px', height: '40px', border: '1px solid rgba(201,168,76,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    style={{ display: 'flex', alignItems: 'flex-start', gap: '16px', padding: '16px 20px', border: '1px solid rgba(10,186,181,0.35)', textDecoration: 'none', transition: 'all 0.3s', background: 'rgba(28,43,43,0.03)' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = '#0ABAB5'; e.currentTarget.style.background = 'rgba(10,186,181,0.07)' }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(10,186,181,0.35)'; e.currentTarget.style.background = 'rgba(28,43,43,0.03)' }}>
+                    <div style={{ width: '40px', height: '40px', border: '1px solid rgba(10,186,181,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       {item.icon}
                     </div>
                     <div>
-                      <div style={{ fontSize: '9px', letterSpacing: '3px', color: 'rgba(245,240,232,0.4)', fontFamily: 'ErasMedium, sans-serif', marginBottom: '4px' }}>{item.label}</div>
-                      <div style={{ fontSize: '14px', color: '#F0EBE0', fontFamily: 'ErasMedium, sans-serif', fontWeight: 500, lineHeight: 1.5 }}>{item.value}</div>
+                      <div style={{ fontSize: '9px', letterSpacing: '3px', color: 'rgba(28,43,43,0.8)', fontFamily: 'ErasMedium, sans-serif', marginBottom: '4px' }}>{item.label}</div>
+                      <div style={{ fontSize: '14px', color: '#1C2B2B', fontFamily: 'ErasMedium, sans-serif', fontWeight: 500, lineHeight: 1.5 }}>{item.value}</div>
                     </div>
                   </a>
                 ))}
@@ -316,22 +311,22 @@ export default function Contact() {
             </div>
 
             {/* Opening Hours */}
-            <div style={{ border: '1px solid rgba(201,168,76,0.15)', padding: '28px 24px' }}>
+            <div style={{ border: '1px solid rgba(10,186,181,0.4)', padding: '28px 24px', background: 'rgba(10,186,181,0.02)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1.8">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0ABAB5" strokeWidth="1.8">
                   <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
                 </svg>
-                <span style={{ fontSize: '9px', letterSpacing: '4px', color: '#C9A84C', fontFamily: 'ErasMedium, sans-serif' }}>OPENING HOURS</span>
+                <span style={{ fontSize: '9px', letterSpacing: '4px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif' }}>OPENING HOURS</span>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                 {hours.map((h, i) => {
                   const isToday = h.day === today
                   return (
-                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: i < hours.length - 1 ? '1px solid rgba(245,240,232,0.05)' : 'none', background: isToday ? 'rgba(201,168,76,0.05)' : 'transparent', padding: '10px 8px', margin: '0 -8px' }}>
-                      <span style={{ fontSize: '12px', color: isToday ? '#C9A84C' : 'rgba(245,240,232,0.6)', fontFamily: 'ErasMedium, sans-serif', fontWeight: isToday ? 600 : 400 }}>
-                        {h.day} {isToday && <span style={{ fontSize: '9px', background: '#C9A84C', color: '#080808', padding: '2px 6px', marginLeft: '6px', letterSpacing: '1px' }}>TODAY</span>}
+                    <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: i < hours.length - 1 ? '1px solid rgba(28,43,43,0.1)' : 'none', background: isToday ? 'rgba(10,186,181,0.05)' : 'transparent', padding: '10px 8px', margin: '0 -8px' }}>
+                      <span style={{ fontSize: '12px', color: isToday ? '#0ABAB5' : '#1C2B2B', fontFamily: 'ErasMedium, sans-serif', fontWeight: isToday ? 600 : 500 }}>
+                        {h.day} {isToday && <span style={{ fontSize: '9px', background: '#0ABAB5', color: '#1C2B2B', padding: '2px 6px', marginLeft: '6px', letterSpacing: '1px' }}>TODAY</span>}
                       </span>
-                      <span style={{ fontSize: '12px', color: h.time === 'Closed' ? 'rgba(245,240,232,0.3)' : isToday ? '#C9A84C' : 'rgba(245,240,232,0.7)', fontFamily: 'ErasMedium, sans-serif', fontWeight: isToday ? 600 : 400 }}>
+                      <span style={{ fontSize: '12px', color: h.time === 'Closed' ? 'rgba(28,43,43,0.45)' : isToday ? '#0ABAB5' : '#1C2B2B', fontFamily: 'ErasMedium, sans-serif', fontWeight: isToday ? 600 : 500 }}>
                         {h.time}
                       </span>
                     </div>
@@ -343,17 +338,17 @@ export default function Contact() {
             {/* Social Media */}
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
-                <div style={{ width: '40px', height: '1px', background: '#C9A84C', flexShrink: 0 }} />
-                <span style={{ fontSize: '9px', letterSpacing: '5px', color: '#C9A84C', fontFamily: 'ErasMedium, sans-serif' }}>FOLLOW US</span>
+                <div style={{ width: '40px', height: '1px', background: '#0ABAB5', flexShrink: 0 }} />
+                <span style={{ fontSize: '9px', letterSpacing: '5px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif' }}>FOLLOW US</span>
               </div>
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 {socials.map((s, i) => (
                   <a key={i} href={s.href} target="_blank" rel="noreferrer"
-                    style={{ width: '52px', height: '52px', border: '1px solid rgba(201,168,76,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(245,240,232,0.5)', textDecoration: 'none', transition: 'all 0.3s', position: 'relative' }}
+                    style={{ width: '52px', height: '52px', border: '1px solid rgba(10,186,181,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(28,43,43,0.7)', textDecoration: 'none', transition: 'all 0.3s', position: 'relative' }}
                     onMouseEnter={e => { e.currentTarget.style.borderColor = s.color; e.currentTarget.style.color = s.color; e.currentTarget.style.background = `${s.color}15` }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(201,168,76,0.2)'; e.currentTarget.style.color = 'rgba(245,240,232,0.5)'; e.currentTarget.style.background = 'transparent' }}>
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(10,186,181,0.4)'; e.currentTarget.style.color = 'rgba(28,43,43,0.7)'; e.currentTarget.style.background = 'transparent' }}>
                     {s.icon}
-                    <span style={{ position: 'absolute', bottom: '-20px', left: '50%', transform: 'translateX(-50%)', fontSize: '8px', letterSpacing: '1px', color: 'rgba(245,240,232,0.3)', whiteSpace: 'nowrap', fontFamily: 'ErasMedium, sans-serif' }}>{s.label}</span>
+                    <span style={{ position: 'absolute', bottom: '-20px', left: '50%', transform: 'translateX(-50%)', fontSize: '8px', letterSpacing: '1px', color: 'rgba(28,43,43,0.6)', whiteSpace: 'nowrap', fontFamily: 'ErasMedium, sans-serif' }}>{s.label}</span>
                   </a>
                 ))}
               </div>
@@ -364,32 +359,51 @@ export default function Contact() {
       </section>
 
       {/* ══ MAP STRIP ══ */}
-      <div style={{ borderTop: '1px solid rgba(201,168,76,0.1)', padding: '0' }}>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2484.5!2d-0.473!3d51.503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zUGVzdCBEcmF5dG9uLCBVQjcgN0hR!5e0!3m2!1sen!2suk!4v1"
-          width="100%" height="320" style={{ border: 0, display: 'block', filter: 'grayscale(100%) invert(92%) contrast(83%)' }}
-          allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
-          title="BDF Location"
-        />
-      </div>
+      <section style={{ borderTop: '1px solid rgba(10,186,181,0.1)', background: '#1C2B2B', padding: '56px 64px' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '18px' }}>
+            <div style={{ width: '40px', height: '1px', background: '#0ABAB5', flexShrink: 0 }} />
+            <span style={{ fontSize: '9px', letterSpacing: '5px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif' }}>VISIT THE SHOWROOM</span>
+          </div>
+          <a
+            href={directionsUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open directions to BDF Architectural in Google Maps"
+            style={{ position: 'relative', display: 'block', minHeight: '460px', overflow: 'hidden', border: '1px solid rgba(10,186,181,0.22)', textDecoration: 'none', background: '#D8E0DC', boxShadow: '0 20px 60px rgba(0,0,0,0.22)' }}
+          >
+            <iframe
+              src={embedMapUrl}
+              width="100%"
+              height="100%"
+              style={{ position: 'absolute', inset: 0, border: 0, display: 'block', filter: 'saturate(0.9) contrast(1.02)', pointerEvents: 'none' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="BDF Architectural showroom location"
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(28,43,43,0.52) 0%, rgba(28,43,43,0.14) 26%, rgba(28,43,43,0.08) 100%)', pointerEvents: 'none' }} />
+          </a>
+        </div>
+      </section>
 
       {/* ══ BOTTOM CTA ══ */}
-      <div style={{ background: '#C9A84C', padding: '40px 64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
+      <div style={{ background: '#0ABAB5', padding: '40px 64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
         <div>
-          <div style={{ fontSize: '9px', letterSpacing: '4px', color: 'rgba(8,8,8,0.5)', fontFamily: 'ErasMedium, sans-serif', marginBottom: '6px' }}>PREFER TO CALL?</div>
-          <div style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: 'clamp(24px,3vw,40px)', fontWeight: 300, color: '#080808' }}>
+          <div style={{ fontSize: '9px', letterSpacing: '4px', color: 'rgba(28,43,43,0.5)', fontFamily: 'ErasMedium, sans-serif', marginBottom: '6px' }}>PREFER TO CALL?</div>
+          <div style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: 'clamp(24px,3vw,40px)', fontWeight: 300, color: '#1C2B2B' }}>
             We're here Monday – Saturday
           </div>
         </div>
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center', flexWrap: 'wrap' }}>
           <a href="tel:01895439199" style={{ textDecoration: 'none', textAlign: 'center' }}>
-            <div style={{ fontSize: '9px', letterSpacing: '2px', color: 'rgba(8,8,8,0.5)', fontFamily: 'ErasMedium, sans-serif', marginBottom: '2px' }}>OFFICE</div>
-            <div style={{ fontSize: '20px', fontWeight: 700, color: '#080808', fontFamily: 'ErasMedium, sans-serif', letterSpacing: '1px' }}>01895 439 199</div>
+            <div style={{ fontSize: '9px', letterSpacing: '2px', color: 'rgba(28,43,43,0.5)', fontFamily: 'ErasMedium, sans-serif', marginBottom: '2px' }}>OFFICE</div>
+            <div style={{ fontSize: '20px', fontWeight: 700, color: '#1C2B2B', fontFamily: 'ErasMedium, sans-serif', letterSpacing: '1px' }}>01895 439 199</div>
           </a>
-          <div style={{ width: '1px', height: '40px', background: 'rgba(8,8,8,0.2)' }} />
+          <div style={{ width: '1px', height: '40px', background: 'rgba(28,43,43,0.2)' }} />
           <a href="tel:08009995575" style={{ textDecoration: 'none', textAlign: 'center' }}>
-            <div style={{ fontSize: '9px', letterSpacing: '2px', color: 'rgba(8,8,8,0.5)', fontFamily: 'ErasMedium, sans-serif', marginBottom: '2px' }}>FREE PHONE</div>
-            <div style={{ fontSize: '20px', fontWeight: 700, color: '#080808', fontFamily: 'ErasMedium, sans-serif', letterSpacing: '1px' }}>0800 999 5575</div>
+            <div style={{ fontSize: '9px', letterSpacing: '2px', color: 'rgba(28,43,43,0.5)', fontFamily: 'ErasMedium, sans-serif', marginBottom: '2px' }}>FREE PHONE</div>
+            <div style={{ fontSize: '20px', fontWeight: 700, color: '#1C2B2B', fontFamily: 'ErasMedium, sans-serif', letterSpacing: '1px' }}>0800 999 5575</div>
           </a>
         </div>
       </div>

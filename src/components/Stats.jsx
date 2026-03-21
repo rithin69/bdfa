@@ -1,7 +1,7 @@
 import React from 'react'
 
 const stats = [
-  { num: '12+', label: 'YEARS EXPERIENCE' },
+  { num: '20+', label: 'YEARS EXPERIENCE' },
   { num: '340+', label: 'PROJECTS COMPLETED' },
   { num: '98%', label: 'CLIENT SATISFACTION' },
   { num: '24', label: 'AWARDS WON' },
@@ -20,7 +20,7 @@ export default function Stats() {
               <span className="font-cormorant font-light text-5xl text-gold block leading-none mb-2">
                 {s.num}
               </span>
-              <span className="text-[8px] tracking-[0.25em] text-bdf-white/35 block">
+              <span className="text-[8px] tracking-[0.25em] text-bdf-white/60 block">
                 {s.label}
               </span>
             </div>

@@ -1,104 +1,337 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const projects = [
-  { cat: 'RESIDENTIAL', name: 'Hampstead Private Villa', span: 'row-span-2', bg: 'from-[#1c1c1c] to-[#0a0a0a]' },
-  { cat: 'COMMERCIAL',  name: 'Mayfair Office Suite',   span: '',           bg: 'from-[#161616] to-[#0f0f0f]' },
-  { cat: 'RESIDENTIAL', name: 'Kensington Family Home', span: '',           bg: 'from-[#141414] to-[#0a0a0a]' },
-  { cat: 'INTERIOR',    name: 'Chelsea Penthouse',      span: '',           bg: 'from-[#1a1a1a] to-[#111111]' },
-  { cat: 'COMMERCIAL',  name: 'Canary Wharf HQ',        span: '',           bg: 'from-[#121212] to-[#0c0c0c]' },
+  {
+    id: 'project1',
+    tag: 'STANMORE RESIDENCE',
+    name: 'Bentley Way House',
+    shortLocation: 'Stanmore, London',
+    location: 'Stanmore, London',
+    description:
+      'A refined residential glazing project with expansive rear views, bespoke bifold openings, and a clean architectural finish designed for contemporary family living.',
+    coverImage: '/images_bifold_projects/project1/DJI_0003.webp',
+    images: [
+      '/images_bifold_projects/project1/DJI_0003.webp',
+      '/images_bifold_projects/project1/DSC04515-HDR.webp',
+      '/images_bifold_projects/project1/DSC04533-HDR.webp',
+      '/images_bifold_projects/project1/DSC04575-HDR.webp',
+    ],
+    span: 'md:row-span-2',
+  },
+  {
+    id: 'project2',
+    tag: 'KINGSTON PROJECT',
+    name: 'Petworth Lodge',
+    shortLocation: 'Kingston upon Thames',
+    location: 'Kingston upon Thames',
+    description:
+      'A polished lodge setting where large-format glazing and bifold door elements strengthen the connection between the home and its landscaped surroundings.',
+    coverImage: '/images_bifold_projects/project2/DJI_0122.webp',
+    images: [
+      '/images_bifold_projects/project2/DJI_0122.webp',
+      '/images_bifold_projects/project2/DSC01151-HDR.webp',
+    ],
+    span: '',
+  },
+  {
+    id: 'project3',
+    tag: 'SURREY COTTAGE',
+    name: 'Brae Cottage',
+    shortLocation: 'Bookham, Surrey',
+    location: 'Bookham, Surrey',
+    description:
+      'A character-led Surrey home upgraded with carefully integrated glazing, balancing rural charm with brighter interiors and stronger indoor-outdoor flow.',
+    coverImage: '/images_bifold_projects/project3/DSC01356.webp',
+    images: [
+      '/images_bifold_projects/project3/DJI_0154.webp',
+      '/images_bifold_projects/project3/DJI_0159.webp',
+      '/images_bifold_projects/project3/DSC01356.webp',
+    ],
+    span: '',
+  },
+  {
+    id: 'project4',
+    tag: 'EXETER HOME',
+    name: 'Bouchers Hill House',
+    shortLocation: 'North Tawton, Exeter',
+    location: 'North Tawton, Exeter',
+    description:
+      'A striking countryside residence featuring generous glazed elevations and bifold detailing that opens the living spaces to panoramic rural views.',
+    coverImage: '/images_bifold_projects/project4/DJI_0276.webp',
+    images: [
+      '/images_bifold_projects/project4/DJI_0270 (1).webp',
+      '/images_bifold_projects/project4/DJI_0276.webp',
+      '/images_bifold_projects/project4/DJI_0287 (1).webp',
+      '/images_bifold_projects/project4/DSC00003 (1).webp',
+      '/images_bifold_projects/project4/DSC00014 (1).webp',
+    ],
+    span: '',
+  },
+  {
+    id: 'project5',
+    tag: 'EDGWARE RESIDENCE',
+    name: 'Hartland Drive House',
+    shortLocation: 'Edgware, Middlesex',
+    location: 'Edgware, Middlesex',
+    description:
+      'A tailored home improvement project focused on crisp sightlines, daylight performance, and elegant bifold transitions into the garden.',
+    coverImage: '/images_bifold_projects/project5/DSC07297.webp',
+    images: [
+      '/images_bifold_projects/project5/DSC07231.webp',
+      '/images_bifold_projects/project5/DSC07266-HDR.webp',
+      '/images_bifold_projects/project5/DSC07287-HDR.webp',
+      '/images_bifold_projects/project5/DSC07297.webp',
+    ],
+    span: '',
+  },
+  {
+    id: 'project6',
+    tag: 'BEDFORD PROJECT',
+    name: 'Bedford Residence',
+    shortLocation: 'Bedford',
+    location: 'Bedford',
+    description:
+      'A modern residential installation showcasing robust aluminium framing, generous glazing, and a calm architectural palette throughout the rear elevation.',
+    coverImage: '/images_bifold_projects/project6/DSC09448.webp',
+    images: [
+      '/images_bifold_projects/project6/DSC09448.webp',
+      '/images_bifold_projects/project6/DSC09451.webp',
+      '/images_bifold_projects/project6/DSC09453.webp',
+      '/images_bifold_projects/project6/DSC09458.webp',
+    ],
+    span: '',
+  },
 ]
 
-const BuildingSvg = ({ index }) => {
-  const svgs = [
-    // Tall tower
-    <svg key={0} viewBox="0 0 400 600" fill="none" className="w-full h-full opacity-25">
-      <rect x="60" y="100" width="280" height="400" stroke="#C9A84C" strokeWidth="1.5"/>
-      {[200,300,400].map(y => <line key={y} x1="60" y1={y} x2="340" y2={y} stroke="#C9A84C" strokeWidth="0.8"/>)}
-      {[160,240].map(x => <line key={x} x1={x} y1="100" x2={x} y2="500" stroke="#C9A84C" strokeWidth="0.8"/>)}
-      <polyline points="200,20 60,100 340,100" fill="none" stroke="#C9A84C" strokeWidth="2"/>
-      <line x1="200" y1="20" x2="200" y2="0" stroke="#C9A84C" strokeWidth="1.5"/>
-    </svg>,
-    // Office
-    <svg key={1} viewBox="0 0 400 280" fill="none" className="w-full h-full opacity-25">
-      <rect x="40" y="40" width="320" height="200" stroke="#C9A84C" strokeWidth="1.5"/>
-      <line x1="40" y1="120" x2="360" y2="120" stroke="#C9A84C" strokeWidth="0.8"/>
-      <rect x="140" y="120" width="120" height="120" stroke="#C9A84C" strokeWidth="1"/>
-      {[100,160,220,280,320].map(x => <line key={x} x1={x} y1="40" x2={x} y2="240" stroke="#C9A84C" strokeWidth="0.4" opacity="0.4"/>)}
-    </svg>,
-    // House
-    <svg key={2} viewBox="0 0 400 280" fill="none" className="w-full h-full opacity-25">
-      <polyline points="200,20 20,200 380,200" stroke="#C9A84C" strokeWidth="2"/>
-      <rect x="20" y="200" width="360" height="60" stroke="#C9A84C" strokeWidth="1.5"/>
-      <rect x="60" y="210" width="60" height="50" stroke="#C9A84C" strokeWidth="1"/>
-      <rect x="170" y="210" width="60" height="50" stroke="#C9A84C" strokeWidth="1"/>
-      <rect x="280" y="210" width="60" height="50" stroke="#C9A84C" strokeWidth="1"/>
-    </svg>,
-    // Penthouse
-    <svg key={3} viewBox="0 0 400 280" fill="none" className="w-full h-full opacity-25">
-      <rect x="40" y="40" width="140" height="200" stroke="#C9A84C" strokeWidth="1.5"/>
-      <rect x="220" y="80" width="140" height="160" stroke="#C9A84C" strokeWidth="1.5"/>
-      <line x1="180" y1="40" x2="220" y2="80" stroke="#C9A84C" strokeWidth="1"/>
-      <rect x="60" y="100" width="40" height="30" stroke="#C9A84C" strokeWidth="0.8"/>
-      <rect x="120" y="100" width="40" height="30" stroke="#C9A84C" strokeWidth="0.8"/>
-    </svg>,
-    // Commercial HQ
-    <svg key={4} viewBox="0 0 400 280" fill="none" className="w-full h-full opacity-25">
-      <rect x="60" y="30" width="280" height="220" stroke="#C9A84C" strokeWidth="1.5"/>
-      <line x1="60" y1="30" x2="130" y2="90" stroke="#C9A84C" strokeWidth="1"/>
-      <line x1="340" y1="30" x2="270" y2="90" stroke="#C9A84C" strokeWidth="1"/>
-      <rect x="130" y="90" width="140" height="160" stroke="#C9A84C" strokeWidth="1"/>
-      {[150,180,210,240,270,300].map(x => <line key={x} x1={x} y1="30" x2={x} y2="250" stroke="#C9A84C" strokeWidth="0.4" opacity="0.4"/>)}
-    </svg>,
-  ]
-  return svgs[index] || svgs[0]
+function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose }) {
+  useEffect(() => {
+    if (!project) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose()
+      if (event.key === 'ArrowRight') {
+        setActiveImageIndex((current) => (current + 1) % project.images.length)
+      }
+      if (event.key === 'ArrowLeft') {
+        setActiveImageIndex((current) =>
+          (current - 1 + project.images.length) % project.images.length
+        )
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [onClose, project, setActiveImageIndex])
+
+  if (!project) return null
+
+  const activeImage = project.images[activeImageIndex]
+
+  return (
+    <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/75 px-4 py-6 backdrop-blur-sm">
+      <div className="absolute inset-0" onClick={onClose} aria-hidden="true" />
+
+      <div className="relative z-10 grid max-h-[92vh] w-full max-w-6xl overflow-hidden rounded-[28px] bg-white shadow-[0_30px_120px_rgba(0,0,0,0.45)] lg:grid-cols-[1.35fr_0.85fr]">
+        <div className="relative min-h-[320px] bg-black">
+          <img
+            src={activeImage}
+            alt={`${project.name} view ${activeImageIndex + 1}`}
+            className="h-full w-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+          <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-black/85 via-black/35 to-transparent px-6 pb-5 pt-16 text-[11px] tracking-[0.28em] text-white">
+            <span>{project.tag}</span>
+            <span>
+              {String(activeImageIndex + 1).padStart(2, '0')} / {String(project.images.length).padStart(2, '0')}
+            </span>
+          </div>
+          {project.images.length > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={() =>
+                  setActiveImageIndex(
+                    (current) => (current - 1 + project.images.length) % project.images.length
+                  )
+                }
+                className="absolute left-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/92 text-2xl text-[#102327] transition hover:bg-gold"
+                aria-label="Previous project image"
+              >
+                &lt;
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  setActiveImageIndex((current) => (current + 1) % project.images.length)
+                }
+                className="absolute right-4 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white/92 text-2xl text-[#102327] transition hover:bg-gold"
+                aria-label="Next project image"
+              >
+                &gt;
+              </button>
+            </>
+          )}
+        </div>
+
+        <div className="flex max-h-[92vh] flex-col overflow-y-auto bg-[#F7F4F0] p-6 text-[#102327] md:p-8">
+          <button
+            type="button"
+            onClick={onClose}
+            className="ml-auto flex h-11 w-11 items-center justify-center rounded-full border border-[#102327]/15 text-2xl text-[#102327] transition hover:border-gold hover:text-gold"
+            aria-label="Close project details"
+          >
+            x
+          </button>
+
+          <div className="mt-4">
+            <div className="mb-3 text-[10px] tracking-[0.38em] text-[#0ABAB5]">{project.tag}</div>
+            <h3 className="font-cormorant text-4xl font-light leading-none text-[#102327] md:text-5xl">
+              {project.name}
+            </h3>
+            <p className="mt-4 text-sm leading-7 text-[#102327]/80">{project.location}</p>
+            <p className="mt-6 text-[15px] leading-8 text-[#102327]">{project.description}</p>
+          </div>
+
+          <div className="mt-8">
+            <div className="mb-4 text-[10px] tracking-[0.35em] text-[#0ABAB5]">PROJECT GALLERY</div>
+            <div className="grid grid-cols-2 gap-3">
+              {project.images.map((image, index) => (
+                <button
+                  key={image}
+                  type="button"
+                  onClick={() => setActiveImageIndex(index)}
+                  className={`relative overflow-hidden rounded-2xl border transition ${
+                    index === activeImageIndex
+                      ? 'border-gold shadow-[0_0_0_1px_rgba(10,186,181,0.45)]'
+                      : 'border-[#102327]/10 hover:border-[#102327]/30'
+                  }`}
+                >
+                  <img
+                    src={image}
+                    alt={`${project.name} thumbnail ${index + 1}`}
+                    className="h-28 w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default function Portfolio() {
+  const [selectedProjectId, setSelectedProjectId] = useState(null)
+  const [activeImageIndex, setActiveImageIndex] = useState(0)
+
+  const selectedProject =
+    projects.find((project) => project.id === selectedProjectId) ?? null
+
+  const openProject = (project) => {
+    setSelectedProjectId(project.id)
+    setActiveImageIndex(0)
+  }
+
   return (
-    <section id="portfolio" className="pb-32">
-      <div className="max-w-7xl mx-auto px-8 mb-14">
-        <div className="flex items-center gap-4 mb-5">
-          <div className="w-10 h-px bg-gold" />
-          <span className="text-[9px] tracking-[0.5em] text-gold">OUR WORK</span>
+    <>
+      <section id="portfolio" className="relative overflow-hidden pb-32 pt-6">
+        <div className="relative mx-auto mb-14 flex max-w-7xl flex-col items-center px-8 text-center">
+          <div className="mb-5 flex items-center gap-4">
+            <div className="h-px w-10 bg-gold" />
+            <span className="text-[9px] tracking-[0.5em] text-gold">MOST VISITED WORK</span>
+          </div>
+          <h2
+            className="font-cormorant font-light leading-tight text-bdf-white"
+            style={{ fontSize: 'clamp(38px,4.3vw,62px)' }}
+          >
+            Signature <span className="text-gold">Projects</span>
+          </h2>
+          <p
+            className="mt-4 max-w-3xl text-center text-sm leading-7 text-[#1C2B2B]/75 md:text-base"
+            style={{ textAlign: 'justify' }}
+          >
+            Discover a snapshot of completed BDF Architectural installations, with detailed
+            galleries from standout homes across London, the Home Counties, and beyond.
+          </p>
         </div>
-        <h2 className="font-cormorant font-light text-bdf-white leading-tight"
-          style={{ fontSize: 'clamp(36px,4vw,56px)' }}>
-          Featured <em className="text-gold">Projects</em>
-        </h2>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-1"
-          style={{ gridTemplateRows: '320px 320px' }}>
-          {projects.map((p, i) => (
-            <div
-              key={i}
-              className={`portfolio-item relative overflow-hidden cursor-pointer bg-gradient-to-br ${p.bg} ${p.span}`}
-            >
-              {/* SVG illustration */}
-              <div className="portfolio-img absolute inset-0">
-                <BuildingSvg index={i} />
+        <div className="relative mx-auto max-w-7xl px-8">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:auto-rows-[300px]">
+            {projects.map((project) => (
+              <button
+                key={project.id}
+                type="button"
+                onClick={() => openProject(project)}
+                className={`portfolio-item group relative overflow-hidden rounded-[28px] text-left ${project.span}`}
+              >
+                <div className="absolute inset-0 bg-black">
+                  <img
+                    src={project.coverImage}
+                    alt={`${project.name} at ${project.location}`}
+                    className="portfolio-card-img h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+
+                <div className="absolute inset-x-0 bottom-0 h-[38%] bg-gradient-to-t from-black/82 via-black/28 to-transparent" />
+
+                <div className="absolute left-5 top-5 rounded-full bg-black/38 px-4 py-2 text-[8px] tracking-[0.35em] text-white/90 backdrop-blur-sm">
+                  {project.tag}
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+                  <div className="mb-2 flex items-center text-[9px] tracking-[0.26em] text-white/85">
+                    <span>{project.shortLocation}</span>
+                  </div>
+                  <h3 className="max-w-sm font-cormorant text-[28px] font-light leading-none text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] md:text-[34px]">
+                    {project.name}
+                  </h3>
+
+                  <div className="mt-4 flex items-center justify-between">
+                    <span className="text-[10px] tracking-[0.35em] text-gold">
+                      VIEW PROJECT
+                    </span>
+                    <span className="text-2xl text-white transition duration-300 group-hover:translate-x-1 group-hover:text-gold">
+                      +
+                    </span>
+                  </div>
+                </div>
+
+                <div className="portfolio-overlay absolute inset-0 rounded-[28px] border border-gold/30 pointer-events-none" />
+              </button>
+            ))}
+          </div>
+
+          <div className="absolute left-[calc(33.333%+2.5rem)] right-8 top-[calc(100%-12.5rem)] hidden -translate-y-1/2 md:flex justify-center">
+            <div className="flex items-center gap-5 text-[#0ABAB5]">
+              <div className="h-px w-14 bg-[#0ABAB5]/45" />
+              <div className="font-cormorant text-[34px] font-light tracking-[0.24em] text-[#0ABAB5] drop-shadow-[0_8px_24px_rgba(10,186,181,0.16)]">
+                AND MANY MORE
               </div>
-
-              {/* Always visible bottom info */}
-              <div className="absolute bottom-0 left-0 right-0 p-7 bg-gradient-to-t from-bdf-black/95 to-transparent">
-                <div className="text-[8px] tracking-[0.3em] text-gold mb-1">{p.cat}</div>
-                <div className="font-cormorant font-light text-xl text-bdf-white">{p.name}</div>
-              </div>
-
-              {/* Hover overlay */}
-              <div className="portfolio-overlay absolute inset-0 border border-gold/30 pointer-events-none" />
+              <div className="h-px w-14 bg-[#0ABAB5]/45" />
             </div>
-          ))}
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* View all CTA */}
-      <div className="max-w-7xl mx-auto px-8 mt-12 flex justify-center">
-        <button className="text-[9px] tracking-[0.35em] font-light text-bdf-white border border-bdf-white/20 hover:border-gold hover:text-gold transition-all duration-300 px-10 py-4">
-          VIEW ALL PROJECTS
-        </button>
-      </div>
-    </section>
+      <ProjectModal
+        project={selectedProject}
+        activeImageIndex={activeImageIndex}
+        setActiveImageIndex={setActiveImageIndex}
+        onClose={() => setSelectedProjectId(null)}
+      />
+    </>
   )
 }
