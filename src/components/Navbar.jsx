@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { productData } from '../data/productData'
+import useResponsive from '../hooks/useResponsive'
 
 const productCategories = [
   {
     name: 'Bi-Fold Doors',
     id: 'bifold',
-    items: ['Aluminium Bifold Doors', 'Bi Folding Doors External', 'Bi Folding Internal Doors', 'Schuco AS FD 75/90.HI', 'Schuco ASS70.HI Bifold Doors', 'Schuco Cornerless Bifold Doors', 'Cortizo Bifold Doors', 'Cortizo Bifold Plus Doors', '2 / 3 / 4 / 5 Panel Bifold', 'Trade Only Bifold Doors'],
+    items: ['Aluminium Bifold Doors', 'Bi Folding Doors External', 'Bi Folding Internal Doors', 'Schuco AS FD 75/90.HI', 'Schuco ASS70.HI Bifold Doors', 'Schuco Cornerless Bifold Doors', 'Cortizo Bifold Doors', 'Cortizo Bifold Plus Doors', 'Trade Only Bifold Doors'],
   },
   {
     name: 'Sliding Doors',
@@ -31,10 +32,12 @@ const productCategories = [
 ]
 
 export default function Navbar() {
+  const { isMobile } = useResponsive()
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [productsOpen, setProductsOpen] = useState(false)
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false)
+  const [expandedMobileCategories, setExpandedMobileCategories] = useState({})
   const location = useLocation()
   const navigate = useNavigate()
   const productsRef = useRef(null)
@@ -54,7 +57,23 @@ export default function Navbar() {
   useEffect(() => {
     setProductsOpen(false)
     setMenuOpen(false)
+    setMobileProductsOpen(false)
+    setExpandedMobileCategories({})
   }, [location.pathname])
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow
+
+    if (menuOpen && isMobile) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = previousOverflow || ''
+    }
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [isMobile, menuOpen])
 
   const openDropdown = () => {
     clearTimeout(closeTimer.current)
@@ -67,6 +86,13 @@ export default function Navbar() {
   const goToPortfolio = () => {
     navigate('/#portfolio')
     setMenuOpen(false)
+  }
+
+  const toggleMobileCategory = (categoryId) => {
+    setExpandedMobileCategories((current) => ({
+      ...current,
+      [categoryId]: !current[categoryId],
+    }))
   }
 
   const normalizeProductName = (value) =>
@@ -116,13 +142,13 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${onHero ? '' : 'backdrop-blur-sm'} ${scrolled && !onHero ? 'py-4' : 'py-6'}`}
       style={{ background: navBg, borderBottom: navBorder }}
     >
-      <div className="max-w-7xl mx-auto px-8 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between gap-4">
 
         {/* Logo */}
         <button onClick={() => navigate('/')}
           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
           <div className="flex flex-col leading-none">
-            <span style={{ fontFamily: 'ErasMedium, sans-serif', fontWeight: 700, fontSize: '20px', letterSpacing: '0.3em', color: onHero ? '#F7F4F0' : '#1C2B2B', transition: 'color 0.5s' }}>BDF</span>
+            <span style={{ fontFamily: 'ErasMedium, sans-serif', fontWeight: 700, fontSize: isMobile ? '18px' : '20px', letterSpacing: '0.3em', color: onHero ? '#F7F4F0' : '#1C2B2B', transition: 'color 0.5s' }}>BDF</span>
             <span style={{ fontFamily: 'ErasMedium, sans-serif', fontWeight: 300, fontSize: '8px', letterSpacing: '0.4em', color: '#0ABAB5', marginTop: '2px' }}>ARCHITECTURAL</span>
           </div>
         </button>
@@ -240,7 +266,7 @@ export default function Navbar() {
         </button>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden flex flex-col gap-1.5 p-2" onClick={() => setMenuOpen(!menuOpen)}>
+        <button className="md:hidden flex flex-col gap-1.5 p-2" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
           <span className={`block w-6 h-0.5 transition-all duration-300 ${onHero ? 'bg-[#F7F4F0]' : 'bg-bdf-white'} ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
           <span className={`block w-6 h-0.5 transition-all duration-300 ${onHero ? 'bg-[#F7F4F0]' : 'bg-bdf-white'} ${menuOpen ? 'opacity-0' : ''}`} />
           <span className={`block w-6 h-0.5 transition-all duration-300 ${onHero ? 'bg-[#F7F4F0]' : 'bg-bdf-white'} ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
@@ -249,13 +275,21 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div style={{ background: '#F7F4F0', borderTop: '1px solid rgba(10,186,181,0.2)' }} className="md:hidden px-8 py-6 flex flex-col gap-4">
+        <div
+          style={{
+            background: '#F7F4F0',
+            borderTop: '1px solid rgba(10,186,181,0.2)',
+            maxHeight: 'calc(100vh - 72px)',
+            overflowY: 'auto',
+          }}
+          className="md:hidden px-4 sm:px-6 py-5 flex flex-col gap-4"
+        >
 
           {/* Products in mobile */}
           <div>
             <button
               onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0', textAlign: 'left', color: isActive('/products') ? '#0ABAB5' : '#1C2B2B', fontSize: '11px', letterSpacing: '0.2em', fontWeight: '600', fontFamily: 'ErasMedium, sans-serif', display: 'flex', alignItems: 'center', gap: '8px', width: '100%', justifyContent: 'space-between' }}>
+              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0', textAlign: 'left', color: isActive('/products') ? '#0ABAB5' : '#1C2B2B', fontSize: '13px', letterSpacing: '0.18em', fontWeight: '700', fontFamily: 'ErasMedium, sans-serif', display: 'flex', alignItems: 'center', gap: '8px', width: '100%', justifyContent: 'space-between' }}>
               PRODUCTS
               <svg style={{ transition: 'transform 0.3s', transform: mobileProductsOpen ? 'rotate(180deg)' : 'rotate(0)' }} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <polyline points="6 9 12 15 18 9"/>
@@ -270,7 +304,7 @@ export default function Navbar() {
                       style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontSize: '10px', letterSpacing: '2px', fontWeight: 700, color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '6px' }}>
                       {cat.name.toUpperCase()}
                     </button>
-                    {cat.items.slice(0, 4).map((item, i) => (
+                    {(expandedMobileCategories[cat.id] ? cat.items : cat.items.slice(0, 4)).map((item, i) => (
                       <button
                         key={i}
                         onClick={() => { navigate(getProductPath(cat.id, item)); setMenuOpen(false) }}
@@ -280,7 +314,13 @@ export default function Navbar() {
                       </button>
                     ))}
                     {cat.items.length > 4 && (
-                      <div style={{ fontSize: '10px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif', marginTop: '2px' }}>+{cat.items.length - 4} more</div>
+                      <button
+                        type="button"
+                        onClick={() => toggleMobileCategory(cat.id)}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '6px 0 0', fontSize: '10px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif', marginTop: '2px' }}
+                      >
+                        {expandedMobileCategories[cat.id] ? 'Show less' : `+${cat.items.length - 4} more`}
+                      </button>
                     )}
                   </div>
                 ))}

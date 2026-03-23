@@ -383,7 +383,7 @@ export const productData = {
       '/products/BI_FOLD_02-950x726.jpg',
       '/products/FB3C38B9-9089-4959-AE5F-239C1FFC541A-950x726.jpg',
     ],
-    description: 'The Cortizo Bifold Plus is a premium bifold door system combining slim sightlines with outstanding thermal performance. All doors are PAS24-approved. Choosing Cortizo products through Bifold Door Factory is an ideal choice for those seeking high-quality, customisable glazing solutions — with over 35 years of industry experience and expert installation teams ensuring precise, tailored solutions for unique home designs.',
+    description: 'The Cortizo Bifold Plus is a premium bifold door system combining slim sightlines with outstanding thermal performance. All doors are PAS24-approved. Choosing Cortizo products through BDF Architectural is an ideal choice for those seeking high-quality, customisable glazing solutions — with over 35 years of industry experience and expert installation teams ensuring precise, tailored solutions for unique home designs.',
     features: [
       'Slim central section of 110mm maximises glazed surface, enhancing natural light',
       '45mm thermal break for excellent insulation',
@@ -947,7 +947,7 @@ export const productData = {
       '/products/9849E7E1-F89E-428E-907C-B434BDDC4425-950x726.jpg',
       '/products/A5917337-4B22-486C-BFBD-023305E8E57E-950x726.jpg',
     ],
-    description: 'Architecturally high-quality solutions with a completely flush-fitted design can be achieved with The Bi-Fold Door Factory structural glazing systems. With flush-fitted opening units and fixed lights integrated into the load-bearing structure — not visible on the outside or inside — or as extensions of the tried and tested FW 50+ and FW 60 systems.',
+    description: 'Architecturally high-quality solutions with a completely flush-fitted design can be achieved with The BDF Architectural structural glazing systems. With flush-fitted opening units and fixed lights integrated into the load-bearing structure — not visible on the outside or inside — or as extensions of the tried and tested FW 50+ and FW 60 systems.',
     features: [
       'Seamless integration — flush-fitted opening units and fixed lights integrate into the load-bearing structure',
       'Versatile solutions — wide range for various constructions, including extensions of FW 50+ and FW 60 systems',

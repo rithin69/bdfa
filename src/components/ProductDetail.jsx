@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { productData } from '../data/productData'
+import useResponsive from '../hooks/useResponsive'
 
 export default function ProductDetail() {
   const { slug } = useParams()
   const navigate = useNavigate()
+  const { isMobile } = useResponsive()
   const product = productData[slug]
   const [activeImage, setActiveImage] = useState(0)
 
@@ -25,15 +27,54 @@ export default function ProductDetail() {
     )
   }
 
-  const allImages = product.gallery && product.gallery.length > 0
-    ? [product.heroImage, ...product.gallery].filter(Boolean)
-    : [product.heroImage].filter(Boolean)
+  const allImages = Array.from(
+    new Set([product.heroImage, ...(product.gallery || [])].filter(Boolean))
+  )
+
+  useEffect(() => {
+    setActiveImage(0)
+  }, [slug])
 
   return (
     <div style={{ background: '#F7F4F0', minHeight: '100vh' }}>
+      <style>{`
+        @media (max-width: 768px) {
+          .product-detail-main,
+          .product-detail-breadcrumb,
+          .product-detail-title {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+          .product-detail-grid {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
+          .product-detail-hero {
+            height: 420px !important;
+          }
+          .product-detail-spec-row {
+            flex-direction: column !important;
+          }
+          .product-detail-spec-label {
+            width: 100% !important;
+            border-right: none !important;
+            border-bottom: 1px solid rgba(10,186,181,0.2) !important;
+          }
+          .product-detail-cta-actions {
+            width: 100%;
+            flex-direction: column;
+          }
+          .product-detail-cta-actions button {
+            width: 100%;
+          }
+          .product-detail-cta {
+            padding: 32px 20px !important;
+          }
+        }
+      `}</style>
 
       {/* ── Hero ── */}
-      <div style={{ position: 'relative', width: '100%', height: '500px' }}>
+      <div className="product-detail-hero" style={{ position: 'relative', width: '100%', height: '500px' }}>
         <img
           src={product.heroImage || allImages[0]}
           alt={product.name}
@@ -43,8 +84,8 @@ export default function ProductDetail() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(28,43,43,0.65) 0%, rgba(28,43,43,0.45) 50%, rgba(28,43,43,0.7) 100%)' }} />
 
         {/* Breadcrumb */}
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, paddingTop: '96px', paddingLeft: '64px', paddingRight: '64px' }}>
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '10px', letterSpacing: '2px', textTransform: 'uppercase' }}>
+        <div className="product-detail-breadcrumb" style={{ position: 'absolute', top: 0, left: 0, right: 0, paddingTop: isMobile ? '84px' : '96px', paddingLeft: '64px', paddingRight: '64px' }}>
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: isMobile ? '9px' : '10px', letterSpacing: isMobile ? '1px' : '2px', textTransform: 'uppercase', flexWrap: 'wrap' }}>
             <Link to="/" style={{ color: 'rgba(247,244,240,0.85)', textDecoration: 'none' }}>Home</Link>
             <span style={{ color: 'rgba(247,244,240,0.5)' }}>›</span>
             <Link to="/products" style={{ color: 'rgba(247,244,240,0.85)', textDecoration: 'none' }}>Products</Link>
@@ -56,7 +97,7 @@ export default function ProductDetail() {
         </div>
 
         {/* Title */}
-        <div style={{ position: 'absolute', bottom: '48px', left: '64px', right: '64px' }}>
+        <div className="product-detail-title" style={{ position: 'absolute', bottom: isMobile ? '32px' : '48px', left: '64px', right: '64px' }}>
           <p style={{ color: '#0ABAB5', fontSize: '10px', letterSpacing: '3px', textTransform: 'uppercase', margin: '0 0 10px', fontWeight: 600 }}>
             {product.category}
           </p>
@@ -67,8 +108,8 @@ export default function ProductDetail() {
       </div>
 
       {/* ── Main Content ── */}
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '72px 64px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
+      <div className="product-detail-main" style={{ maxWidth: '1200px', margin: '0 auto', padding: isMobile ? '48px 16px' : '72px 64px' }}>
+        <div className="product-detail-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
 
           {/* Left: Description + Features */}
           <div>
@@ -146,13 +187,14 @@ export default function ProductDetail() {
                 <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(10,186,181,0.3)' }}>
                   {product.specs.map((s, i) => (
                     <div
+                      className="product-detail-spec-row"
                       key={i}
                       style={{
                         display: 'flex',
                         borderBottom: i < product.specs.length - 1 ? '1px solid rgba(10,186,181,0.2)' : 'none',
                       }}
                     >
-                      <div style={{
+                      <div className="product-detail-spec-label" style={{
                         padding: '13px 16px', fontSize: '11px', fontWeight: 700, letterSpacing: '1px',
                         textTransform: 'uppercase', flexShrink: 0, width: '40%',
                         background: 'rgba(10,186,181,0.08)', color: '#0ABAB5',
@@ -172,7 +214,7 @@ export default function ProductDetail() {
         </div>
 
         {/* ── CTA Banner ── */}
-        <div style={{
+        <div className="product-detail-cta" style={{
           marginTop: '80px', borderRadius: '16px', padding: '56px 64px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '32px', flexWrap: 'wrap',
           background: 'rgba(10,186,181,0.08)', border: '1px solid rgba(10,186,181,0.3)',
@@ -185,7 +227,7 @@ export default function ProductDetail() {
               Get a free, no-obligation quote tailored to your project. Our team is ready to help.
             </p>
           </div>
-          <div style={{ display: 'flex', gap: '16px', flexShrink: 0 }}>
+          <div className="product-detail-cta-actions" style={{ display: 'flex', gap: '16px', flexShrink: 0, flexWrap: 'wrap' }}>
             <button
               onClick={() => navigate('/products')}
               style={{

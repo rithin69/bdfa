@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import useResponsive from '../hooks/useResponsive'
+import { submitWebsiteForm } from '../utils/formSubmission'
 
 const roles = [
   {
@@ -82,10 +84,13 @@ const deptColors = {
 }
 
 export default function Careers() {
+  const { isMobile } = useResponsive()
   const [activeRole, setActiveRole] = useState(null)
   const [filter, setFilter] = useState('ALL')
   const [form, setForm] = useState({ name: '', email: '', phone: '', role: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
   const [focused, setFocused] = useState('')
 
   const depts = ['ALL', ...Array.from(new Set(roles.map(r => r.dept)))]
@@ -99,14 +104,27 @@ export default function Careers() {
     }, 100)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
+    const formElement = e.currentTarget
+    setSubmitting(true)
+    setError('')
+
+    try {
+      await submitWebsiteForm(formElement, {
+        subject: 'New Careers application from bdfa.uk',
+      })
+      formElement.reset()
+      setError('')
       setActiveRole(null)
       setForm({ name: '', email: '', phone: '', role: '', message: '' })
-    }, 4000)
+      setSubmitted(true)
+      setTimeout(() => setSubmitted(false), 4000)
+    } catch (submissionError) {
+      setError('Submission failed. Please try again or email info@bdfa.uk.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const inputStyle = (field) => ({
@@ -133,6 +151,15 @@ export default function Careers() {
         @keyframes checkPop { 0%{transform:scale(0)} 70%{transform:scale(1.2)} 100%{transform:scale(1)} }
         @keyframes slowZoom { from{transform:scale(1)} to{transform:scale(1.06)} }
         .role-card:hover .role-arrow { transform: translateX(4px) !important; }
+        @media (max-width: 768px) {
+          .careers-shell-pad {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+          .careers-form-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
       `}</style>
 
       {/* ══ HERO ══ */}
@@ -153,7 +180,7 @@ export default function Careers() {
         <div style={{ position: 'absolute', left: 0, top: '20%', bottom: '20%', width: '3px', background: 'linear-gradient(to bottom, transparent, #0ABAB5 30%, #0ABAB5 70%, transparent)' }} />
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '40px', background: 'linear-gradient(to bottom, transparent, #F7F4F0)' }} />
 
-        <div style={{ position: 'relative', zIndex: 10, padding: '60px 64px', maxWidth: '800px', animation: 'fadeUp 1s ease both' }}>
+        <div className="careers-shell-pad" style={{ position: 'relative', zIndex: 10, padding: isMobile ? '40px 16px' : '60px 64px', maxWidth: '800px', animation: 'fadeUp 1s ease both' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
             <div style={{ width: '40px', height: '1px', background: '#0ABAB5' }} />
             <span style={{ fontSize: '9px', letterSpacing: '5px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif' }}>JOIN OUR TEAM</span>
@@ -172,7 +199,7 @@ export default function Careers() {
               onMouseLeave={e => e.currentTarget.style.background = '#0ABAB5'}>
               VIEW OPEN ROLES
             </button>
-            <a href="mailto:info@bifolddoorfactory.co.uk"
+            <a href="mailto:info@bdfa.uk"
               style={{ border: '1px solid rgba(28,43,43,0.4)', padding: '16px 36px', color: 'rgba(28,43,43,0.7)', fontSize: '10px', letterSpacing: '3px', fontFamily: 'ErasMedium, sans-serif', textDecoration: 'none', transition: 'all 0.3s', display: 'inline-flex', alignItems: 'center' }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = '#0ABAB5'; e.currentTarget.style.color = '#0ABAB5' }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(28,43,43,0.4)'; e.currentTarget.style.color = 'rgba(28,43,43,0.7)' }}>
@@ -221,7 +248,7 @@ export default function Careers() {
 
       {/* ══ APPLICATION FORM ══ */}
       <section id="apply" style={{ background: '#EDF8F8', borderTop: '1px solid rgba(10,186,181,0.35)' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto', padding: '100px 64px' }}>
+        <div className="careers-shell-pad" style={{ maxWidth: '900px', margin: '0 auto', padding: isMobile ? '56px 16px' : '100px 64px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
             <div style={{ width: '40px', height: '1px', background: '#0ABAB5' }} />
             <span style={{ fontSize: '9px', letterSpacing: '5px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif' }}>JOIN US</span>
@@ -231,7 +258,7 @@ export default function Careers() {
           </h2>
           <p style={{ fontSize: '13px', color: 'rgba(28,43,43,0.72)', fontFamily: 'ErasMedium, sans-serif', lineHeight: 1.9, margin: '0 0 48px' }}>
             Send us your details and we'll be in touch. You can also send your CV directly to{' '}
-            <a href="mailto:info@bifolddoorfactory.co.uk" style={{ color: '#0ABAB5', textDecoration: 'none' }}>info@bifolddoorfactory.co.uk</a>
+            <a href="mailto:info@bdfa.uk" style={{ color: '#0ABAB5', textDecoration: 'none' }}>info@bdfa.uk</a>
           </p>
 
           {submitted ? (
@@ -248,6 +275,7 @@ export default function Careers() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <input type="hidden" name="form_type" value="Careers" />
 
               {activeRole && (
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 20px', background: 'rgba(10,186,181,0.08)', border: '1px solid rgba(10,186,181,0.3)' }}>
@@ -262,7 +290,7 @@ export default function Careers() {
                 </div>
               )}
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="careers-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 {[
                   { label: 'FULL NAME', key: 'name', type: 'text', placeholder: 'Your full name' },
                   { label: 'EMAIL ADDRESS', key: 'email', type: 'email', placeholder: 'Your email address' },
@@ -272,6 +300,7 @@ export default function Careers() {
                       {label} <span style={{ color: '#0ABAB5' }}>*</span>
                     </label>
                     <input required type={type} placeholder={placeholder} className="careers-input"
+                      name={key}
                       value={form[key]}
                       onChange={e => setForm({ ...form, [key]: e.target.value })}
                       style={inputStyle(key)}
@@ -281,12 +310,13 @@ export default function Careers() {
                 ))}
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              <div className="careers-form-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                 <div>
                   <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(28,43,43,0.8)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '8px' }}>
                     PHONE NUMBER
                   </label>
                   <input type="tel" placeholder="Your phone number" className="careers-input"
+                    name="phone"
                     value={form.phone}
                     onChange={e => setForm({ ...form, phone: e.target.value })}
                     style={inputStyle('phone')}
@@ -298,6 +328,7 @@ export default function Careers() {
                     POSITION APPLYING FOR <span style={{ color: '#0ABAB5' }}>*</span>
                   </label>
                   <select required className="careers-input"
+                    name="role"
                     value={form.role}
                     onChange={e => setForm({ ...form, role: e.target.value })}
                     style={{ ...inputStyle('role'), cursor: 'pointer' }}
@@ -316,6 +347,7 @@ export default function Careers() {
                   COVER MESSAGE <span style={{ color: '#0ABAB5' }}>*</span>
                 </label>
                 <textarea required rows={5} placeholder="Tell us about yourself, your experience and why you'd like to join BDF..." className="careers-input"
+                  name="message"
                   value={form.message}
                   onChange={e => setForm({ ...form, message: e.target.value })}
                   style={{ ...inputStyle('message'), resize: 'vertical', minHeight: '140px' }}
@@ -326,16 +358,22 @@ export default function Careers() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
                 <p style={{ fontSize: '12px', color: 'rgba(28,43,43,0.65)', fontFamily: 'ErasMedium, sans-serif', margin: 0 }}>
                   Or email your CV to{' '}
-                  <a href="mailto:info@bifolddoorfactory.co.uk" style={{ color: '#0ABAB5', textDecoration: 'none' }}>info@bifolddoorfactory.co.uk</a>
+                  <a href="mailto:info@bdfa.uk" style={{ color: '#0ABAB5', textDecoration: 'none' }}>info@bdfa.uk</a>
                 </p>
+                {error && (
+                  <p style={{ fontSize: '12px', color: '#C24F4F', fontFamily: 'ErasMedium, sans-serif', margin: 0 }}>
+                    {error}
+                  </p>
+                )}
                 <button type="submit"
+                  disabled={submitting}
                   style={{ background: '#0ABAB5', border: 'none', padding: '18px 48px', color: '#1C2B2B', fontSize: '11px', letterSpacing: '4px', fontWeight: 700, fontFamily: 'ErasMedium, sans-serif', cursor: 'pointer', transition: 'all 0.3s', display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}
                   onMouseEnter={e => e.currentTarget.style.background = '#7DD8D6'}
                   onMouseLeave={e => e.currentTarget.style.background = '#0ABAB5'}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C2B2B" strokeWidth="2.5">
                     <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
                   </svg>
-                  SUBMIT APPLICATION
+                  {submitting ? 'SENDING...' : 'SUBMIT APPLICATION'}
                 </button>
               </div>
 
@@ -345,18 +383,18 @@ export default function Careers() {
       </section>
 
       {/* ══ BOTTOM CTA ══ */}
-      <div style={{ background: '#0ABAB5', padding: '48px 64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
+      <div className="careers-shell-pad" style={{ background: '#0ABAB5', padding: isMobile ? '36px 16px' : '48px 64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
         <div>
           <div style={{ fontSize: '9px', letterSpacing: '4px', color: 'rgba(28,43,43,0.5)', fontFamily: 'ErasMedium, sans-serif', marginBottom: '6px' }}>QUESTIONS ABOUT A ROLE?</div>
           <div style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: 'clamp(24px,3vw,42px)', fontWeight: 300, color: '#1C2B2B' }}>
             We'd love to hear from you
           </div>
         </div>
-        <a href="mailto:info@bifolddoorfactory.co.uk"
+        <a href="mailto:info@bdfa.uk"
           style={{ background: '#F7F4F0', padding: '18px 40px', color: '#1C2B2B', fontSize: '10px', letterSpacing: '3px', fontFamily: 'ErasMedium, sans-serif', fontWeight: 700, textDecoration: 'none', transition: 'opacity 0.3s' }}
           onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
           onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
-          info@bifolddoorfactory.co.uk
+          info@bdfa.uk
         </a>
       </div>
 

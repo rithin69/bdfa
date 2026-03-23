@@ -23,9 +23,12 @@ const values = [
 ]
 
 const testimonials = [
-  { quote: 'Absolutely outstanding service from start to finish. The bifold doors have completely transformed our home. We cannot recommend BDF highly enough to anyone.', name: 'James & Sarah Mitchell', location: 'London', project: 'Aluminium Bifold Doors', rating: 5 },
-  { quote: 'Professional, punctual and the quality is second to none. The team were brilliant throughout and our new sliding doors look and work incredible. 10 out of 10.', name: 'Robert Thompson', location: 'Surrey', project: 'Schuco Sliding Doors', rating: 5 },
-  { quote: 'From the initial consultation to the final installation, everything was handled with the utmost professionalism. Our new bifold doors are breathtaking.', name: 'Claire & David Williams', location: 'Essex', project: 'Cortizo Bifold Plus', rating: 5 },
+  { quote: 'Excellent service from the time I spoke to Narinderpal.', name: 'Leo', location: 'Trustpilot - Jan 2026', project: 'Aluminium Bifold Doors', rating: 5 },
+  { quote: 'These doors are the showstopper of the house.', name: 'Mikki', location: 'Trustpilot - Jul 2025', project: 'Cortizo Cor Vision Slider', rating: 5 },
+  { quote: 'The process from start to finish was transparent and professional.', name: 'Robert Dunne', location: 'Farnham - Trustpilot - Apr 2025', project: 'Bifold Door Installation', rating: 5 },
+  { quote: 'Great Cortizo products and professional service.', name: 'J G', location: 'Trustpilot - Feb 2026', project: 'Cortizo Windows and Doors', rating: 5 },
+  { quote: 'Absolutely fantastic service from Narinderpal and the team.', name: 'Ajay Kamboj', location: 'Trustpilot - May 2025', project: 'Double Glazing Installation', rating: 5 },
+  { quote: 'Best price and best customer service I\'ve experienced from a business.', name: 'Nick Jones', location: 'Trustpilot - Mar 2025', project: 'Bifolds, Sliding Door and Lantern', rating: 5 },
 ]
 
 const products = [
@@ -66,7 +69,7 @@ function useCountUp(target, duration, start) {
 function StatCard({ num, suffix, label, index, visible }) {
   const count = useCountUp(parseInt(num), 2200 + index * 300, visible)
   return (
-    <div style={{ padding: '48px 24px', textAlign: 'center', borderRight: index < 3 ? '1px solid rgba(10,186,181,0.12)' : 'none', flex: 1 }}>
+    <div className="about-stats-card" style={{ padding: '48px 24px', textAlign: 'center', borderRight: index < 3 ? '1px solid rgba(10,186,181,0.12)' : 'none', flex: 1 }}>
       <div style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: 'clamp(48px,5vw,72px)', fontWeight: 300, color: '#0ABAB5', lineHeight: 1, marginBottom: '10px' }}>
         {count.toLocaleString()}{suffix}
       </div>
@@ -122,6 +125,60 @@ export default function AboutUs() {
           .hide-mobile { display: none !important; }
           .carousel-controls { bottom: 40px !important; right: 24px !important; }
           .carousel-info { left: 24px !important; bottom: 40px !important; }
+          .about-shell-pad { padding-left: 16px !important; padding-right: 16px !important; }
+          .about-shell-pad-lg { padding-left: 16px !important; padding-right: 16px !important; }
+          .about-intro-copy,
+          .about-products-copy,
+          .about-values-copy,
+          .about-testimonials {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+          .about-values-copy {
+            padding-bottom: 48px !important;
+          }
+          .about-products-list { grid-template-columns: 1fr !important; gap: 0 !important; }
+          .about-values-image,
+          .about-products-image { display: none !important; }
+          .about-value-item { padding-left: 18px !important; }
+          .about-value-row {
+            align-items: flex-start !important;
+            gap: 16px !important;
+            padding: 22px 0 !important;
+          }
+          .about-value-number {
+            width: 48px !important;
+            font-size: 42px !important;
+          }
+          .about-value-title {
+            margin-bottom: 10px !important;
+            font-size: 12px !important;
+            line-height: 1.5 !important;
+            color: #1C2B2B !important;
+          }
+          .about-value-desc {
+            max-height: 260px !important;
+            line-height: 1.9 !important;
+          }
+          .about-value-icon { margin-top: 2px !important; }
+          .about-gold-cta { padding: 40px 24px !important; }
+          .about-testimonial-quote {
+            font-size: clamp(20px, 7vw, 28px) !important;
+            line-height: 1.45 !important;
+          }
+          .about-cinematic-copy {
+            padding: 24px !important;
+          }
+        }
+        @media(max-width:480px){
+          .stats-grid { grid-template-columns: 1fr !important; }
+          .about-stats-card {
+            border-right: none !important;
+            border-bottom: 1px solid rgba(10,186,181,0.12);
+          }
+          .about-hero-title {
+            font-size: clamp(48px, 16vw, 72px) !important;
+          }
         }
       `}</style>
 
@@ -155,7 +212,7 @@ export default function AboutUs() {
           </div>
 
           {/* ABOUT US — giant */}
-          <h1 style={{ ...T.h1, color: '#F7F4F0', fontSize: 'clamp(64px,10vw,130px)', margin: '0 0 32px', animation: 'fadeUp 1s ease 0.5s both', opacity: 0 }}>
+          <h1 className="about-hero-title" style={{ ...T.h1, color: '#F7F4F0', fontSize: 'clamp(64px,10vw,130px)', margin: '0 0 32px', animation: 'fadeUp 1s ease 0.5s both', opacity: 0 }}>
             About <span style={{ color: '#0ABAB5', fontStyle: 'normal' }}>Us</span>
           </h1>
 
@@ -203,7 +260,7 @@ export default function AboutUs() {
           </div>
         </div>
 
-        <div style={{ background: '#EDF8F8', display: 'flex', alignItems: 'center', padding: '80px 72px' }}>
+        <div className="about-intro-copy" style={{ background: '#EDF8F8', display: 'flex', alignItems: 'center', padding: '80px 72px' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
               {goldLine}
@@ -214,7 +271,7 @@ export default function AboutUs() {
               <span style={{ color: '#0ABAB5', fontStyle: 'normal' }}>Specialists</span>
             </h2>
             <p style={{ ...T.body, margin: '0 0 18px' }}>
-              Bifold Door Factory have been delivering high-quality glazing and door solutions for over 20 years. We have provided stunning bifolding doors, sliding doors, windows, roof systems, curtain walling and structural glazing services to countless customers across the UK.
+              BDF Architectural have been delivering high-quality glazing and door solutions for over 20 years. We have provided stunning bifolding doors, sliding doors, windows, roof systems, curtain walling and structural glazing services to countless customers across the UK.
             </p>
             <p style={{ ...T.body, margin: '0 0 40px' }}>
               We have partnered with{' '}
@@ -298,7 +355,7 @@ export default function AboutUs() {
       {/* VALUES ACCORDION                       */}
       {/* ════════════════════════════════════════ */}
       <section style={{ background: '#F7F4F0' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '100px 64px 60px' }}>
+        <div className="about-shell-pad-lg" style={{ maxWidth: '1280px', margin: '0 auto', padding: '100px 64px 60px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
             {goldLine}
             <span style={T.eyebrow}>Why Choose Us</span>
@@ -309,22 +366,22 @@ export default function AboutUs() {
         </div>
 
         <div className="split-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
-          <div style={{ padding: '0 0 80px 64px' }}>
+          <div className="about-values-copy" style={{ padding: '0 0 80px 64px' }}>
             {values.map((v, i) => (
-              <div key={i} onClick={() => setActiveValue(i)}
+              <div key={i} className="about-value-item" onClick={() => setActiveValue(i)}
                 style={{ borderBottom: '1px solid rgba(28,43,43,0.06)', borderLeft: `3px solid ${i === activeValue ? '#0ABAB5' : 'transparent'}`, paddingLeft: '28px', cursor: 'pointer', transition: 'all 0.3s', background: i === activeValue ? 'rgba(10,186,181,0.03)' : 'transparent' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '24px', padding: '28px 0 28px' }}>
-                  <span style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '52px', fontWeight: 300, color: i === activeValue ? 'rgba(10,186,181,0.6)' : 'rgba(10,186,181,0.15)', width: '64px', flexShrink: 0, lineHeight: 1, transition: 'color 0.3s' }}>{v.num}</span>
+                <div className="about-value-row" style={{ display: 'flex', alignItems: 'center', gap: '24px', padding: '28px 0 28px' }}>
+                  <span className="about-value-number" style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '52px', fontWeight: 300, color: i === activeValue ? 'rgba(10,186,181,0.6)' : 'rgba(10,186,181,0.15)', width: '64px', flexShrink: 0, lineHeight: 1, transition: 'color 0.3s' }}>{v.num}</span>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: '13px', letterSpacing: '3px', fontWeight: 600, color: i === activeValue ? '#F7F4F0' : '#1C2B2B', marginBottom: i === activeValue ? '14px' : 0, transition: 'all 0.3s', textTransform: 'uppercase', fontFamily: '"Montserrat", sans-serif' }}>{v.title}</div>
-                    <div style={{ ...T.body, fontSize: '13px', maxHeight: i === activeValue ? '120px' : 0, overflow: 'hidden', transition: 'max-height 0.5s ease, opacity 0.4s', opacity: i === activeValue ? 1 : 0 }}>{v.desc}</div>
+                    <div className="about-value-title" style={{ fontSize: '13px', letterSpacing: '3px', fontWeight: 600, color: '#1C2B2B', marginBottom: i === activeValue ? '14px' : 0, transition: 'all 0.3s', textTransform: 'uppercase', fontFamily: '"Montserrat", sans-serif' }}>{v.title}</div>
+                    <div className="about-value-desc" style={{ ...T.body, fontSize: '13px', maxHeight: i === activeValue ? '160px' : 0, overflow: 'hidden', transition: 'max-height 0.5s ease, opacity 0.4s', opacity: i === activeValue ? 1 : 0 }}>{v.desc}</div>
                   </div>
-                  <div style={{ color: i === activeValue ? '#0ABAB5' : '#1C2B2B', fontSize: '22px', transition: 'all 0.3s', transform: i === activeValue ? 'rotate(90deg)' : 'none', flexShrink: 0 }}>›</div>
+                  <div className="about-value-icon" style={{ color: i === activeValue ? '#0ABAB5' : '#1C2B2B', fontSize: '22px', transition: 'all 0.3s', transform: i === activeValue ? 'rotate(90deg)' : 'none', flexShrink: 0 }}>›</div>
                 </div>
               </div>
             ))}
           </div>
-          <div style={{ position: 'relative', minHeight: '560px', overflow: 'hidden' }}>
+          <div className="about-values-image" style={{ position: 'relative', minHeight: '560px', overflow: 'hidden' }}>
             {values.map((v, i) => (
               <div key={i} style={{ position: 'absolute', inset: 0, opacity: i === activeValue ? 1 : 0, transition: 'opacity 0.7s ease' }}>
                 <img src={v.img} alt={v.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -342,7 +399,7 @@ export default function AboutUs() {
       {/* PRODUCTS                               */}
       {/* ════════════════════════════════════════ */}
       <section className="split-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '600px' }}>
-        <div style={{ background: '#EDF8F8', display: 'flex', alignItems: 'center', padding: '80px 72px' }}>
+        <div className="about-products-copy" style={{ background: '#EDF8F8', display: 'flex', alignItems: 'center', padding: '80px 72px' }}>
           <div style={{ width: '100%' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
               {goldLine}
@@ -354,7 +411,7 @@ export default function AboutUs() {
             <p style={{ ...T.body, margin: '0 0 40px' }}>
               As glazing and door specialists we offer an extensive range of premium styles and colours to add a modern touch to both traditional and contemporary homes across the UK.
             </p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 40px' }}>
+            <div className="about-products-list" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 40px' }}>
               {products.map((p, i) => (
                 <div key={i}
                   style={{ display: 'flex', alignItems: 'center', gap: '14px', padding: '13px 0', borderBottom: '1px solid rgba(28,43,43,0.06)', cursor: 'default' }}
@@ -367,7 +424,7 @@ export default function AboutUs() {
             </div>
           </div>
         </div>
-        <div style={{ position: 'relative', minHeight: '400px', overflow: 'hidden' }}>
+        <div className="about-products-image" style={{ position: 'relative', minHeight: '400px', overflow: 'hidden' }}>
           <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=900&q=90" alt="Interior"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.8s ease' }}
             onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
@@ -379,7 +436,7 @@ export default function AboutUs() {
       {/* ════════════════════════════════════════ */}
       {/* TESTIMONIALS                           */}
       {/* ════════════════════════════════════════ */}
-      <section style={{ background: '#F7F4F0', padding: '100px 64px', overflow: 'hidden' }}>
+      <section className="about-testimonials" style={{ background: '#F7F4F0', padding: '100px 64px', overflow: 'hidden' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
             {goldLine}
@@ -399,7 +456,7 @@ export default function AboutUs() {
                 ))}
               </div>
 
-              <p style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: 'clamp(22px,3vw,40px)', fontWeight: 300, color: '#1C2B2B', lineHeight: 1.55, margin: '0 0 40px', maxWidth: '820px' }}>
+              <p className="about-testimonial-quote" style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: 'clamp(22px,3vw,40px)', fontWeight: 300, color: '#1C2B2B', lineHeight: 1.55, margin: '0 0 40px', maxWidth: '820px' }}>
                 "{testimonials[testimonialIdx].quote}"
               </p>
 
@@ -440,7 +497,7 @@ export default function AboutUs() {
         <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1920&q=90"
           alt="Luxury home" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(28,43,43,0.78)' }} />
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '32px', zIndex: 1 }}>
+        <div className="about-cinematic-copy" style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '32px', zIndex: 1 }}>
           <p style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: 'clamp(28px,4vw,60px)', fontWeight: 300, color: '#F7F4F0', lineHeight: 1.35, margin: '0 0 14px' }}>
             Join tens of thousands of satisfied customers
           </p>
@@ -459,8 +516,8 @@ export default function AboutUs() {
       {/* ════════════════════════════════════════ */}
       {/* GOLD CTA BANNER                        */}
       {/* ════════════════════════════════════════ */}
-      <div style={{ padding: '80px 64px', background: '#F7F4F0' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', background: '#0ABAB5', padding: '64px 80px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '40px', flexWrap: 'wrap' }}>
+      <div className="about-shell-pad" style={{ padding: '80px 64px', background: '#F7F4F0' }}>
+        <div className="about-gold-cta" style={{ maxWidth: '1280px', margin: '0 auto', background: '#0ABAB5', padding: '64px 80px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '40px', flexWrap: 'wrap' }}>
           <div>
             <div style={{ fontSize: '9px', letterSpacing: '4px', color: 'rgba(28,43,43,0.5)', marginBottom: '12px', textTransform: 'uppercase', fontFamily: '"Montserrat", sans-serif' }}>Get In Touch Today</div>
             <h3 style={{ fontFamily: '"Cormorant Garamond", Georgia, serif', fontSize: 'clamp(32px,3.5vw,54px)', fontWeight: 300, color: '#1C2B2B', margin: 0, lineHeight: 1.2 }}>

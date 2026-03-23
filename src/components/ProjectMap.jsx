@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import useResponsive from '../hooks/useResponsive'
 
 const projectSites = [
   { name: 'Bentley Way House',    location: 'Stanmore, London',      lat: 51.6193, lng: -0.3125 },
@@ -10,6 +11,7 @@ const projectSites = [
 ]
 
 export default function ProjectMap() {
+  const { isMobile } = useResponsive()
   const mapRef = useRef(null)
   const mapInstanceRef = useRef(null)
   const [active, setActive] = useState(null)
@@ -84,10 +86,10 @@ export default function ProjectMap() {
   }, [])
 
   return (
-    <section style={{ background: '#0D1B2A', padding: '80px 0 0' }}>
+    <section style={{ background: '#0D1B2A', padding: isMobile ? '56px 0 0' : '80px 0 0' }}>
 
       {/* Header */}
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 64px 40px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: isMobile ? '0 16px 28px' : '0 64px 40px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px' }}>
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
             <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#0ABAB5', boxShadow: '0 0 8px #0ABAB5' }} />
@@ -119,14 +121,14 @@ export default function ProjectMap() {
       </div>
 
       {/* Map */}
-      <div style={{ padding: '0 64px', maxWidth: '1280px', margin: '0 auto' }}>
-        <div style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(10,186,181,0.15)', height: '460px' }}>
+      <div style={{ padding: isMobile ? '0 16px' : '0 64px', maxWidth: '1280px', margin: '0 auto' }}>
+        <div style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(10,186,181,0.15)', height: isMobile ? '340px' : '460px' }}>
           <div ref={mapRef} style={{ height: '100%', width: '100%', background: '#0D1B2A' }} />
         </div>
       </div>
 
       {/* Bottom strip */}
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '18px 64px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: isMobile ? '18px 16px' : '18px 64px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
         <span style={{ fontSize: '11px', letterSpacing: '2px', color: 'rgba(247,244,240,0.3)', fontFamily: 'ErasMedium, sans-serif' }}>
           {projectSites.length} PROJECT SITES
         </span>

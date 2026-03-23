@@ -273,7 +273,7 @@ export default function Portfolio() {
                 key={project.id}
                 type="button"
                 onClick={() => openProject(project)}
-                className={`portfolio-item group relative overflow-hidden rounded-[28px] text-left ${project.span}`}
+                className={`portfolio-item group relative min-h-[320px] overflow-hidden rounded-[28px] text-left md:min-h-0 ${project.span}`}
               >
                 <div className="absolute inset-0 bg-black">
                   <img
@@ -322,6 +322,13 @@ export default function Portfolio() {
               </div>
               <div className="h-px w-14 bg-[#0ABAB5]/45" />
             </div>
+          </div>
+          <div className="mt-8 flex items-center justify-center gap-4 text-[#0ABAB5] md:hidden">
+            <div className="h-px w-10 bg-[#0ABAB5]/45" />
+            <div className="font-cormorant text-[24px] font-light tracking-[0.18em] text-[#0ABAB5]">
+              AND MANY MORE
+            </div>
+            <div className="h-px w-10 bg-[#0ABAB5]/45" />
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import useResponsive from '../hooks/useResponsive'
 
 const categories = [
   {
@@ -148,6 +149,7 @@ function CategoryCard({ cat, onClick }) {
 
 export default function Products() {
   const navigate = useNavigate()
+  const { isMobile, isTablet } = useResponsive()
   const [activeTab, setActiveTab] = useState('bifold')
   const sectionRefs = useRef({})
 
@@ -177,17 +179,48 @@ export default function Products() {
         @keyframes slowZoom { from{transform:scale(1)} to{transform:scale(1.06)} }
         .tab-link { transition: color 0.3s, border-color 0.3s; }
         .tab-link:hover { color: #1C2B2B !important; }
+        @media (max-width: 1024px) {
+          .products-shell-pad {
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+          }
+          .products-overview-grid,
+          .products-section-header,
+          .products-section-grid,
+          .products-product-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .products-sticky-media {
+            position: static !important;
+          }
+          .products-count-badge {
+            display: none !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .products-shell-pad {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+          .products-hero {
+            height: 60vh !important;
+            min-height: 400px !important;
+          }
+          .products-category-card {
+            aspect-ratio: 4 / 3 !important;
+          }
+        }
       `}</style>
 
       {/* ══ HERO ══ */}
-      <section style={{ position: 'relative', height: '65vh', minHeight: '480px', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+      <section className="products-hero" style={{ position: 'relative', height: '65vh', minHeight: '480px', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
         <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1920&q=90" alt="Products"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', animation: 'slowZoom 16s ease-in-out infinite alternate' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(28,43,43,0.92) 50%, rgba(28,43,43,0.6) 100%)' }} />
         <div style={{ position: 'absolute', left: 0, top: '20%', bottom: '20%', width: '3px', background: 'linear-gradient(to bottom, transparent, #0ABAB5 30%, #0ABAB5 70%, transparent)' }} />
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '40px', background: 'linear-gradient(to bottom, transparent, #F7F4F0)' }} />
 
-        <div style={{ position: 'relative', zIndex: 10, padding: '0 72px', animation: 'fadeUp 1s ease both', maxWidth: '720px' }}>
+        <div className="products-shell-pad" style={{ position: 'relative', zIndex: 10, padding: '0 72px', animation: 'fadeUp 1s ease both', maxWidth: isMobile ? 'none' : '720px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '28px' }}>
             <div style={{ width: '40px', height: '1px', background: '#0ABAB5' }} />
             <span style={{ fontSize: '9px', letterSpacing: '5px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif' }}>PREMIUM ALUMINIUM SYSTEMS</span>
@@ -201,7 +234,7 @@ export default function Products() {
         </div>
 
         {/* Product count badge */}
-        <div style={{ position: 'absolute', bottom: '200px', right: '72px', zIndex: 10, textAlign: 'right' }}>
+        <div className="products-count-badge" style={{ position: 'absolute', bottom: '200px', right: '72px', zIndex: 10, textAlign: 'right' }}>
           <div style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '72px', fontWeight: 300, color: 'rgba(10,186,181,0.25)', lineHeight: 1 }}>
             {categories.reduce((a, c) => a + c.products.length, 0)}+
           </div>
@@ -210,21 +243,23 @@ export default function Products() {
       </section>
 
       {/* ══ CATEGORY OVERVIEW CARDS ══ */}
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '60px 72px 0' }}>
+      <div className="products-shell-pad" style={{ maxWidth: '1280px', margin: '0 auto', padding: '60px 72px 0' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '32px' }}>
           <div style={{ width: '40px', height: '1px', background: '#0ABAB5' }} />
           <span style={{ fontSize: '9px', letterSpacing: '5px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif' }}>BROWSE BY CATEGORY</span>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px' }}>
+        <div className="products-overview-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px' }}>
           {categories.map(cat => (
-            <CategoryCard key={cat.id} cat={cat} onClick={() => scrollTo(cat.id)} />
+            <div key={cat.id} className="products-category-card">
+              <CategoryCard cat={cat} onClick={() => scrollTo(cat.id)} />
+            </div>
           ))}
         </div>
       </div>
 
       {/* ══ STICKY TABS ══ */}
-      <div style={{ position: 'sticky', top: '68px', zIndex: 30, background: 'rgba(247,244,240,0.98)', borderBottom: '1px solid rgba(10,186,181,0.2)', backdropFilter: 'blur(10px)', marginTop: '60px' }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 72px', display: 'flex', overflowX: 'auto' }}>
+      <div style={{ position: 'sticky', top: isMobile ? '64px' : '68px', zIndex: 30, background: 'rgba(247,244,240,0.98)', borderBottom: '1px solid rgba(10,186,181,0.2)', backdropFilter: 'blur(10px)', marginTop: '60px' }}>
+        <div className="products-shell-pad" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 72px', display: 'flex', overflowX: 'auto' }}>
           {categories.map(cat => (
             <button key={cat.id}
               className="tab-link"
@@ -243,12 +278,12 @@ export default function Products() {
       </div>
 
       {/* ══ PRODUCT SECTIONS ══ */}
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 72px 100px' }}>
+      <div className="products-shell-pad" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 72px 100px' }}>
         {categories.map((cat, ci) => (
           <section key={cat.id} id={cat.id} style={{ paddingTop: '80px' }}>
 
             {/* Section header */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'start', gap: '24px', marginBottom: '48px' }}>
+            <div className="products-section-header" style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'start', gap: '24px', marginBottom: '48px' }}>
               <div style={{ display: 'flex', gap: '32px', alignItems: 'flex-start' }}>
                 {/* Big number */}
                 <div style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: 'clamp(72px,8vw,110px)', fontWeight: 300, color: 'rgba(10,186,181,0.15)', lineHeight: 0.85, flexShrink: 0, marginTop: '8px', userSelect: 'none' }}>
@@ -277,13 +312,13 @@ export default function Products() {
             </div>
 
             {/* Content: products + image */}
-            <div style={{ display: 'grid', gridTemplateColumns: ci % 2 === 0 ? '1.5fr 1fr' : '1fr 1.5fr', gap: '48px', alignItems: 'start' }}>
+            <div className="products-section-grid" style={{ display: 'grid', gridTemplateColumns: ci % 2 === 0 ? '1.5fr 1fr' : '1fr 1.5fr', gap: isMobile ? '24px' : '48px', alignItems: 'start' }}>
 
               {/* Products list — alternates side */}
               {ci % 2 === 0 ? (
                 <>
                   <div>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px' }}>
+                    <div className="products-product-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px' }}>
                       {cat.products.map((p, pi) => (
                         <ProductRow key={pi} product={p} onClick={() => navigate('/products/' + p.slug)} />
                       ))}
@@ -295,7 +330,7 @@ export default function Products() {
                       </svg>
                     </div>
                   </div>
-                  <div style={{ position: 'sticky', top: '140px', overflow: 'hidden' }}>
+                  <div className="products-sticky-media" style={{ position: 'sticky', top: isTablet ? '96px' : '140px', overflow: 'hidden' }}>
                     <img src={cat.image} alt={cat.name} style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }} />
                     <div style={{ padding: '16px 20px', background: '#1C2B2B', display: 'flex', alignItems: 'center', gap: '12px' }}>
                       <div style={{ width: '24px', height: '1px', background: '#0ABAB5' }} />
@@ -305,7 +340,7 @@ export default function Products() {
                 </>
               ) : (
                 <>
-                  <div style={{ position: 'sticky', top: '140px', overflow: 'hidden' }}>
+                  <div className="products-sticky-media" style={{ position: 'sticky', top: isTablet ? '96px' : '140px', overflow: 'hidden' }}>
                     <img src={cat.image} alt={cat.name} style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }} />
                     <div style={{ padding: '16px 20px', background: '#1C2B2B', display: 'flex', alignItems: 'center', gap: '12px' }}>
                       <div style={{ width: '24px', height: '1px', background: '#0ABAB5' }} />
@@ -341,7 +376,7 @@ export default function Products() {
       </div>
 
       {/* ══ CTA BANNER ══ */}
-      <div style={{ background: '#0ABAB5', padding: '64px 72px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '32px' }}>
+      <div className="products-shell-pad" style={{ background: '#0ABAB5', padding: isMobile ? '44px 16px' : '64px 72px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '32px' }}>
         <div>
           <div style={{ fontSize: '9px', letterSpacing: '4px', color: 'rgba(28,43,43,0.6)', fontFamily: 'ErasMedium, sans-serif', marginBottom: '10px' }}>
             CAN'T FIND WHAT YOU NEED?

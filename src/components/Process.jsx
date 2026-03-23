@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import useResponsive from '../hooks/useResponsive'
 
 const steps = [
   { num: '01', title: 'Discovery', desc: 'We begin with an in-depth consultation to understand your vision, lifestyle, budget and timeline. This shapes everything that follows.' },
@@ -118,6 +119,7 @@ const socialLinks = [
 
 export function Footer() {
   const navigate = useNavigate()
+  const { isMobile } = useResponsive()
 
   const navLinks = [
     { label: 'About',     action: () => navigate('/about') },
@@ -132,10 +134,10 @@ export function Footer() {
     <footer id="footer" style={{ background: '#0D1B2A' }}>
 
       {/* ── MAIN SPLIT ── */}
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '80px 64px', display: 'grid', gridTemplateColumns: '1fr 1px 1fr', gap: '0', alignItems: 'stretch' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: isMobile ? '48px 16px' : '80px 64px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1px 1fr', gap: isMobile ? '32px' : '0', alignItems: 'stretch' }}>
 
         {/* LEFT — CTA */}
-        <div style={{ paddingRight: '72px' }}>
+        <div style={{ paddingRight: isMobile ? '0' : '72px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' }}>
             <div style={{ width: '32px', height: '1px', background: '#0ABAB5' }} />
             <span style={{ ...S, fontSize: '10px', letterSpacing: '4px', color: '#0ABAB5' }}>LET'S BUILD TOGETHER</span>
@@ -171,10 +173,10 @@ export function Footer() {
         </div>
 
         {/* VERTICAL DIVIDER */}
-        <div style={{ width: '1px', background: 'rgba(247,244,240,0.08)', margin: '0' }} />
+        {!isMobile && <div style={{ width: '1px', background: 'rgba(247,244,240,0.08)', margin: '0' }} />}
 
         {/* RIGHT — CONTACT INFO */}
-        <div style={{ ...S, paddingLeft: '72px', display: 'flex', flexDirection: 'column', justifyContent: 'center', fontStyle: 'normal' }}>
+        <div style={{ ...S, paddingLeft: isMobile ? '0' : '72px', display: 'flex', flexDirection: 'column', justifyContent: 'center', fontStyle: 'normal' }}>
           <div style={{ marginBottom: '32px' }}>
             <div style={{ ...S, fontSize: '18px', fontWeight: 600, color: '#F4F7FB', letterSpacing: '0.2px', lineHeight: 1.2, marginBottom: '8px', fontStyle: 'normal' }}>BDF Architectural</div>
             <div style={{ ...S, fontSize: '10px', letterSpacing: '4px', color: '#0ABAB5' }}>EST. 2006 · BUILDING EXCELLENCE</div>
@@ -213,16 +215,16 @@ export function Footer() {
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                 <polyline points="22,6 12,13 2,6"/>
               </svg>
-              <a href="mailto:info@bifolddoorfactory.co.uk" style={{ ...S, fontSize: '13px', color: 'rgba(229,236,246,0.9)', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s', fontStyle: 'normal', lineHeight: 1.55 }}
+              <a href="mailto:info@bdfa.uk" style={{ ...S, fontSize: '13px', color: 'rgba(229,236,246,0.9)', textDecoration: 'none', fontWeight: 500, transition: 'color 0.2s', fontStyle: 'normal', lineHeight: 1.55 }}
                 onMouseEnter={e => e.currentTarget.style.color = '#0ABAB5'}
-                onMouseLeave={e => e.currentTarget.style.color = '#F7F4F0'}>info@bifolddoorfactory.co.uk</a>
+                onMouseLeave={e => e.currentTarget.style.color = '#F7F4F0'}>info@bdfa.uk</a>
             </div>
           </div>
         </div>
       </div>
 
       {/* ── BOTTOM BAR ── */}
-      <div style={{ borderTop: '1px solid rgba(247,244,240,0.07)', maxWidth: '1280px', margin: '0 auto', padding: '20px 64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
+      <div style={{ borderTop: '1px solid rgba(247,244,240,0.07)', maxWidth: '1280px', margin: '0 auto', padding: isMobile ? '20px 16px' : '20px 64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
         {/* Nav links */}
         <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
           {navLinks.map(l => (

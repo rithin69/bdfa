@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import useResponsive from '../hooks/useResponsive'
+import { submitWebsiteForm } from '../utils/formSubmission'
 
 const products = [
   'Bifold Doors', 'Sliding Doors', 'Slim Line Edition',
@@ -6,25 +8,43 @@ const products = [
 ]
 
 export default function QuotePopup() {
+  const { isMobile } = useResponsive()
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState([])
   const [form, setForm] = useState({ name: '', email: '', phone: '', enquiry: '' })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
   const [hovered, setHovered] = useState(false)
 
   const toggleProduct = (p) => {
     setSelected(prev => prev.includes(p) ? prev.filter(x => x !== p) : [...prev, p])
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
-      setOpen(false)
+    const formElement = e.currentTarget
+    setSubmitting(true)
+    setError('')
+
+    try {
+      await submitWebsiteForm(formElement, {
+        subject: 'New Free Quote enquiry from bdfa.uk',
+      })
+      formElement.reset()
+      setError('')
       setForm({ name: '', email: '', phone: '', enquiry: '' })
       setSelected([])
-    }, 3000)
+      setSubmitted(true)
+      setTimeout(() => {
+        setSubmitted(false)
+        setOpen(false)
+      }, 3000)
+    } catch (submissionError) {
+      setError('Submission failed. Please try again or email info@bdfa.uk.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const inputStyle = {
@@ -48,8 +68,9 @@ export default function QuotePopup() {
       <div style={{
         position: 'fixed',
         right: 0,
-        top: '50%',
-        transform: 'translateY(-50%)',
+        top: isMobile ? 'auto' : '50%',
+        bottom: isMobile ? '16px' : 'auto',
+        transform: isMobile ? 'none' : 'translateY(-50%)',
         zIndex: 998,
         display: 'flex',
         flexDirection: 'column',
@@ -61,6 +82,7 @@ export default function QuotePopup() {
       }}>
 
         {/* Phone pill */}
+        {!isMobile && (
         <div style={{
           background: '#EDF8F8',
           border: '1px solid rgba(10,186,181,0.35)',
@@ -79,6 +101,7 @@ export default function QuotePopup() {
             0800 999 5575
           </span>
         </div>
+        )}
 
         {/* Main CTA button — big, obvious, pulsing */}
         <button
@@ -155,14 +178,19 @@ export default function QuotePopup() {
         }
         .quote-input::placeholder { color: rgba(28,43,43,0.72); }
         .quote-input:focus { border-color: #0ABAB5 !important; }
+        @media (max-width: 768px) {
+          .quote-products-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
       `}</style>
 
       {/* ══ SLIDE-IN PANEL ══ */}
       <div style={{
         position: 'fixed',
         top: 0,
-        right: open ? '0' : '-500px',
-        width: '460px',
+        right: open ? '0' : (isMobile ? '-100vw' : '-500px'),
+        width: isMobile ? '100vw' : '460px',
         maxWidth: '100vw',
         height: '100vh',
         background: '#F7F4F0',
@@ -221,6 +249,8 @@ export default function QuotePopup() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              <input type="hidden" name="form_type" value="Free Quote" />
+              <input type="hidden" name="selected_products" value={selected.join(', ')} />
 
               <p style={{ fontSize: '12px', color: 'rgba(28,43,43,0.82)', fontFamily: 'ErasMedium, sans-serif', lineHeight: 1.8, margin: '0 0 8px' }}>
                 Fill in the form below and we will get back to you with a free, no-obligation quote.
@@ -237,6 +267,7 @@ export default function QuotePopup() {
                   </label>
                   <input required type={type} placeholder={placeholder}
                     className="quote-input"
+                    name={key}
                     value={form[key]}
                     onChange={e => setForm({ ...form, [key]: e.target.value })}
                     style={inputStyle}
@@ -251,7 +282,7 @@ export default function QuotePopup() {
                 <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(28,43,43,0.88)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '10px' }}>
                   PRODUCTS OF INTEREST <span style={{ color: '#0ABAB5' }}>*</span>
                 </label>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                <div className="quote-products-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                   {products.map(p => (
                     <div key={p} onClick={() => toggleProduct(p)}
                       style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', padding: '10px 12px', border: `1px solid ${selected.includes(p) ? '#0ABAB5' : 'rgba(28,43,43,0.18)'}`, background: selected.includes(p) ? '#1C2B2B' : '#FFFFFF', transition: 'all 0.2s', userSelect: 'none' }}>
@@ -275,6 +306,7 @@ export default function QuotePopup() {
                 </label>
                 <textarea required rows={4} placeholder="Tell us about your project..."
                   className="quote-input"
+                  name="enquiry"
                   value={form.enquiry}
                   onChange={e => setForm({ ...form, enquiry: e.target.value })}
                   style={{ ...inputStyle, resize: 'vertical', minHeight: '100px' }}
@@ -283,14 +315,21 @@ export default function QuotePopup() {
                 />
               </div>
 
+              {error && (
+                <div style={{ fontSize: '12px', color: '#C24F4F', lineHeight: 1.6 }}>
+                  {error}
+                </div>
+              )}
+
               <button type="submit"
+                disabled={submitting}
                 style={{ background: '#0ABAB5', border: 'none', padding: '17px', color: '#1C2B2B', fontSize: '11px', letterSpacing: '3px', fontWeight: 700, fontFamily: 'ErasMedium, sans-serif', cursor: 'pointer', transition: 'all 0.3s', marginTop: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
                 onMouseEnter={e => { e.currentTarget.style.background = '#7DD8D6'; e.currentTarget.style.letterSpacing = '4px' }}
                 onMouseLeave={e => { e.currentTarget.style.background = '#0ABAB5'; e.currentTarget.style.letterSpacing = '3px' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C2B2B" strokeWidth="2.5">
                   <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
                 </svg>
-                SUBMIT ENQUIRY
+                {submitting ? 'SENDING...' : 'SUBMIT ENQUIRY'}
               </button>
 
             </form>

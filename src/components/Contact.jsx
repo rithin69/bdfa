@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import useResponsive from '../hooks/useResponsive'
+import { submitWebsiteForm } from '../utils/formSubmission'
 
 const showroomAddress = 'Bingley, The Common, West Drayton, Middlesex, UB7 7HQ'
 const mapQuery = encodeURIComponent(`BDF Architectural, ${showroomAddress}`)
@@ -29,8 +31,8 @@ const contactInfo = [
   },
   {
     label: 'EMAIL',
-    value: 'info@bifolddoorfactory.co.uk',
-    href: 'mailto:info@bifolddoorfactory.co.uk',
+    value: 'info@bdfa.uk',
+    href: 'mailto:info@bdfa.uk',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0ABAB5" strokeWidth="1.8">
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -100,23 +102,39 @@ const products = [
 ]
 
 export default function Contact() {
+  const { isMobile } = useResponsive()
   const [form, setForm] = useState({ name: '', email: '', enquiry: '' })
   const [selected, setSelected] = useState([])
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
   const [focused, setFocused] = useState('')
 
   const toggleProduct = (p) => {
     setSelected(prev => prev.includes(p) ? prev.filter(x => x !== p) : [...prev, p])
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
+    const formElement = e.currentTarget
+    setSubmitting(true)
+    setError('')
+
+    try {
+      await submitWebsiteForm(formElement, {
+        subject: 'New Get In Touch enquiry from bdfa.uk',
+      })
+      formElement.reset()
+      setError('')
       setForm({ name: '', email: '', enquiry: '' })
       setSelected([])
-    }, 4000)
+      setSubmitted(true)
+      setTimeout(() => setSubmitted(false), 4000)
+    } catch (submissionError) {
+      setError('Submission failed. Please try again or email info@bdfa.uk.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const inputStyle = (field) => ({
@@ -142,6 +160,20 @@ export default function Contact() {
         .contact-input::placeholder { color: rgba(28,43,43,0.45); }
         @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
         @keyframes checkPop { 0%{transform:scale(0)} 70%{transform:scale(1.2)} 100%{transform:scale(1)} }
+        @media (max-width: 768px) {
+          .contact-shell-pad {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+          .contact-main-grid,
+          .contact-products-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .contact-map-strip {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+        }
       `}</style>
 
       {/* ══ HERO ══ */}
@@ -168,8 +200,8 @@ export default function Contact() {
       </section>
 
       {/* ══ MAIN CONTENT ══ */}
-      <section style={{ maxWidth: '1280px', margin: '0 auto', padding: '80px 64px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px' }}>
+      <section className="contact-shell-pad" style={{ maxWidth: '1280px', margin: '0 auto', padding: isMobile ? '48px 16px' : '80px 64px' }}>
+        <div className="contact-main-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? '40px' : '80px' }}>
 
           {/* ── LEFT: FORM ── */}
           <div>
@@ -198,6 +230,8 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <input type="hidden" name="form_type" value="Get In Touch" />
+                <input type="hidden" name="selected_products" value={selected.join(', ')} />
 
                 {/* Name */}
                 <div>
@@ -206,6 +240,7 @@ export default function Contact() {
                   </label>
                   <input required type="text" placeholder="Your full name"
                     className="contact-input"
+                    name="name"
                     value={form.name}
                     onChange={e => setForm({ ...form, name: e.target.value })}
                     style={inputStyle('name')}
@@ -221,6 +256,7 @@ export default function Contact() {
                   </label>
                   <input required type="email" placeholder="Your email address"
                     className="contact-input"
+                    name="email"
                     value={form.email}
                     onChange={e => setForm({ ...form, email: e.target.value })}
                     style={inputStyle('email')}
@@ -234,10 +270,10 @@ export default function Contact() {
                   <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(28,43,43,0.8)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '12px' }}>
                     PRODUCTS OF INTEREST
                   </label>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                  <div className="contact-products-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                     {products.map(p => (
                       <div key={p} onClick={() => toggleProduct(p)}
-                        style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', padding: '11px 14px', border: `1px solid ${selected.includes(p) ? '#0ABAB5' : 'rgba(10,186,181,0.4)'}`, background: selected.includes(p) ? 'rgba(10,186,181,0.07)' : 'rgba(28,43,43,0.03)', transition: 'all 0.2s', userSelect: 'none' }}>
+                        style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', padding: '11px 14px', border: `1px solid ${selected.includes(p) ? '#0ABAB5' : 'rgba(28,43,43,0.18)'}`, background: selected.includes(p) ? '#1C2B2B' : '#FFFFFF', transition: 'all 0.2s', userSelect: 'none' }}>
                         <div style={{ width: '16px', height: '16px', border: `1.5px solid ${selected.includes(p) ? '#0ABAB5' : 'rgba(28,43,43,0.45)'}`, background: selected.includes(p) ? '#0ABAB5' : 'transparent', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
                           {selected.includes(p) && (
                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#1C2B2B" strokeWidth="3.5">
@@ -258,6 +294,7 @@ export default function Contact() {
                   </label>
                   <textarea required rows={5} placeholder="Tell us about your project and requirements..."
                     className="contact-input"
+                    name="enquiry"
                     value={form.enquiry}
                     onChange={e => setForm({ ...form, enquiry: e.target.value })}
                     style={{ ...inputStyle('enquiry'), resize: 'vertical', minHeight: '130px' }}
@@ -266,15 +303,22 @@ export default function Contact() {
                   />
                 </div>
 
+                {error && (
+                  <div style={{ fontSize: '12px', color: '#C24F4F', lineHeight: 1.6 }}>
+                    {error}
+                  </div>
+                )}
+
                 {/* Submit */}
                 <button type="submit"
+                  disabled={submitting}
                   style={{ background: '#0ABAB5', border: 'none', padding: '18px', color: '#1C2B2B', fontSize: '11px', letterSpacing: '4px', fontWeight: 700, fontFamily: 'ErasMedium, sans-serif', cursor: 'pointer', transition: 'all 0.3s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}
                   onMouseEnter={e => { e.currentTarget.style.background = '#7DD8D6' }}
                   onMouseLeave={e => { e.currentTarget.style.background = '#0ABAB5' }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1C2B2B" strokeWidth="2.5">
                     <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
                   </svg>
-                  SEND MESSAGE
+                  {submitting ? 'SENDING...' : 'SEND MESSAGE'}
                 </button>
 
               </form>
@@ -359,7 +403,7 @@ export default function Contact() {
       </section>
 
       {/* ══ MAP STRIP ══ */}
-      <section style={{ borderTop: '1px solid rgba(10,186,181,0.1)', background: '#1C2B2B', padding: '56px 64px' }}>
+      <section className="contact-map-strip" style={{ borderTop: '1px solid rgba(10,186,181,0.1)', background: '#1C2B2B', padding: isMobile ? '40px 16px' : '56px 64px' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '18px' }}>
             <div style={{ width: '40px', height: '1px', background: '#0ABAB5', flexShrink: 0 }} />
@@ -388,7 +432,7 @@ export default function Contact() {
       </section>
 
       {/* ══ BOTTOM CTA ══ */}
-      <div style={{ background: '#0ABAB5', padding: '40px 64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
+      <div className="contact-shell-pad" style={{ background: '#0ABAB5', padding: isMobile ? '32px 16px' : '40px 64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px' }}>
         <div>
           <div style={{ fontSize: '9px', letterSpacing: '4px', color: 'rgba(28,43,43,0.5)', fontFamily: 'ErasMedium, sans-serif', marginBottom: '6px' }}>PREFER TO CALL?</div>
           <div style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: 'clamp(24px,3vw,40px)', fontWeight: 300, color: '#1C2B2B' }}>
