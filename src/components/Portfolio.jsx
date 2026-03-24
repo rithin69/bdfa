@@ -135,10 +135,10 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
   const activeImage = project.images[activeImageIndex]
 
   return (
-    <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/75 px-4 py-6 backdrop-blur-sm">
+    <div className="fixed inset-0 z-[90] flex items-start justify-center bg-black/75 px-4 py-4 backdrop-blur-sm lg:items-center lg:py-6">
       <div className="absolute inset-0" onClick={onClose} aria-hidden="true" />
 
-      <div className="relative z-10 grid max-h-[92vh] w-full max-w-6xl overflow-hidden rounded-[28px] bg-white shadow-[0_30px_120px_rgba(0,0,0,0.45)] lg:grid-cols-[1.35fr_0.85fr]">
+      <div className="relative z-10 grid max-h-[94vh] w-full max-w-6xl overflow-y-auto rounded-[28px] bg-white shadow-[0_30px_120px_rgba(0,0,0,0.45)] lg:max-h-[92vh] lg:overflow-hidden lg:grid-cols-[1.35fr_0.85fr]">
         <div className="relative min-h-[320px] bg-black">
           <img
             src={activeImage}
@@ -181,6 +181,32 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
           )}
         </div>
 
+        <div className="border-t border-[#102327]/8 bg-[#F7F4F0] px-4 py-4 lg:hidden">
+          <div className="mb-3 text-[10px] tracking-[0.35em] text-[#0ABAB5]">PROJECT GALLERY</div>
+          <div className="flex gap-3 overflow-x-auto pb-1">
+            {project.images.map((image, index) => (
+              <button
+                key={`${image}-mobile`}
+                type="button"
+                onClick={() => setActiveImageIndex(index)}
+                className={`relative h-20 w-24 shrink-0 overflow-hidden rounded-2xl border transition ${
+                  index === activeImageIndex
+                    ? 'border-gold shadow-[0_0_0_1px_rgba(10,186,181,0.45)]'
+                    : 'border-[#102327]/10'
+                }`}
+              >
+                <img
+                  src={image}
+                  alt={`${project.name} mobile thumbnail ${index + 1}`}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="flex max-h-[92vh] flex-col overflow-y-auto bg-[#F7F4F0] p-6 text-[#102327] md:p-8">
           <button
             type="button"
@@ -200,7 +226,7 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
             <p className="mt-6 text-[15px] leading-8 text-[#102327]">{project.description}</p>
           </div>
 
-          <div className="mt-8">
+          <div className="mt-8 hidden lg:block">
             <div className="mb-4 text-[10px] tracking-[0.35em] text-[#0ABAB5]">PROJECT GALLERY</div>
             <div className="grid grid-cols-2 gap-3">
               {project.images.map((image, index) => (
