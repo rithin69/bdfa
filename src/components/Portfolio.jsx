@@ -142,7 +142,7 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-3 top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white/92 text-2xl text-[#102327] shadow-[0_8px_24px_rgba(0,0,0,0.18)] transition hover:bg-gold sm:right-4 sm:top-4"
+          className="fixed right-4 top-4 z-[200] flex h-11 w-11 items-center justify-center rounded-full bg-white/92 text-2xl text-[#102327] shadow-[0_8px_24px_rgba(0,0,0,0.18)] transition hover:bg-gold lg:absolute lg:right-4 lg:top-4 lg:z-20"
           aria-label="Close project details"
         >
           <svg
@@ -233,7 +233,7 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
         <div className="flex min-h-0 flex-col overflow-y-auto bg-[#F7F4F0] p-6 pt-5 text-[#102327] md:p-8 lg:max-h-[92vh] lg:pt-8">
           <div className="lg:mt-0 lg:pr-0">
             <div className="mb-3 text-[10px] tracking-[0.38em] text-[#0ABAB5]">{project.tag}</div>
-            <h3 className="font-cormorant text-4xl font-light leading-tight text-[#102327] md:text-5xl">
+            <h3 className="break-words font-cormorant text-[26px] font-light leading-tight text-[#102327] sm:text-4xl md:text-5xl">
               {project.name}
             </h3>
             <p className="mt-4 text-sm leading-7 text-[#102327]/80">{project.location}</p>
