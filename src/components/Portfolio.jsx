@@ -138,7 +138,7 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
     <div className="fixed inset-0 z-[90] flex items-start justify-center bg-black/75 px-2 py-2 backdrop-blur-sm sm:px-4 sm:py-4 lg:items-center lg:py-6">
       <div className="absolute inset-0" onClick={onClose} aria-hidden="true" />
 
-      <div className="relative z-10 grid h-[calc(100dvh-1rem)] w-full max-w-6xl grid-rows-[auto_auto_minmax(0,1fr)] overflow-hidden rounded-[28px] bg-white shadow-[0_30px_120px_rgba(0,0,0,0.45)] sm:h-[calc(100dvh-2rem)] lg:h-auto lg:max-h-[92vh] lg:grid-cols-[1.35fr_0.85fr] lg:grid-rows-1">
+      <div className="relative z-10 h-[calc(100dvh-1rem)] w-full max-w-6xl sm:h-[calc(100dvh-2rem)] lg:h-auto">
         <button
           type="button"
           onClick={onClose}
@@ -160,6 +160,7 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
             <line x1="18" y1="6" x2="6" y2="18" />
           </svg>
         </button>
+        <div className="grid h-full grid-rows-[auto_auto_minmax(0,1fr)] overflow-hidden rounded-[28px] bg-white shadow-[0_30px_120px_rgba(0,0,0,0.45)] lg:h-auto lg:max-h-[92vh] lg:grid-cols-[1.35fr_0.85fr] lg:grid-rows-1">
 
         <div className="relative aspect-[4/3] min-h-[260px] bg-black sm:min-h-[320px] lg:min-h-[320px] lg:aspect-auto">
           <img
@@ -230,9 +231,9 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
         </div>
 
         <div className="flex min-h-0 flex-col overflow-y-auto bg-[#F7F4F0] p-6 pt-5 text-[#102327] md:p-8 lg:max-h-[92vh] lg:pt-8">
-          <div className="mt-8 pr-14 sm:pr-16 lg:mt-0 lg:pr-0">
+          <div className="lg:mt-0 lg:pr-0">
             <div className="mb-3 text-[10px] tracking-[0.38em] text-[#0ABAB5]">{project.tag}</div>
-            <h3 className="max-w-[12ch] font-cormorant text-4xl font-light leading-none text-[#102327] md:max-w-none md:text-5xl">
+            <h3 className="font-cormorant text-4xl font-light leading-tight text-[#102327] md:text-5xl">
               {project.name}
             </h3>
             <p className="mt-4 text-sm leading-7 text-[#102327]/80">{project.location}</p>
@@ -264,6 +265,7 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
               ))}
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
