@@ -138,31 +138,35 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
     <div className="fixed inset-0 z-[90] flex items-start justify-center bg-black/75 px-2 py-2 backdrop-blur-sm sm:px-4 sm:py-4 lg:items-center lg:py-6">
       <div className="absolute inset-0" onClick={onClose} aria-hidden="true" />
 
-      <div className="relative z-10 h-[calc(100dvh-1rem)] w-full max-w-6xl sm:h-[calc(100dvh-2rem)] lg:h-auto">
+      {/* Mobile close button — sits in the fixed overlay, above and outside the rounded modal box */}
+      <button
+        type="button"
+        onClick={onClose}
+        className="absolute right-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#102327] shadow-lg transition hover:bg-gold lg:hidden"
+        aria-label="Close project details"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18" />
+          <line x1="18" y1="6" x2="6" y2="18" />
+        </svg>
+      </button>
+
+      <div className="relative z-10 grid h-[calc(100dvh-1rem)] w-full max-w-6xl grid-rows-[auto_auto_minmax(0,1fr)] overflow-hidden rounded-[28px] bg-white shadow-[0_30px_120px_rgba(0,0,0,0.45)] sm:h-[calc(100dvh-2rem)] lg:h-auto lg:max-h-[92vh] lg:grid-cols-[1.35fr_0.85fr] lg:grid-rows-1">
+
+        {/* Desktop-only close button inside the modal */}
         <button
           type="button"
           onClick={onClose}
-          className="fixed right-4 top-4 z-[200] flex h-11 w-11 items-center justify-center rounded-full bg-white/92 text-2xl text-[#102327] shadow-[0_8px_24px_rgba(0,0,0,0.18)] transition hover:bg-gold lg:absolute lg:right-4 lg:top-4 lg:z-20"
+          className="absolute right-4 top-4 z-20 hidden h-11 w-11 items-center justify-center rounded-full bg-white/92 text-[#102327] shadow-[0_8px_24px_rgba(0,0,0,0.18)] transition hover:bg-gold lg:flex"
           aria-label="Close project details"
         >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <line x1="6" y1="6" x2="18" y2="18" />
             <line x1="18" y1="6" x2="6" y2="18" />
           </svg>
         </button>
-        <div className="grid h-full grid-rows-[auto_auto_minmax(0,1fr)] overflow-hidden rounded-[28px] bg-white shadow-[0_30px_120px_rgba(0,0,0,0.45)] lg:h-auto lg:max-h-[92vh] lg:grid-cols-[1.35fr_0.85fr] lg:grid-rows-1">
 
-        <div className="relative aspect-[4/3] min-h-[260px] bg-black sm:min-h-[320px] lg:min-h-[320px] lg:aspect-auto">
+        <div className="relative aspect-[4/3] min-h-[200px] bg-black sm:min-h-[280px] lg:min-h-[320px] lg:aspect-auto">
           <img
             src={activeImage}
             alt={`${project.name} view ${activeImageIndex + 1}`}
@@ -204,15 +208,15 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
           )}
         </div>
 
-        <div className="border-t border-[#102327]/8 bg-[#F7F4F0] px-4 py-4 lg:hidden">
-          <div className="mb-3 text-[10px] tracking-[0.35em] text-[#0ABAB5]">PROJECT GALLERY</div>
-          <div className="flex gap-3 overflow-x-auto pb-1">
+        <div className="border-t border-[#102327]/8 bg-[#F7F4F0] px-3 py-2 lg:hidden">
+          <div className="mb-2 text-[9px] tracking-[0.3em] text-[#0ABAB5]">PROJECT GALLERY</div>
+          <div className="flex gap-2 overflow-x-auto pb-1">
             {project.images.map((image, index) => (
               <button
                 key={`${image}-mobile`}
                 type="button"
                 onClick={() => setActiveImageIndex(index)}
-                className={`relative h-20 w-24 shrink-0 overflow-hidden rounded-2xl border transition ${
+                className={`relative h-14 w-[72px] shrink-0 overflow-hidden rounded-xl border transition ${
                   index === activeImageIndex
                     ? 'border-gold shadow-[0_0_0_1px_rgba(10,186,181,0.45)]'
                     : 'border-[#102327]/10 opacity-80'
@@ -230,14 +234,14 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
           </div>
         </div>
 
-        <div className="flex min-h-0 flex-col overflow-y-auto bg-[#F7F4F0] p-6 pt-5 text-[#102327] md:p-8 lg:max-h-[92vh] lg:pt-8">
-          <div className="lg:mt-0 lg:pr-0">
-            <div className="mb-3 text-[10px] tracking-[0.38em] text-[#0ABAB5]">{project.tag}</div>
-            <h3 className="break-words font-cormorant text-[26px] font-light leading-tight text-[#102327] sm:text-4xl md:text-5xl">
+        <div className="flex min-h-0 flex-col overflow-y-auto bg-[#F7F4F0] p-4 text-[#102327] md:p-8 lg:max-h-[92vh] lg:pt-8">
+          <div>
+            <div className="mb-2 text-[9px] tracking-[0.25em] text-[#0ABAB5] lg:text-[10px] lg:tracking-[0.38em]">{project.tag}</div>
+            <h3 className="break-words font-cormorant text-2xl font-light leading-snug text-[#102327] lg:text-5xl">
               {project.name}
             </h3>
-            <p className="mt-4 text-sm leading-7 text-[#102327]/80">{project.location}</p>
-            <p className="mt-6 text-[15px] leading-8 text-[#102327]">{project.description}</p>
+            <p className="mt-2 text-xs leading-6 text-[#102327]/80 lg:mt-4 lg:text-sm lg:leading-7">{project.location}</p>
+            <p className="mt-3 text-[13px] leading-7 text-[#102327] lg:mt-6 lg:text-[15px] lg:leading-8">{project.description}</p>
           </div>
 
           <div className="mt-8 hidden lg:block">
@@ -265,7 +269,6 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
               ))}
             </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
