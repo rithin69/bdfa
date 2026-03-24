@@ -145,7 +145,20 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
           className="absolute right-3 top-3 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-white/92 text-2xl text-[#102327] shadow-[0_8px_24px_rgba(0,0,0,0.18)] transition hover:bg-gold sm:right-4 sm:top-4"
           aria-label="Close project details"
         >
-          x
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="6" y1="6" x2="18" y2="18" />
+            <line x1="18" y1="6" x2="6" y2="18" />
+          </svg>
         </button>
 
         <div className="relative aspect-[4/3] min-h-[260px] bg-black sm:min-h-[320px] lg:min-h-[320px] lg:aspect-auto">
@@ -217,9 +230,9 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
         </div>
 
         <div className="flex min-h-0 flex-col overflow-y-auto bg-[#F7F4F0] p-6 pt-5 text-[#102327] md:p-8 lg:max-h-[92vh] lg:pt-8">
-          <div className="mt-8 lg:mt-0">
+          <div className="mt-8 pr-14 sm:pr-16 lg:mt-0 lg:pr-0">
             <div className="mb-3 text-[10px] tracking-[0.38em] text-[#0ABAB5]">{project.tag}</div>
-            <h3 className="font-cormorant text-4xl font-light leading-none text-[#102327] md:text-5xl">
+            <h3 className="max-w-[12ch] font-cormorant text-4xl font-light leading-none text-[#102327] md:max-w-none md:text-5xl">
               {project.name}
             </h3>
             <p className="mt-4 text-sm leading-7 text-[#102327]/80">{project.location}</p>
