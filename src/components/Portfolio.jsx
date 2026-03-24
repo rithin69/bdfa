@@ -216,7 +216,7 @@ function ProjectModal({ project, activeImageIndex, setActiveImageIndex, onClose 
                 key={`${image}-mobile`}
                 type="button"
                 onClick={() => setActiveImageIndex(index)}
-                className={`relative h-14 w-[72px] min-w-0 overflow-hidden rounded-xl border transition ${
+                className={`relative h-14 min-w-0 flex-1 max-w-[72px] overflow-hidden rounded-xl border transition ${
                   index === activeImageIndex
                     ? 'border-gold shadow-[0_0_0_1px_rgba(10,186,181,0.45)]'
                     : 'border-[#102327]/10 opacity-80'
