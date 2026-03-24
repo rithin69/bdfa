@@ -22,6 +22,14 @@ function ScrollToTop() {
   }, [pathname, hash])
 
   useEffect(() => {
+    if (typeof window.gtag !== 'function') return
+    window.gtag('event', 'page_view', {
+      page_path: pathname + hash,
+      page_title: document.title,
+    })
+  }, [pathname, hash])
+
+  useEffect(() => {
     if (!hash) return
 
     const id = hash.replace('#', '')
