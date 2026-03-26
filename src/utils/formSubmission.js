@@ -40,9 +40,35 @@ export async function submitWebsiteForm(formElement, options = {}) {
 }
 
 async function sendToClickUp(data) {
-  await fetch('/api/clickup-lead', {
+  const token = process.env.REACT_APP_CLICKUP_API_TOKEN
+  const listId = process.env.REACT_APP_CLICKUP_LIST_ID
+
+  if (!token || !listId) return
+
+  const { name, email, phone, products, message, source } = data
+
+  const productList = Array.isArray(products) && products.length > 0
+    ? products.join(', ')
+    : 'Not specified'
+
+  await fetch(`https://api.clickup.com/api/v2/list/${listId}/task`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
+    headers: {
+      'Authorization': token,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: `Lead: ${name} — ${email}`,
+      description:
+        `Source: ${source || 'Website'}\n` +
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Phone: ${phone || 'Not provided'}\n` +
+        `Interested in: ${productList}\n` +
+        `Message:\n${message || 'No message provided'}`,
+      status: 'Open',
+      priority: 3,
+      notify_all: false,
+    }),
   })
 }
