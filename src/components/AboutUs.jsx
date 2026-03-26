@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { Helmet } from 'react-helmet-async'
 
 const stats = [
   { num: '20', suffix: '+', label: 'Years Experience' },
@@ -110,6 +111,13 @@ export default function AboutUs() {
 
   return (
     <div style={{ background: '#F7F4F0', color: '#1C2B2B', fontFamily: '"Montserrat", "Helvetica Neue", Arial, sans-serif' }}>
+      <Helmet>
+        <title>About BDF Architectural | Premium Door & Window Specialists Since 2012</title>
+        <meta name="description" content="Learn about BDF Architectural, West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving London & South East since 2012." />
+        <link rel="canonical" href="https://www.bdfa.uk/about" />
+        <meta property="og:url" content="https://www.bdfa.uk/about" />
+        <meta property="og:title" content="About BDF Architectural | Premium Door & Window Specialists" />
+      </Helmet>
 
       <style>{`
         @keyframes slowZoom { 0%{transform:scale(1)} 100%{transform:scale(1.08)} }

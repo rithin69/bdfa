@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'
 import useResponsive from '../hooks/useResponsive'
 
@@ -173,6 +174,13 @@ export default function Products() {
 
   return (
     <div style={{ background: '#F7F4F0', color: '#1C2B2B', fontFamily: 'ErasMedium, sans-serif' }}>
+      <Helmet>
+        <title>Products | Bifold Doors, Sliding Doors & Windows | BDF Architectural</title>
+        <meta name="description" content="Browse our full range of Schüco and Cortizo bifold doors, sliding doors, aluminium windows, skylights, winter gardens and entrance doors. Trade and retail supply & installation." />
+        <link rel="canonical" href="https://www.bdfa.uk/products" />
+        <meta property="og:url" content="https://www.bdfa.uk/products" />
+        <meta property="og:title" content="Products | Bifold Doors, Sliding Doors & Windows | BDF Architectural" />
+      </Helmet>
 
       <style>{`
         @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }

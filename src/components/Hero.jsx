@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'
 import useResponsive from '../hooks/useResponsive'
 
@@ -6,6 +7,14 @@ export default function Hero() {
   const navigate = useNavigate()
   const { isMobile } = useResponsive()
   return (
+    <>
+    <Helmet>
+      <title>BDF Architectural | Bifold Doors, Sliding Doors & Windows | West Drayton</title>
+      <meta name="description" content="BDF Architectural supply and install premium bifold doors, sliding doors, aluminium windows and skylights across London, Berkshire, Essex, Kent, Surrey & Sussex. Call 01895 439 199 for a free quote." />
+      <link rel="canonical" href="https://www.bdfa.uk/" />
+      <meta property="og:url" content="https://www.bdfa.uk/" />
+      <meta property="og:title" content="BDF Architectural | Bifold Doors, Sliding Doors & Windows" />
+    </Helmet>
     <section id="about" className="relative min-h-screen flex items-center bg-bdf-black overflow-hidden">
 
       {/* VIDEO BACKGROUND — put hero.mp4 inside /public folder */}
@@ -93,5 +102,6 @@ export default function Hero() {
       </div>
 
     </section>
+    </>
   )
 }

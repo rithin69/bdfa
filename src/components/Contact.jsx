@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import useResponsive from '../hooks/useResponsive'
 import { submitWebsiteForm } from '../utils/formSubmission'
 
@@ -155,6 +156,13 @@ export default function Contact() {
 
   return (
     <div style={{ background: '#F7F4F0', color: '#1C2B2B', fontFamily: 'ErasMedium, sans-serif' }}>
+      <Helmet>
+        <title>Contact BDF Architectural | Free Quote | 01895 439 199</title>
+        <meta name="description" content="Contact BDF Architectural for a free quote on bifold doors, sliding doors, and aluminium windows. Visit our showroom in West Drayton, Middlesex or call 01895 439 199." />
+        <link rel="canonical" href="https://www.bdfa.uk/contact" />
+        <meta property="og:url" content="https://www.bdfa.uk/contact" />
+        <meta property="og:title" content="Contact BDF Architectural | Free Quote" />
+      </Helmet>
 
       <style>{`
         .contact-input::placeholder { color: rgba(28,43,43,0.45); }

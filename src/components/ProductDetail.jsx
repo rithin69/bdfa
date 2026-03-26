@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { productData } from '../data/productData'
 import useResponsive from '../hooks/useResponsive'
@@ -37,6 +38,29 @@ export default function ProductDetail() {
 
   return (
     <div style={{ background: '#F7F4F0', minHeight: '100vh' }}>
+      <Helmet>
+        <title>{product.name} | BDF Architectural</title>
+        <meta name="description" content={product.description.slice(0, 160)} />
+        <link rel="canonical" href={`https://www.bdfa.uk/products/${slug}`} />
+        <meta property="og:url" content={`https://www.bdfa.uk/products/${slug}`} />
+        <meta property="og:title" content={`${product.name} | BDF Architectural`} />
+        <meta property="og:description" content={product.description.slice(0, 160)} />
+        <meta property="og:image" content={`https://www.bdfa.uk${product.heroImage}`} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": product.name,
+          "description": product.description,
+          "image": `https://www.bdfa.uk${product.heroImage}`,
+          "brand": { "@type": "Brand", "name": "BDF Architectural" },
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock",
+            "priceCurrency": "GBP",
+            "seller": { "@type": "Organization", "name": "BDF Architectural" }
+          }
+        })}</script>
+      </Helmet>
       <style>{`
         @media (max-width: 768px) {
           .product-detail-main,

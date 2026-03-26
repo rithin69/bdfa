@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import useResponsive from '../hooks/useResponsive'
 import { submitWebsiteForm } from '../utils/formSubmission'
 
@@ -143,6 +144,13 @@ export default function Careers() {
 
   return (
     <div style={{ background: '#F7F4F0', color: '#1C2B2B', fontFamily: 'ErasMedium, sans-serif' }}>
+      <Helmet>
+        <title>Careers at BDF Architectural | Join Our Team | West Drayton</title>
+        <meta name="description" content="Explore career opportunities at BDF Architectural in West Drayton, Middlesex. We're hiring architects, designers and sales professionals. Apply today." />
+        <link rel="canonical" href="https://www.bdfa.uk/careers" />
+        <meta property="og:url" content="https://www.bdfa.uk/careers" />
+        <meta property="og:title" content="Careers at BDF Architectural | Join Our Team" />
+      </Helmet>
 
       <style>{`
         .careers-input::placeholder { color: rgba(28,43,43,0.45); }
