@@ -30,6 +30,8 @@ export default function QuotePopup() {
     try {
       await submitWebsiteForm(formElement, {
         subject: 'New Free Quote enquiry from bdfa.uk',
+        products: selected,
+        source: 'Quote Popup',
       })
       formElement.reset()
       setError('')

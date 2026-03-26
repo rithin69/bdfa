@@ -124,6 +124,8 @@ export default function Contact() {
     try {
       await submitWebsiteForm(formElement, {
         subject: 'New Get In Touch enquiry from bdfa.uk',
+        products: selected,
+        source: 'Contact Page',
       })
       formElement.reset()
       setError('')

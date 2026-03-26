@@ -26,5 +26,23 @@ export async function submitWebsiteForm(formElement, options = {}) {
     throw new Error(payload.message || 'Form submission failed')
   }
 
+  // Fire-and-forget: send lead to ClickUp (don't block or fail the form on error)
+  sendToClickUp({
+    name: formData.get('name'),
+    email: formData.get('email'),
+    phone: formData.get('phone'),
+    products: options.products || [],
+    message: formData.get('message') || formData.get('enquiry'),
+    source: options.source || 'Website',
+  }).catch(() => {})
+
   return payload
+}
+
+async function sendToClickUp(data) {
+  await fetch('/api/clickup-lead', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
 }
