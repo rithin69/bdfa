@@ -37,7 +37,7 @@ export async function submitWebsiteForm(formElement, options = {}) {
       custom_fields: [
         { id: '0b4adf28-1f6b-4309-8221-c42719da095c', value: name },
         { id: '34a8a687-12ab-4965-a4ac-4a8e30ef8acb', value: email },
-        { id: '022b0271-c06c-4456-96ca-a0e2031641dd', value: phone || '' },
+        ...(phone ? [{ id: '022b0271-c06c-4456-96ca-a0e2031641dd', value: phone.replace(/[^\d+]/g, '') }] : []),
         { id: 'ac28730c-7580-4627-92b1-2dd897d98ab6', value: '1b749803-1034-4e53-bfe7-fa859c1aeb8b' },
       ],
     }),
