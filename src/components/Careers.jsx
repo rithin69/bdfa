@@ -18,7 +18,7 @@ const roles = [
     title: 'Installation Engineer',
     dept: 'INSTALLATION',
     type: 'Full Time',
-    location: 'London & South East',
+    location: 'UK Wide',
     salary: '£30,000 – £40,000',
     positions: 3,
     desc: 'Immediate positions available for skilled installation engineers. You will be installing premium Schuco and Cortizo bifold door and glazing systems across luxury residential properties.',

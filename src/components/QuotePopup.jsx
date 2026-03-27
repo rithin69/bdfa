@@ -261,7 +261,7 @@ export default function QuotePopup() {
               {[
                 { label: 'NAME', key: 'name', type: 'text', placeholder: 'Your full name' },
                 { label: 'EMAIL', key: 'email', type: 'email', placeholder: 'Your email address' },
-                { label: 'PHONE', key: 'phone', type: 'tel', placeholder: 'Your phone number' },
+                { label: 'PHONE', key: 'phone', type: 'tel', placeholder: 'e.g. 07700 900000 or +44 7700 900000' },
               ].map(({ label, key, type, placeholder }) => (
                 <div key={key}>
                   <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(28,43,43,0.88)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '7px' }}>

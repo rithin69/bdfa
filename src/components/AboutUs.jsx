@@ -113,15 +113,15 @@ export default function AboutUs() {
     <div style={{ background: '#F7F4F0', color: '#1C2B2B', fontFamily: '"Montserrat", "Helvetica Neue", Arial, sans-serif' }}>
       <Helmet>
         <title>About BDF Architectural | Premium Door & Window Specialists Since 2012</title>
-        <meta name="description" content="Learn about BDF Architectural, West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving London & South East since 2012." />
+        <meta name="description" content="Learn about BDF Architectural, West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving the UK since 2012." />
         <link rel="canonical" href="https://www.bdfa.uk/about" />
         <meta property="og:url" content="https://www.bdfa.uk/about" />
         <meta property="og:title" content="About BDF Architectural | Premium Door & Window Specialists" />
-        <meta property="og:description" content="Learn about BDF Architectural, West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving London & South East since 2012." />
+        <meta property="og:description" content="Learn about BDF Architectural, West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving the UK since 2012." />
         <meta property="og:image" content="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=90" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About BDF Architectural | Premium Door & Window Specialists" />
-        <meta name="twitter:description" content="West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving London & South East since 2012." />
+        <meta name="twitter:description" content="West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving the UK since 2012." />
         <meta name="twitter:image" content="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=90" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
@@ -130,7 +130,7 @@ export default function AboutUs() {
           "url": "https://www.bdfa.uk",
           "logo": "https://www.bdfa.uk/logo.png",
           "foundingDate": "2012",
-          "description": "Premium supplier and installer of bifold doors, sliding doors, aluminium windows and skylights across London and South East England.",
+          "description": "Premium supplier and installer of bifold doors, sliding doors, aluminium windows and skylights across the UK.",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "Bingley, The Common",
