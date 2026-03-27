@@ -12,9 +12,7 @@ export async function submitWebsiteForm(formElement, options = {}) {
   const phone = formData.get('phone')
   const message = formData.get('message') || formData.get('enquiry')
   const products = options.products || []
-  const source = options.source || 'Website'
-
-  const productList = Array.isArray(products) && products.length > 0
+const productList = Array.isArray(products) && products.length > 0
     ? products.join(', ')
     : 'Not specified'
 
@@ -25,16 +23,17 @@ export async function submitWebsiteForm(formElement, options = {}) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      name: `Lead: ${name} — ${email}`,
+      name: name,
       description:
-        `Source: ${source}\n` +
-        `Name: ${name}\n` +
-        `Email: ${email}\n` +
-        `Phone: ${phone || 'Not provided'}\n` +
         `Interested in: ${productList}\n` +
         `Message:\n${message || 'No message provided'}`,
-      priority: 3,
+      priority: 1,
       notify_all: false,
+      custom_fields: [
+        { id: '0b4adf28-1f6b-4309-8221-c42719da095c', value: name },
+        { id: '34a8a687-12ab-4965-a4ac-4a8e30ef8acb', value: email },
+        { id: '022b0271-c06c-4456-96ca-a0e2031641dd', value: phone || '' },
+      ],
     }),
   })
 
