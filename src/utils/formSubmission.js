@@ -34,7 +34,7 @@ export async function submitWebsiteForm(formElement, options = {}) {
     products: options.products || [],
     message: formData.get('message') || formData.get('enquiry'),
     source: options.source || 'Website',
-  }).catch((err) => console.error('ClickUp error:', err))
+  }).catch(() => {})
 
   return payload
 }
@@ -43,10 +43,7 @@ async function sendToClickUp(data) {
   const token = process.env.REACT_APP_CLICKUP_API_TOKEN
   const listId = process.env.REACT_APP_CLICKUP_LIST_ID
 
-  if (!token || !listId) {
-    console.error('ClickUp env vars missing:', { token: !!token, listId: !!listId })
-    return
-  }
+  if (!token || !listId) return
 
   const { name, email, phone, products, message, source } = data
 
