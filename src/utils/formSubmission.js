@@ -45,7 +45,11 @@ export async function submitWebsiteForm(formElement, options = {}) {
   // Set phone separately after task creation
   if (phone) {
     const task = await response.json()
-    const formattedPhone = phone.trim().replace(/^0/, '+44').replace(/\s+/g, '')
+    let formattedPhone = phone.trim().replace(/\s+/g, '')
+    if (!formattedPhone.startsWith('+')) {
+      if (!formattedPhone.startsWith('0')) formattedPhone = '0' + formattedPhone
+      formattedPhone = formattedPhone.replace(/^0/, '+44')
+    }
     await fetch(`https://api.clickup.com/api/v2/task/${task.id}/field/022b0271-c06c-4456-96ca-a0e2031641dd`, {
       method: 'POST',
       headers: { 'Authorization': token, 'Content-Type': 'application/json' },
