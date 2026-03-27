@@ -32,6 +32,7 @@ export async function submitWebsiteForm(formElement, options = {}) {
       description,
       priority: 1,
       notify_all: false,
+      status: 'new lead',
       custom_item_id: 1002,
       custom_fields: [
         { id: '0b4adf28-1f6b-4309-8221-c42719da095c', value: name },
