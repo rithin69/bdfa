@@ -104,7 +104,7 @@ const products = [
 
 export default function Contact() {
   const { isMobile } = useResponsive()
-  const [form, setForm] = useState({ name: '', email: '', enquiry: '' })
+  const [form, setForm] = useState({ name: '', email: '', phone: '', enquiry: '' })
   const [selected, setSelected] = useState([])
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
@@ -129,7 +129,7 @@ export default function Contact() {
       })
       formElement.reset()
       setError('')
-      setForm({ name: '', email: '', enquiry: '' })
+      setForm({ name: '', email: '', phone: '', enquiry: '' })
       setSelected([])
       setSubmitted(true)
       setTimeout(() => setSubmitted(false), 4000)
@@ -271,6 +271,22 @@ export default function Contact() {
                     onChange={e => setForm({ ...form, email: e.target.value })}
                     style={inputStyle('email')}
                     onFocus={() => setFocused('email')}
+                    onBlur={() => setFocused('')}
+                  />
+                </div>
+
+                {/* Phone */}
+                <div>
+                  <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(28,43,43,0.8)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '8px' }}>
+                    PHONE NUMBER
+                  </label>
+                  <input type="tel" placeholder="Your phone number"
+                    className="contact-input"
+                    name="phone"
+                    value={form.phone}
+                    onChange={e => setForm({ ...form, phone: e.target.value })}
+                    style={inputStyle('phone')}
+                    onFocus={() => setFocused('phone')}
                     onBlur={() => setFocused('')}
                   />
                 </div>
