@@ -280,7 +280,7 @@ export default function Contact() {
                   <label style={{ fontSize: '10px', letterSpacing: '2px', color: 'rgba(28,43,43,0.8)', fontFamily: 'ErasMedium, sans-serif', display: 'block', marginBottom: '8px' }}>
                     PHONE NUMBER
                   </label>
-                  <input type="tel" placeholder="Your phone number"
+                  <input type="tel" placeholder="e.g. 07700 900000 or +44 7700 900000"
                     className="contact-input"
                     name="phone"
                     value={form.phone}
