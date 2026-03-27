@@ -242,6 +242,7 @@ export default function Contact() {
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <input type="hidden" name="form_type" value="Get In Touch" />
                 <input type="hidden" name="selected_products" value={selected.join(', ')} />
+                <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
 
                 {/* Name */}
                 <div>
