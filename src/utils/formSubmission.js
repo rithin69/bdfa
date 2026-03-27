@@ -33,7 +33,6 @@ export async function submitWebsiteForm(formElement, options = {}) {
         `Phone: ${phone || 'Not provided'}\n` +
         `Interested in: ${productList}\n` +
         `Message:\n${message || 'No message provided'}`,
-      status: 'Open',
       priority: 3,
       notify_all: false,
     }),
