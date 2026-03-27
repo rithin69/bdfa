@@ -46,6 +46,10 @@ export default function ProductDetail() {
         <meta property="og:title" content={`${product.name} | BDF Architectural`} />
         <meta property="og:description" content={product.description.slice(0, 160)} />
         <meta property="og:image" content={`https://www.bdfa.uk${product.heroImage}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${product.name} | BDF Architectural`} />
+        <meta name="twitter:description" content={product.description.slice(0, 160)} />
+        <meta name="twitter:image" content={`https://www.bdfa.uk${product.heroImage}`} />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Product",
@@ -57,8 +61,19 @@ export default function ProductDetail() {
             "@type": "Offer",
             "availability": "https://schema.org/InStock",
             "priceCurrency": "GBP",
+            "url": `https://www.bdfa.uk/products/${slug}`,
             "seller": { "@type": "Organization", "name": "BDF Architectural" }
           }
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.bdfa.uk/" },
+            { "@type": "ListItem", "position": 2, "name": "Products", "item": "https://www.bdfa.uk/products" },
+            { "@type": "ListItem", "position": 3, "name": product.category, "item": `https://www.bdfa.uk/products#${product.category?.toLowerCase()}` },
+            { "@type": "ListItem", "position": 4, "name": product.name, "item": `https://www.bdfa.uk/products/${slug}` }
+          ]
         })}</script>
       </Helmet>
       <style>{`
@@ -194,7 +209,7 @@ export default function ProductDetail() {
                           cursor: 'pointer', padding: 0, transition: 'all 0.2s ease', flexShrink: 0,
                         }}
                       >
-                        <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                        <img src={img} alt={`${product.name} view ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                       </button>
                     ))}
                   </div>

@@ -180,6 +180,12 @@ export default function Products() {
         <link rel="canonical" href="https://www.bdfa.uk/products" />
         <meta property="og:url" content="https://www.bdfa.uk/products" />
         <meta property="og:title" content="Products | Bifold Doors, Sliding Doors & Windows | BDF Architectural" />
+        <meta property="og:description" content="Browse our full range of Schüco and Cortizo bifold doors, sliding doors, aluminium windows, skylights, winter gardens and entrance doors. Trade and retail supply & installation." />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Products | Bifold Doors, Sliding Doors & Windows | BDF Architectural" />
+        <meta name="twitter:description" content="Full range of Schüco and Cortizo bifold doors, sliding doors, aluminium windows and skylights. Trade and retail supply & installation across the UK." />
+        <meta name="twitter:image" content="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=85" />
       </Helmet>
 
       <style>{`

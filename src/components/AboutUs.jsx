@@ -117,6 +117,31 @@ export default function AboutUs() {
         <link rel="canonical" href="https://www.bdfa.uk/about" />
         <meta property="og:url" content="https://www.bdfa.uk/about" />
         <meta property="og:title" content="About BDF Architectural | Premium Door & Window Specialists" />
+        <meta property="og:description" content="Learn about BDF Architectural, West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving London & South East since 2012." />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=90" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About BDF Architectural | Premium Door & Window Specialists" />
+        <meta name="twitter:description" content="West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving London & South East since 2012." />
+        <meta name="twitter:image" content="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=90" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "BDF Architectural",
+          "url": "https://www.bdfa.uk",
+          "logo": "https://www.bdfa.uk/logo.png",
+          "foundingDate": "2012",
+          "description": "Premium supplier and installer of bifold doors, sliding doors, aluminium windows and skylights across London and South East England.",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Bingley, The Common",
+            "addressLocality": "West Drayton",
+            "addressRegion": "Middlesex",
+            "postalCode": "UB7 7HQ",
+            "addressCountry": "GB"
+          },
+          "contactPoint": { "@type": "ContactPoint", "telephone": "+441895439199", "contactType": "customer service" },
+          "sameAs": ["https://www.trustpilot.com/review/bdfa.uk"]
+        })}</script>
       </Helmet>
 
       <style>{`

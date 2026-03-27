@@ -14,6 +14,14 @@ export default function Hero() {
       <link rel="canonical" href="https://www.bdfa.uk/" />
       <meta property="og:url" content="https://www.bdfa.uk/" />
       <meta property="og:title" content="BDF Architectural | Bifold Doors, Sliding Doors & Windows" />
+      <meta property="og:description" content="BDF Architectural supply and install premium bifold doors, sliding doors, aluminium windows and skylights across London & South East. Call 01895 439 199 for a free quote." />
+      <meta property="og:image" content="https://www.bdfa.uk/hero-poster.jpg" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="BDF Architectural | Bifold Doors, Sliding Doors & Windows" />
+      <meta name="twitter:description" content="Premium bifold doors, sliding doors, aluminium windows and skylights. Supply & installation across London & South East. Free quote: 01895 439 199." />
+      <meta name="twitter:image" content="https://www.bdfa.uk/hero-poster.jpg" />
     </Helmet>
     <section id="about" className="relative min-h-screen flex items-center bg-bdf-black overflow-hidden">
 

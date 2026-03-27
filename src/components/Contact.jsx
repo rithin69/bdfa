@@ -164,6 +164,28 @@ export default function Contact() {
         <link rel="canonical" href="https://www.bdfa.uk/contact" />
         <meta property="og:url" content="https://www.bdfa.uk/contact" />
         <meta property="og:title" content="Contact BDF Architectural | Free Quote" />
+        <meta property="og:description" content="Contact BDF Architectural for a free quote on bifold doors, sliding doors, and aluminium windows. Visit our showroom in West Drayton or call 01895 439 199." />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=90" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact BDF Architectural | Free Quote" />
+        <meta name="twitter:description" content="Get a free quote on bifold doors, sliding doors and aluminium windows. Visit our West Drayton showroom or call 01895 439 199." />
+        <meta name="twitter:image" content="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=90" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "BDF Architectural",
+          "url": "https://www.bdfa.uk",
+          "telephone": "+441895439199",
+          "address": { "@type": "PostalAddress", "streetAddress": "Bingley, The Common", "addressLocality": "West Drayton", "addressRegion": "Middlesex", "postalCode": "UB7 7HQ", "addressCountry": "GB" },
+          "openingHoursSpecification": [
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:30" },
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "16:00" }
+          ],
+          "contactPoint": [
+            { "@type": "ContactPoint", "telephone": "+441895439199", "contactType": "customer service", "areaServed": "GB" },
+            { "@type": "ContactPoint", "telephone": "+448009995575", "contactType": "customer service", "contactOption": "TollFree", "areaServed": "GB" }
+          ]
+        })}</script>
       </Helmet>
 
       <style>{`

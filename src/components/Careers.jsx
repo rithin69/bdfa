@@ -150,6 +150,25 @@ export default function Careers() {
         <link rel="canonical" href="https://www.bdfa.uk/careers" />
         <meta property="og:url" content="https://www.bdfa.uk/careers" />
         <meta property="og:title" content="Careers at BDF Architectural | Join Our Team" />
+        <meta property="og:description" content="Explore career opportunities at BDF Architectural in West Drayton, Middlesex. We're hiring architects, designers and sales professionals. Apply today." />
+        <meta property="og:image" content="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=90" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Careers at BDF Architectural | Join Our Team" />
+        <meta name="twitter:description" content="Join BDF Architectural in West Drayton. We're hiring architects, installation engineers, designers and more. Competitive salaries and great benefits." />
+        <meta name="twitter:image" content="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=90" />
+        <script type="application/ld+json">{JSON.stringify(roles.map(role => ({
+          "@context": "https://schema.org",
+          "@type": "JobPosting",
+          "title": role.title,
+          "description": role.desc,
+          "hiringOrganization": { "@type": "Organization", "name": "BDF Architectural", "sameAs": "https://www.bdfa.uk" },
+          "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": role.location, "addressCountry": "GB" } },
+          "employmentType": "FULL_TIME",
+          "baseSalary": { "@type": "MonetaryAmount", "currency": "GBP", "value": { "@type": "QuantitativeValue", "value": parseInt(role.salary.replace(/[^0-9]/g, '').slice(0, 6)), "unitText": "YEAR" } },
+          "datePosted": "2026-01-01",
+          "validThrough": "2026-12-31",
+          "numberOfPositions": role.positions
+        })))}</script>
       </Helmet>
 
       <style>{`
