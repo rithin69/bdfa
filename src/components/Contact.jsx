@@ -181,6 +181,7 @@ export default function Contact() {
             { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:30" },
             { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "16:00" }
           ],
+          "priceRange": "££",
           "contactPoint": [
             { "@type": "ContactPoint", "telephone": "+441895439199", "contactType": "customer service", "areaServed": "GB" },
             { "@type": "ContactPoint", "telephone": "+448009995575", "contactType": "customer service", "contactOption": "TollFree", "areaServed": "GB" }
