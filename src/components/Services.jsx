@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const services = [
@@ -7,42 +6,42 @@ const services = [
     title: 'Bifold Doors',
     slug: 'aluminium-bifold-doors',
     desc: 'Slim-framed aluminium bifold doors that open your home to the outside. Available in 2–5 panel configurations, made to measure for any opening size.',
-    img: '/products/Cover-Image-00-1920x600.jpg.webp',
+    img: '/products/bi-fold-1.jpg',
   },
   {
     num: '02',
     title: 'Sliding Doors',
     slug: 'schuco-ass-70-slimline-sliding-door',
     desc: 'Floor-to-ceiling sliding door systems with ultra-slim sightlines. Schuco and Cortizo systems available for residential and commercial projects.',
-    img: '/products/bi-fold-12.jpg',
+    img: '/products/GoogleDrive_Schuco-sliding-door-ASS70-hi-iver-1024x600.jpg.webp',
   },
   {
     num: '03',
     title: 'Aluminium Windows',
     slug: 'schuco-aws-70-high-insulated-windows',
     desc: 'Casement, tilt & turn and slimline aluminium windows. Thermally broken frames, high U-values, and any RAL colour to match your property.',
-    img: '/products/bi-fold-19-950x726.jpg.webp',
+    img: '/products/schuco-windows-16-950x726.jpg.webp',
   },
   {
     num: '04',
     title: 'Skylights & Roof Lights',
     slug: 'bdf-lantern-skylight',
     desc: 'Lantern rooflights and flat skylights that flood interiors with natural light. Structural glazing and roof systems for extensions and orangeries.',
-    img: '/products/73250EF7-0129-455F-80E3-49A5F137220F-950x726.jpg.webp',
+    img: '/products/TRI2112-scaled.jpg',
   },
   {
     num: '05',
     title: 'Winter Gardens',
     slug: 'schuco-cmc-50-hi-winter-gardens',
     desc: 'Glazed extensions and winter garden structures using premium Schuco CMC systems. Bring the outdoors in all year round with beautiful, thermally efficient glazing.',
-    img: '/products/Block--950x726.jpg.webp',
+    img: '/products/Winter-garden.jpg.webp',
   },
   {
     num: '06',
     title: 'Entrance Doors',
     slug: 'schuco-front-doors',
     desc: 'Statement aluminium entrance doors for homes and commercial properties. Schuco and Cortizo systems with multi-point locking and premium hardware.',
-    img: '/products/1B-Alverston-Road-331960-Rear-elevation_RGB-950x726.jpg',
+    img: '/products/Vrata17A1.png.webp',
   },
 ]
 

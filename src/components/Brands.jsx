@@ -43,7 +43,7 @@ export default function Brands() {
           <h2 style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: 'clamp(32px, 4vw, 52px)', fontWeight: 300, color: '#F7F4F0', margin: 0, lineHeight: 1.2 }}>
             Premium Systems from the <span style={{ color: '#0ABAB5' }}>World's Best</span>
           </h2>
-          <p style={{ fontFamily: 'ErasMedium, sans-serif', fontSize: '14px', color: 'rgba(247,244,240,0.5)', marginTop: '16px', maxWidth: '560px', margin: '16px auto 0', lineHeight: 1.8 }}>
+          <p style={{ fontFamily: 'ErasMedium, sans-serif', fontSize: '14px', color: 'rgba(247,244,240,0.75)', marginTop: '16px', maxWidth: '560px', margin: '16px auto 0', lineHeight: 1.8 }}>
             We are authorised fabricators and installers of both Schüco and Cortizo — two of Europe's most respected aluminium system manufacturers.
           </p>
         </div>
@@ -96,7 +96,7 @@ export default function Brands() {
                 </div>
 
                 {/* Description */}
-                <p style={{ fontFamily: 'ErasMedium, sans-serif', fontSize: '13px', color: 'rgba(247,244,240,0.6)', lineHeight: 1.8, margin: '0 0 24px' }}>
+                <p style={{ fontFamily: 'ErasMedium, sans-serif', fontSize: '13px', color: 'rgba(247,244,240,0.85)', lineHeight: 1.8, margin: '0 0 24px' }}>
                   {brand.description}
                 </p>
 
@@ -109,7 +109,7 @@ export default function Brands() {
                     {brand.products.map(p => (
                       <div key={p} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#0ABAB5', flexShrink: 0 }} />
-                        <span style={{ fontFamily: 'ErasMedium, sans-serif', fontSize: '12px', color: 'rgba(247,244,240,0.7)' }}>{p}</span>
+                        <span style={{ fontFamily: 'ErasMedium, sans-serif', fontSize: '12px', color: 'rgba(247,244,240,0.9)' }}>{p}</span>
                       </div>
                     ))}
                   </div>
@@ -144,17 +144,17 @@ export default function Brands() {
         {/* Trust strip */}
         <div style={{ borderTop: '1px solid rgba(247,244,240,0.07)', paddingTop: '40px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '32px' }}>
           {[
-            { icon: '🏆', label: 'Authorised Fabricator', sub: 'Schüco & Cortizo certified' },
-            { icon: '📐', label: 'Made to Measure', sub: 'Every product bespoke' },
-            { icon: '🔒', label: 'PAS 24 Security', sub: 'Enhanced security certified' },
-            { icon: '⭐', label: '5-Star Rated', sub: 'Verified Trustpilot reviews' },
-            { icon: '🔧', label: 'Supply & Install', sub: 'Full UK coverage' },
+            { label: 'Authorised Fabricator', sub: 'Schüco & Cortizo certified' },
+            { label: 'Made to Measure', sub: 'Every product bespoke' },
+            { label: 'PAS 24 Security', sub: 'Enhanced security certified' },
+            { label: '5-Star Rated', sub: 'Verified Trustpilot reviews' },
+            { label: 'Supply & Install', sub: 'Full UK coverage' },
           ].map(item => (
-            <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-              <span style={{ fontSize: '22px' }}>{item.icon}</span>
+            <div key={item.label} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+              <div style={{ width: '3px', height: '36px', background: '#0ABAB5', borderRadius: '2px', flexShrink: 0, marginTop: '2px' }} />
               <div>
-                <div style={{ fontFamily: 'ErasMedium, sans-serif', fontSize: '12px', color: '#F7F4F0', fontWeight: 600 }}>{item.label}</div>
-                <div style={{ fontFamily: 'ErasMedium, sans-serif', fontSize: '11px', color: 'rgba(247,244,240,0.45)', marginTop: '2px' }}>{item.sub}</div>
+                <div style={{ fontFamily: 'ErasMedium, sans-serif', fontSize: '12px', color: '#F7F4F0', fontWeight: 700 }}>{item.label}</div>
+                <div style={{ fontFamily: 'ErasMedium, sans-serif', fontSize: '11px', color: 'rgba(247,244,240,0.65)', marginTop: '3px' }}>{item.sub}</div>
               </div>
             </div>
           ))}
