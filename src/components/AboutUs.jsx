@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
 
 const stats = [
-  { num: '20', suffix: '+', label: 'Years Experience' },
+  { num: '12', suffix: '+', label: 'Years Experience' },
   { num: '10000', suffix: '+', label: 'Satisfied Customers' },
   { num: '5', suffix: '', label: 'Regions Covered' },
   { num: '100', suffix: '%', label: 'Quality Guaranteed' },
@@ -112,16 +112,16 @@ export default function AboutUs() {
   return (
     <div style={{ background: '#F7F4F0', color: '#1C2B2B', fontFamily: '"Montserrat", "Helvetica Neue", Arial, sans-serif' }}>
       <Helmet>
-        <title>About BDF Architectural | Premium Door & Window Specialists Since 2012</title>
-        <meta name="description" content="Learn about BDF Architectural, West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving the UK since 2012." />
+        <title>About BDF Architectural | Premium Door & Window Specialists Since 2013</title>
+        <meta name="description" content="Learn about BDF Architectural, West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving the UK since 2013." />
         <link rel="canonical" href="https://www.bdfa.uk/about" />
         <meta property="og:url" content="https://www.bdfa.uk/about" />
         <meta property="og:title" content="About BDF Architectural | Premium Door & Window Specialists" />
-        <meta property="og:description" content="Learn about BDF Architectural, West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving the UK since 2012." />
+        <meta property="og:description" content="Learn about BDF Architectural, West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving the UK since 2013." />
         <meta property="og:image" content="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=90" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About BDF Architectural | Premium Door & Window Specialists" />
-        <meta name="twitter:description" content="West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving the UK since 2012." />
+        <meta name="twitter:description" content="West Drayton's leading supplier of Schüco and Cortizo bifold doors, sliding doors, and aluminium windows. Serving the UK since 2013." />
         <meta name="twitter:image" content="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=90" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
@@ -129,7 +129,7 @@ export default function AboutUs() {
           "name": "BDF Architectural",
           "url": "https://www.bdfa.uk",
           "logo": "https://www.bdfa.uk/logo.png",
-          "foundingDate": "2012",
+          "foundingDate": "2013",
           "description": "Premium supplier and installer of bifold doors, sliding doors, aluminium windows and skylights across the UK.",
           "address": {
             "@type": "PostalAddress",

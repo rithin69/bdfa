@@ -100,7 +100,7 @@ export default function Hero() {
 
       {/* EST tag */}
       <div className="absolute bottom-6 md:bottom-10 right-4 md:right-16 z-20">
-        <span className="text-[8px] tracking-[0.3em] text-[#F7F4F0]/55" style={{ fontFamily: 'ErasMedium, sans-serif' }}>EST. 2012</span>
+        <span className="text-[8px] tracking-[0.3em] text-[#F7F4F0]/55" style={{ fontFamily: 'ErasMedium, sans-serif' }}>EST. 2013</span>
       </div>
 
       {/* Scroll indicator */}

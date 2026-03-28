@@ -1,7 +1,7 @@
 import React from 'react'
 
 const stats = [
-  { num: '20+', label: 'YEARS EXPERIENCE' },
+  { num: '12+', label: 'YEARS EXPERIENCE' },
   { num: '340+', label: 'PROJECTS COMPLETED' },
   { num: '98%', label: 'CLIENT SATISFACTION' },
   { num: '24', label: 'AWARDS WON' },
