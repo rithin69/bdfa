@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "react-snap"
+    "postbuild": "node -e \"process.env.CI || require('child_process').execSync('react-snap', {stdio:'inherit'})\""
   },
   "reactSnap": {
     "source": "build",
