@@ -12,6 +12,7 @@ import Contact from './components/Contact'
 import Careers from './components/Careers'
 import Products from './components/Products'
 import ProductDetail from './components/ProductDetail'
+import Brands from './components/Brands'
 import Blog from './components/Blog'
 import BlogPost from './components/BlogPost'
 import Areas from './components/Areas'
@@ -60,6 +61,7 @@ function HomePage() {
       <Stats />
       <Services />
       <Portfolio />
+      <Brands />
       <Process />
     </>
   )
