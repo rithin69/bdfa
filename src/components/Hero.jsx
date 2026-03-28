@@ -1,11 +1,8 @@
 import { useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'
-import useResponsive from '../hooks/useResponsive'
-
 export default function Hero() {
   const navigate = useNavigate()
-  const { isMobile } = useResponsive()
   const videoRef = useRef(null)
   const [videoReady, setVideoReady] = useState(false)
 
@@ -37,21 +34,19 @@ export default function Hero() {
         style={{ transition: 'opacity 0.6s ease', opacity: videoReady ? 0 : 1 }}
       />
 
-      {/* VIDEO BACKGROUND — desktop only */}
-      {!isMobile && (
-        <video
-          ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/hero.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          onCanPlay={() => setVideoReady(true)}
-          style={{ transition: 'opacity 0.6s ease', opacity: videoReady ? 1 : 0 }}
-        />
-      )}
+      {/* VIDEO BACKGROUND — all devices */}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        src="/hero.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        onCanPlay={() => setVideoReady(true)}
+        style={{ transition: 'opacity 0.6s ease', opacity: videoReady ? 1 : 0 }}
+      />
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-[#1C2B2B]/65 z-10" />
