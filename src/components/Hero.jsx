@@ -25,16 +25,25 @@ export default function Hero() {
     </Helmet>
     <section id="about" className="relative min-h-screen flex items-center bg-bdf-black overflow-hidden">
 
-      {/* VIDEO BACKGROUND — put hero.mp4 inside /public folder */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        src="/hero1.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/hero-poster.jpg"
-      />
+      {/* VIDEO BACKGROUND — desktop only, poster shown on mobile */}
+      {!isMobile ? (
+        <video
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src="/hero1.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster="/hero-poster.jpg"
+        />
+      ) : (
+        <img
+          src="/hero-poster.jpg"
+          alt="BDF Architectural — Premium Bifold Doors and Glazing"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
+      )}
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-[#1C2B2B]/65 z-10" />
