@@ -307,9 +307,16 @@ export function Footer() {
 
         {/* Bottom strip */}
         <div style={{ borderTop: '1px solid rgba(247,244,240,0.07)', paddingTop: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
-          <span style={{ ...S, fontSize: '11px', color: 'rgba(247,244,240,0.3)', letterSpacing: '1px' }}>
-            © 2026 BDF Architectural. All rights reserved.
-          </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
+            <span style={{ ...S, fontSize: '11px', color: 'rgba(247,244,240,0.3)', letterSpacing: '1px' }}>
+              © 2026 BDF Architectural. All rights reserved.
+            </span>
+            <Link to="/privacy-policy" style={{ ...S, fontSize: '11px', color: 'rgba(247,244,240,0.35)', textDecoration: 'none', letterSpacing: '1px', transition: 'color 0.2s' }}
+              onMouseEnter={e => e.currentTarget.style.color = 'rgba(247,244,240,0.7)'}
+              onMouseLeave={e => e.currentTarget.style.color = 'rgba(247,244,240,0.35)'}>
+              Privacy Policy
+            </Link>
+          </div>
 
           {/* Social icons */}
           <div style={{ display: 'flex', gap: '12px' }}>

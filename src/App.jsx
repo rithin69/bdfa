@@ -13,6 +13,7 @@ import Careers from './components/Careers'
 import Products from './components/Products'
 import ProductDetail from './components/ProductDetail'
 import Brands from './components/Brands'
+import PrivacyPolicy from './components/PrivacyPolicy'
 import Blog from './components/Blog'
 import BlogPost from './components/BlogPost'
 import Areas from './components/Areas'
@@ -84,6 +85,7 @@ export default function App() {
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/areas" element={<Areas />} />
         <Route path="/areas/:city" element={<CityLanding />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
       <Footer />
     </main>

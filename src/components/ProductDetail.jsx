@@ -4,6 +4,13 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { productData } from '../data/productData'
 import useResponsive from '../hooks/useResponsive'
 
+function getRelatedProducts(currentSlug, categoryId) {
+  return Object.entries(productData)
+    .filter(([slug, p]) => slug !== currentSlug && p.categoryId === categoryId)
+    .slice(0, 4)
+    .map(([slug, p]) => ({ slug, name: p.name, heroImage: p.heroImage, category: p.category }))
+}
+
 export default function ProductDetail() {
   const { slug } = useParams()
   const navigate = useNavigate()
@@ -437,6 +444,50 @@ export default function ProductDetail() {
             </button>
           </div>
         </div>
+        {/* ── Related Products ── */}
+        {(() => {
+          const related = getRelatedProducts(slug, product.categoryId)
+          if (!related.length) return null
+          return (
+            <section style={{ marginTop: '80px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '32px' }}>
+                <div style={{ width: '32px', height: '1px', background: '#0ABAB5' }} />
+                <span style={{ fontSize: '10px', letterSpacing: '3px', color: '#0ABAB5', fontWeight: 700, textTransform: 'uppercase' }}>
+                  You Might Also Like
+                </span>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: '16px' }}>
+                {related.map(p => (
+                  <Link
+                    key={p.slug}
+                    to={`/products/${p.slug}`}
+                    style={{ textDecoration: 'none', display: 'block', borderRadius: '10px', overflow: 'hidden', border: '1px solid rgba(10,186,181,0.15)', background: '#fff', transition: 'transform 0.25s, box-shadow 0.25s' }}
+                    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(10,186,181,0.12)' }}
+                    onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none' }}
+                  >
+                    <div style={{ height: '140px', overflow: 'hidden' }}>
+                      <img
+                        src={p.heroImage}
+                        alt={p.name}
+                        loading="lazy"
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s' }}
+                      />
+                    </div>
+                    <div style={{ padding: '14px 16px' }}>
+                      <p style={{ color: '#0ABAB5', fontSize: '9px', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600, margin: '0 0 4px' }}>
+                        {p.category}
+                      </p>
+                      <h3 style={{ color: '#1C2B2B', fontSize: '13px', fontWeight: 600, margin: 0, lineHeight: 1.4 }}>
+                        {p.name}
+                      </h3>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )
+        })()}
+
       </div>
     </div>
   )
