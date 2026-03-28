@@ -142,6 +142,24 @@ export default function AboutUs() {
           "contactPoint": { "@type": "ContactPoint", "telephone": "+441895439199", "contactType": "customer service" },
           "sameAs": ["https://www.trustpilot.com/review/bdfa.uk"]
         })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "BDF Architectural",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "reviewCount": "6",
+            "bestRating": "5"
+          },
+          "review": testimonials.map(t => ({
+            "@type": "Review",
+            "author": { "@type": "Person", "name": t.name },
+            "reviewBody": t.quote,
+            "reviewRating": { "@type": "Rating", "ratingValue": t.rating, "bestRating": "5" },
+            "publisher": { "@type": "Organization", "name": "Trustpilot" }
+          }))
+        })}</script>
       </Helmet>
 
       <style>{`
@@ -282,7 +300,8 @@ export default function AboutUs() {
       {/* ════════════════════════════════════════ */}
       <section className="split-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '680px' }}>
         <div style={{ position: 'relative', overflow: 'hidden', minHeight: '400px' }}>
-          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=900&q=90" alt="Interior"
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=900&q=90" alt="BDF Architectural premium bifold door installation"
+            loading="lazy"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.8s ease' }}
             onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
             onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'} />
@@ -417,7 +436,7 @@ export default function AboutUs() {
           <div className="about-values-image" style={{ position: 'relative', minHeight: '560px', overflow: 'hidden' }}>
             {values.map((v, i) => (
               <div key={i} style={{ position: 'absolute', inset: 0, opacity: i === activeValue ? 1 : 0, transition: 'opacity 0.7s ease' }}>
-                <img src={v.img} alt={v.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={v.img} alt={`BDF Architectural ${v.title}`} loading="lazy" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 <div style={{ position: 'absolute', inset: 0, background: 'rgba(28,43,43,0.2)' }} />
               </div>
             ))}
@@ -458,7 +477,8 @@ export default function AboutUs() {
           </div>
         </div>
         <div className="about-products-image" style={{ position: 'relative', minHeight: '400px', overflow: 'hidden' }}>
-          <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=900&q=90" alt="Interior"
+          <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=900&q=90" alt="BDF Architectural sliding door and window products"
+            loading="lazy"
             style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.8s ease' }}
             onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
             onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'} />
@@ -528,7 +548,7 @@ export default function AboutUs() {
       {/* ════════════════════════════════════════ */}
       <section style={{ position: 'relative', height: '55vh', overflow: 'hidden' }}>
         <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1920&q=90"
-          alt="Luxury home" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+          alt="Luxury home with BDF Architectural bifold doors" loading="lazy" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(28,43,43,0.78)' }} />
         <div className="about-cinematic-copy" style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '32px', zIndex: 1 }}>
           <p style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: 'clamp(28px,4vw,60px)', fontWeight: 300, color: '#F7F4F0', lineHeight: 1.35, margin: '0 0 14px' }}>

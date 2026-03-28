@@ -345,7 +345,7 @@ export default function Products() {
                     </div>
                   </div>
                   <div className="products-sticky-media" style={{ position: 'sticky', top: isTablet ? '96px' : '140px', overflow: 'hidden' }}>
-                    <img src={cat.image} alt={cat.name} style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }} />
+                    <img src={cat.image} alt={cat.name} loading="lazy" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }} />
                     <div style={{ padding: '16px 20px', background: '#1C2B2B', display: 'flex', alignItems: 'center', gap: '12px' }}>
                       <div style={{ width: '24px', height: '1px', background: '#0ABAB5' }} />
                       <span style={{ fontSize: '9px', letterSpacing: '3px', color: 'rgba(247,244,240,0.75)', fontFamily: 'ErasMedium, sans-serif' }}>SCHUCO & CORTIZO CERTIFIED</span>
@@ -355,7 +355,7 @@ export default function Products() {
               ) : (
                 <>
                   <div className="products-sticky-media" style={{ position: 'sticky', top: isTablet ? '96px' : '140px', overflow: 'hidden' }}>
-                    <img src={cat.image} alt={cat.name} style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }} />
+                    <img src={cat.image} alt={cat.name} loading="lazy" style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: 'block' }} />
                     <div style={{ padding: '16px 20px', background: '#1C2B2B', display: 'flex', alignItems: 'center', gap: '12px' }}>
                       <div style={{ width: '24px', height: '1px', background: '#0ABAB5' }} />
                       <span style={{ fontSize: '9px', letterSpacing: '3px', color: 'rgba(247,244,240,0.75)', fontFamily: 'ErasMedium, sans-serif' }}>SCHUCO & CORTIZO CERTIFIED</span>

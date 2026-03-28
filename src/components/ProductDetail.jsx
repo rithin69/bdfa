@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { productData } from '../data/productData'
@@ -10,6 +10,8 @@ export default function ProductDetail() {
   const { isMobile } = useResponsive()
   const product = productData[slug]
   const [activeImage, setActiveImage] = useState(0)
+  const [openFaq, setOpenFaq] = useState(null)
+  const toggleFaq = useCallback((i) => setOpenFaq(prev => prev === i ? null : i), [])
 
   if (!product) {
     return (
@@ -57,6 +59,13 @@ export default function ProductDetail() {
           "description": product.description,
           "image": `https://www.bdfa.uk${product.heroImage}`,
           "brand": { "@type": "Brand", "name": "BDF Architectural" },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "reviewCount": "6",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
           "offers": {
             "@type": "Offer",
             "availability": "https://schema.org/InStock",
@@ -64,6 +73,37 @@ export default function ProductDetail() {
             "url": `https://www.bdfa.uk/products/${slug}`,
             "seller": { "@type": "Organization", "name": "BDF Architectural" }
           }
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": `Do you install ${product.name}?`,
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes, BDF Architectural offers full supply and professional installation across the UK. Our experienced team handles everything from survey to completion." }
+            },
+            {
+              "@type": "Question",
+              "name": `Are your ${product.name} made to measure?`,
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes, every product is manufactured to your exact specifications. We offer bespoke sizing to fit any opening, whether standard or non-standard." }
+            },
+            {
+              "@type": "Question",
+              "name": `What colours are available for ${product.name}?`,
+              "acceptedAnswer": { "@type": "Answer", "text": "We offer a wide range of powder-coated finishes including anthracite grey, white, black, and dual-colour options. RAL colours are available on request." }
+            },
+            {
+              "@type": "Question",
+              "name": `What warranty do you offer on ${product.name}?`,
+              "acceptedAnswer": { "@type": "Answer", "text": "All our products come with a comprehensive manufacturer's warranty. Contact us for specific warranty details for this product." }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I get a quote?",
+              "acceptedAnswer": { "@type": "Answer", "text": "You can get a free, no-obligation quote by filling in our contact form, using the Free Quote button on our website, or calling us on 01895 439 199 or freephone 0800 999 5575." }
+            }
+          ]
         })}</script>
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
@@ -109,6 +149,32 @@ export default function ProductDetail() {
           .product-detail-cta {
             padding: 32px 20px !important;
           }
+          .faq-section {
+            padding: 0 0 !important;
+          }
+        }
+        .faq-item {
+          border-bottom: 1px solid rgba(10,186,181,0.2);
+        }
+        .faq-question {
+          width: 100%;
+          background: none;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 20px 0;
+          text-align: left;
+          font-family: inherit;
+          gap: 16px;
+        }
+        .faq-question:hover .faq-question-text {
+          color: #0ABAB5;
+        }
+        .faq-answer {
+          overflow: hidden;
+          transition: max-height 0.35s ease, padding 0.35s ease;
         }
       `}</style>
 
@@ -193,6 +259,7 @@ export default function ProductDetail() {
                   <img
                     src={allImages[activeImage]}
                     alt={`${product.name} ${activeImage + 1}`}
+                    loading="lazy"
                     style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'all 0.4s ease' }}
                   />
                 </div>
@@ -251,6 +318,83 @@ export default function ProductDetail() {
             )}
           </div>
         </div>
+
+        {/* ── FAQ Section ── */}
+        {(() => {
+          const faqs = [
+            {
+              q: `Do you install ${product.name}?`,
+              a: 'Yes, BDF Architectural offers full supply and professional installation across the UK. Our experienced team handles everything from survey to completion, ensuring a perfect, long-lasting fit.'
+            },
+            {
+              q: `Are your ${product.name} made to measure?`,
+              a: 'Absolutely. Every product is manufactured to your exact specifications. We offer bespoke sizing to fit any opening, whether standard or non-standard — no matter how complex the shape or dimensions.'
+            },
+            {
+              q: `What colours are available for ${product.name}?`,
+              a: 'We offer a wide range of powder-coated finishes including anthracite grey, white, black, and dual-colour options. All standard RAL colours are available on request, giving you complete creative control over your project.'
+            },
+            {
+              q: `What warranty do you offer on ${product.name}?`,
+              a: 'All our products come with a comprehensive manufacturer\'s warranty. Our aluminium frames and hardware are built to last decades with minimal maintenance. Contact us for specific warranty terms for this product.'
+            },
+            {
+              q: 'How long does installation take?',
+              a: 'Most residential installations are completed within one to two days. Larger commercial or multi-product projects may take longer. We\'ll give you a clear timeline when we survey your property and provide your quote.'
+            },
+            {
+              q: 'How do I get a quote?',
+              a: 'Getting a quote is simple and free. Fill in our online contact form, click the Free Quote button on our website, or call us directly on 01895 439 199 or freephone 0800 999 5575. We\'ll arrange a survey at a time convenient for you.'
+            },
+          ]
+          return (
+            <section className="faq-section" style={{ marginTop: '80px', marginBottom: '0' }} aria-label="Frequently Asked Questions">
+              <h2 style={{ color: '#1C2B2B', fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(26px, 3vw, 38px)', fontWeight: 600, margin: '0 0 8px' }}>
+                Frequently Asked Questions
+              </h2>
+              <p style={{ color: '#555', fontSize: '14px', margin: '0 0 32px', lineHeight: 1.6 }}>
+                Everything you need to know about our {product.name}.
+              </p>
+              <div style={{ borderTop: '1px solid rgba(10,186,181,0.2)' }}>
+                {faqs.map((faq, i) => (
+                  <div key={i} className="faq-item">
+                    <button
+                      className="faq-question"
+                      onClick={() => toggleFaq(i)}
+                      aria-expanded={openFaq === i}
+                    >
+                      <span className="faq-question-text" style={{
+                        fontSize: '15px', fontWeight: 600, color: openFaq === i ? '#0ABAB5' : '#1C2B2B',
+                        lineHeight: 1.5, transition: 'color 0.2s',
+                      }}>
+                        {faq.q}
+                      </span>
+                      <span style={{
+                        flexShrink: 0, width: '28px', height: '28px', borderRadius: '50%',
+                        background: openFaq === i ? '#0ABAB5' : 'rgba(10,186,181,0.1)',
+                        border: '1.5px solid #0ABAB5',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        transition: 'all 0.25s',
+                      }}>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ transform: openFaq === i ? 'rotate(45deg)' : 'none', transition: 'transform 0.25s' }}>
+                          <path d="M6 1V11M1 6H11" stroke={openFaq === i ? '#F7F4F0' : '#0ABAB5'} strokeWidth="2" strokeLinecap="round"/>
+                        </svg>
+                      </span>
+                    </button>
+                    <div
+                      className="faq-answer"
+                      style={{ maxHeight: openFaq === i ? '300px' : '0', paddingBottom: openFaq === i ? '20px' : '0' }}
+                    >
+                      <p style={{ color: '#444', fontSize: '14px', lineHeight: 1.8, margin: 0 }}>
+                        {faq.a}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )
+        })()}
 
         {/* ── CTA Banner ── */}
         <div className="product-detail-cta" style={{

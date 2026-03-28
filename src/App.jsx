@@ -12,6 +12,10 @@ import Contact from './components/Contact'
 import Careers from './components/Careers'
 import Products from './components/Products'
 import ProductDetail from './components/ProductDetail'
+import Blog from './components/Blog'
+import BlogPost from './components/BlogPost'
+import Areas from './components/Areas'
+import CityLanding from './components/CityLanding'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -74,6 +78,10 @@ export default function App() {
         <Route path="/careers" element={<Careers />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:slug" element={<ProductDetail />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/areas" element={<Areas />} />
+        <Route path="/areas/:city" element={<CityLanding />} />
       </Routes>
       <Footer />
     </main>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import useResponsive from '../hooks/useResponsive'
 
 const steps = [
@@ -121,13 +121,6 @@ export function Footer() {
   const navigate = useNavigate()
   const { isMobile } = useResponsive()
 
-  const navLinks = [
-    { label: 'About',     action: () => navigate('/about') },
-    { label: 'Portfolio', action: () => { window.location.hash = '#portfolio' } },
-    { label: 'Careers',   action: () => navigate('/careers') },
-    { label: 'Contact',   action: () => navigate('/contact') },
-  ]
-
   const S = { fontFamily: 'ErasMedium, sans-serif' }
 
   return (
@@ -223,35 +216,112 @@ export function Footer() {
         </div>
       </div>
 
-      {/* ── BOTTOM BAR ── */}
-      <div style={{ borderTop: '1px solid rgba(247,244,240,0.07)', maxWidth: '1280px', margin: '0 auto', padding: isMobile ? '20px 16px' : '20px 64px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
-        {/* Nav links */}
-        <div style={{ display: 'flex', gap: '32px', flexWrap: 'wrap' }}>
-          {navLinks.map(l => (
-            <button key={l.label} onClick={l.action}
-              style={{ ...S, background: 'none', border: 'none', cursor: 'pointer', fontSize: '12px', color: 'rgba(247,244,240,0.45)', letterSpacing: '1px', padding: 0, transition: 'color 0.2s' }}
-              onMouseEnter={e => e.currentTarget.style.color = '#F7F4F0'}
-              onMouseLeave={e => e.currentTarget.style.color = 'rgba(247,244,240,0.45)'}>
-              {l.label}
-            </button>
-          ))}
+      {/* ── LINK COLUMNS ── */}
+      <div style={{ borderTop: '1px solid rgba(247,244,240,0.07)', maxWidth: '1280px', margin: '0 auto', padding: isMobile ? '40px 16px 32px' : '48px 64px 32px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: isMobile ? '32px' : '24px', marginBottom: '40px' }}>
+
+          {/* Company */}
+          <div>
+            <div style={{ ...S, fontSize: '10px', letterSpacing: '2.5px', color: '#0ABAB5', fontWeight: 700, textTransform: 'uppercase', marginBottom: '16px' }}>Company</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {[
+                { label: 'About Us', to: '/about' },
+                { label: 'Our Products', to: '/products' },
+                { label: 'Portfolio', to: '/#portfolio' },
+                { label: 'Blog & Guides', to: '/blog' },
+                { label: 'Careers', to: '/careers' },
+                { label: 'Contact Us', to: '/contact' },
+              ].map(l => (
+                <Link key={l.label} to={l.to} style={{ ...S, fontSize: '12px', color: 'rgba(247,244,240,0.5)', textDecoration: 'none', transition: 'color 0.2s', fontStyle: 'normal', lineHeight: 1.4 }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#F7F4F0'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(247,244,240,0.5)'}>
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Products */}
+          <div>
+            <div style={{ ...S, fontSize: '10px', letterSpacing: '2.5px', color: '#0ABAB5', fontWeight: 700, textTransform: 'uppercase', marginBottom: '16px' }}>Products</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {[
+                { label: 'Bifold Doors', to: '/products/aluminium-bifold-doors' },
+                { label: 'Sliding Doors', to: '/products#sliding' },
+                { label: 'Aluminium Windows', to: '/products#windows' },
+                { label: 'Skylights', to: '/products/bdf-lantern-skylight' },
+                { label: 'Winter Gardens', to: '/products/schuco-cmc-50-hi-winter-gardens' },
+                { label: 'Entrance Doors', to: '/products/schuco-front-doors' },
+              ].map(l => (
+                <Link key={l.label} to={l.to} style={{ ...S, fontSize: '12px', color: 'rgba(247,244,240,0.5)', textDecoration: 'none', transition: 'color 0.2s', fontStyle: 'normal', lineHeight: 1.4 }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#F7F4F0'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(247,244,240,0.5)'}>
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Areas */}
+          <div>
+            <div style={{ ...S, fontSize: '10px', letterSpacing: '2.5px', color: '#0ABAB5', fontWeight: 700, textTransform: 'uppercase', marginBottom: '16px' }}>Areas We Cover</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {[
+                { label: 'London', to: '/areas/london' },
+                { label: 'Surrey', to: '/areas/surrey' },
+                { label: 'Berkshire', to: '/areas/berkshire' },
+                { label: 'Essex', to: '/areas/essex' },
+                { label: 'Kent', to: '/areas/kent' },
+                { label: 'Manchester', to: '/areas/manchester' },
+              ].map(l => (
+                <Link key={l.label} to={l.to} style={{ ...S, fontSize: '12px', color: 'rgba(247,244,240,0.5)', textDecoration: 'none', transition: 'color 0.2s', fontStyle: 'normal', lineHeight: 1.4 }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#F7F4F0'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(247,244,240,0.5)'}>
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Blog */}
+          <div>
+            <div style={{ ...S, fontSize: '10px', letterSpacing: '2.5px', color: '#0ABAB5', fontWeight: 700, textTransform: 'uppercase', marginBottom: '16px' }}>Guides & Blog</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {[
+                { label: 'Bifold Door Costs UK', to: '/blog/how-much-do-bifold-doors-cost-uk' },
+                { label: 'Schuco vs Cortizo', to: '/blog/schuco-vs-cortizo-bifold-doors' },
+                { label: 'Complete Bifold Guide', to: '/blog/aluminium-bifold-doors-complete-guide' },
+                { label: 'Bifold vs Sliding Doors', to: '/blog/bifold-doors-vs-sliding-doors' },
+                { label: 'Choosing Aluminium Windows', to: '/blog/how-to-choose-aluminium-windows' },
+              ].map(l => (
+                <Link key={l.label} to={l.to} style={{ ...S, fontSize: '12px', color: 'rgba(247,244,240,0.5)', textDecoration: 'none', transition: 'color 0.2s', fontStyle: 'normal', lineHeight: 1.4 }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#F7F4F0'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(247,244,240,0.5)'}>
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
         </div>
 
-        {/* Copyright */}
-        <span style={{ ...S, fontSize: '11px', color: 'rgba(247,244,240,0.3)', letterSpacing: '1px' }}>
-          © 2026 BDF Architectural. All rights reserved.
-        </span>
+        {/* Bottom strip */}
+        <div style={{ borderTop: '1px solid rgba(247,244,240,0.07)', paddingTop: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
+          <span style={{ ...S, fontSize: '11px', color: 'rgba(247,244,240,0.3)', letterSpacing: '1px' }}>
+            © 2026 BDF Architectural. All rights reserved.
+          </span>
 
-        {/* Social icons */}
-        <div style={{ display: 'flex', gap: '12px' }}>
-          {socialLinks.map(s => (
-            <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
-              style={{ width: '36px', height: '36px', border: '1px solid rgba(247,244,240,0.12)', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(247,244,240,0.4)', textDecoration: 'none', transition: 'all 0.25s' }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = '#0ABAB5'; e.currentTarget.style.color = '#0ABAB5' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(247,244,240,0.12)'; e.currentTarget.style.color = 'rgba(247,244,240,0.4)' }}>
-              {s.icon}
-            </a>
-          ))}
+          {/* Social icons */}
+          <div style={{ display: 'flex', gap: '12px' }}>
+            {socialLinks.map(s => (
+              <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
+                style={{ width: '36px', height: '36px', border: '1px solid rgba(247,244,240,0.12)', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(247,244,240,0.4)', textDecoration: 'none', transition: 'all 0.25s' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = '#0ABAB5'; e.currentTarget.style.color = '#0ABAB5' }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(247,244,240,0.12)'; e.currentTarget.style.color = 'rgba(247,244,240,0.4)' }}>
+                {s.icon}
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

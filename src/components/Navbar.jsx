@@ -121,6 +121,8 @@ export default function Navbar() {
   const links = [
     { label: 'About',     path: '/about',   hash: null },
     { label: 'Portfolio', path: null,        hash: '#portfolio' },
+    { label: 'Areas',     path: '/areas',    hash: null },
+    { label: 'Blog',      path: '/blog',     hash: null },
     { label: 'Careers',   path: '/careers',  hash: null },
   ]
 
