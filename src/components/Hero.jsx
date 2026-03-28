@@ -81,7 +81,7 @@ export default function Hero() {
           {/* Title */}
           <h1
             className="animate-fade-up-delay font-cormorant font-light leading-[1.05] mb-8 text-[#F7F4F0]"
-            style={{ fontSize: isMobile ? 'clamp(42px, 12vw, 60px)' : 'clamp(52px, 7vw, 92px)' }}
+            style={{ fontSize: 'clamp(42px, 7vw, 92px)' }}
           >
             Designing<br />
             Spaces That<br />
