@@ -1,4 +1,4 @@
-import React from 'react'
+import { useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useNavigate } from 'react-router-dom'
 import useResponsive from '../hooks/useResponsive'
@@ -6,6 +6,9 @@ import useResponsive from '../hooks/useResponsive'
 export default function Hero() {
   const navigate = useNavigate()
   const { isMobile } = useResponsive()
+  const videoRef = useRef(null)
+  const [videoReady, setVideoReady] = useState(false)
+
   return (
     <>
     <Helmet>
@@ -25,23 +28,28 @@ export default function Hero() {
     </Helmet>
     <section id="about" className="relative min-h-screen flex items-center bg-bdf-black overflow-hidden">
 
-      {/* VIDEO BACKGROUND — desktop only, poster shown on mobile */}
-      {!isMobile ? (
+      {/* Poster image — always rendered, fades out once video is ready */}
+      <img
+        src="/hero-poster.jpg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ transition: 'opacity 0.6s ease', opacity: videoReady ? 0 : 1 }}
+      />
+
+      {/* VIDEO BACKGROUND — desktop only */}
+      {!isMobile && (
         <video
+          ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/hero1.mp4"
+          src="/hero.mp4"
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          poster="/hero-poster.jpg"
-        />
-      ) : (
-        <img
-          src="/hero-poster.jpg"
-          alt="BDF Architectural — Premium Bifold Doors and Glazing"
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          onCanPlay={() => setVideoReady(true)}
+          style={{ transition: 'opacity 0.6s ease', opacity: videoReady ? 1 : 0 }}
         />
       )}
 
