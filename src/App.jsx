@@ -18,6 +18,7 @@ import Blog from './components/Blog'
 import BlogPost from './components/BlogPost'
 import Areas from './components/Areas'
 import CityLanding from './components/CityLanding'
+import NotFound from './components/NotFound'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
@@ -86,6 +87,7 @@ export default function App() {
         <Route path="/areas" element={<Areas />} />
         <Route path="/areas/:city" element={<CityLanding />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </main>
