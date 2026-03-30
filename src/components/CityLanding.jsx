@@ -6,12 +6,36 @@ import { productData } from '../data/productData'
 import useResponsive from '../hooks/useResponsive'
 
 const products = [
-  { name: 'Bifold Doors', slug: 'aluminium-bifold-doors' },
-  { name: 'Sliding Doors', slug: 'aluminium-sliding-doors' },
-  { name: 'Aluminium Windows', slug: 'aluminium-windows' },
-  { name: 'Skylights', slug: 'skylights-roof-lights' },
-  { name: 'Winter Gardens', slug: 'winter-gardens' },
-  { name: 'Entrance Doors', slug: 'aluminium-entrance-doors' },
+  {
+    name: 'Bifold Doors',
+    slug: 'aluminium-bifold-doors',
+    imageSlug: 'aluminium-bifold-doors',
+  },
+  {
+    name: 'Sliding Doors',
+    slug: 'schuco-ase-6080-sliding-doors',
+    imageSlug: 'schuco-ase-6080-sliding-doors',
+  },
+  {
+    name: 'Aluminium Windows',
+    slug: 'schuco-aws-70-high-insulated-windows',
+    imageSlug: 'schuco-aws-70-high-insulated-windows',
+  },
+  {
+    name: 'Skylights',
+    slug: 'bdf-lantern-skylight',
+    imageSlug: 'bdf-lantern-skylight',
+  },
+  {
+    name: 'Winter Gardens',
+    slug: 'schuco-cmc-50-hi-winter-gardens',
+    imageSlug: 'schuco-cmc-50-hi-winter-gardens',
+  },
+  {
+    name: 'Entrance Doors',
+    slug: 'schuco-front-doors',
+    imageSlug: 'schuco-front-doors',
+  },
 ]
 
 export default function CityLanding() {
@@ -155,8 +179,9 @@ export default function CityLanding() {
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(3, 1fr)', gap: '16px' }}>
             {products.map(prod => {
-              const product = productData[prod.slug]
-              const image = product?.heroImage || product?.gallery?.[0] || city.heroImage
+              const linkedProduct = productData[prod.slug]
+              const imageProduct = productData[prod.imageSlug] || linkedProduct
+              const image = imageProduct?.heroImage || imageProduct?.gallery?.[0] || city.heroImage
 
               return (
                 <Link
