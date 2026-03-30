@@ -2,15 +2,16 @@ import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { cities } from '../data/cityData'
+import { productData } from '../data/productData'
 import useResponsive from '../hooks/useResponsive'
 
 const products = [
-  { name: 'Bifold Doors', slug: 'aluminium-bifold-doors', icon: '🪟' },
-  { name: 'Sliding Doors', slug: 'aluminium-sliding-doors', icon: '🚪' },
-  { name: 'Aluminium Windows', slug: 'aluminium-windows', icon: '🏠' },
-  { name: 'Skylights', slug: 'skylights-roof-lights', icon: '☀️' },
-  { name: 'Winter Gardens', slug: 'winter-gardens', icon: '🌿' },
-  { name: 'Entrance Doors', slug: 'aluminium-entrance-doors', icon: '🔑' },
+  { name: 'Bifold Doors', slug: 'aluminium-bifold-doors' },
+  { name: 'Sliding Doors', slug: 'aluminium-sliding-doors' },
+  { name: 'Aluminium Windows', slug: 'aluminium-windows' },
+  { name: 'Skylights', slug: 'skylights-roof-lights' },
+  { name: 'Winter Gardens', slug: 'winter-gardens' },
+  { name: 'Entrance Doors', slug: 'aluminium-entrance-doors' },
 ]
 
 export default function CityLanding() {
@@ -32,6 +33,7 @@ export default function CityLanding() {
 
   const title = `Bifold Doors ${city.name} | Sliding Doors & Windows | BDF Architectural`
   const metaDesc = `BDF Architectural supplies and installs premium bifold doors, sliding doors, aluminium windows and skylights in ${city.name}. Free quote: 01895 439 199.`
+  const cityMetaImage = city.heroImage.startsWith('http') ? city.heroImage : `https://www.bdfa.uk${city.heroImage}`
 
   return (
     <div style={{ background: '#F7F4F0', minHeight: '100vh' }}>
@@ -42,11 +44,11 @@ export default function CityLanding() {
         <meta property="og:url" content={`https://www.bdfa.uk/areas/${city.slug}`} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={metaDesc} />
-        <meta property="og:image" content={`https://www.bdfa.uk${city.heroImage}`} />
+        <meta property="og:image" content={cityMetaImage} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={metaDesc} />
-        <meta name="twitter:image" content={`https://www.bdfa.uk${city.heroImage}`} />
+        <meta name="twitter:image" content={cityMetaImage} />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
@@ -75,7 +77,6 @@ export default function CityLanding() {
         })}</script>
       </Helmet>
 
-      {/* Hero */}
       <div style={{ position: 'relative', height: isMobile ? '360px' : '480px', overflow: 'hidden' }}>
         <img
           src={city.heroImage}
@@ -101,8 +102,6 @@ export default function CityLanding() {
       </div>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: isMobile ? '48px 16px 80px' : '72px 64px 100px' }}>
-
-        {/* Intro */}
         <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '64px', alignItems: 'start', marginBottom: '80px' }}>
           <div>
             <h2 style={{ color: '#1C2B2B', fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(26px, 3vw, 40px)', fontWeight: 600, margin: '0 0 20px', lineHeight: 1.3 }}>
@@ -130,7 +129,6 @@ export default function CityLanding() {
             </div>
           </div>
 
-          {/* Key areas */}
           <div style={{ background: '#fff', borderRadius: '16px', padding: '32px', border: '1px solid rgba(10,186,181,0.2)' }}>
             <h3 style={{ color: '#1C2B2B', fontFamily: 'Cormorant Garamond, serif', fontSize: '22px', fontWeight: 600, margin: '0 0 20px' }}>
               Areas We Cover in {city.name}
@@ -148,7 +146,6 @@ export default function CityLanding() {
           </div>
         </div>
 
-        {/* Products */}
         <div style={{ marginBottom: '80px' }}>
           <h2 style={{ color: '#1C2B2B', fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(26px, 3vw, 38px)', fontWeight: 600, margin: '0 0 8px', textAlign: 'center' }}>
             Our Products in {city.name}
@@ -157,27 +154,45 @@ export default function CityLanding() {
             Every product is bespoke, made to measure, and installed by our expert teams.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(3, 1fr)', gap: '16px' }}>
-            {products.map(prod => (
-              <Link
-                key={prod.slug}
-                to={`/products/${prod.slug}`}
-                style={{
-                  textDecoration: 'none', background: '#fff', borderRadius: '12px', padding: '24px',
-                  border: '1px solid rgba(10,186,181,0.15)', textAlign: 'center',
-                  transition: 'box-shadow 0.25s, transform 0.25s',
-                }}
-                onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 8px 24px rgba(10,186,181,0.12)'; e.currentTarget.style.transform = 'translateY(-4px)' }}
-                onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'none' }}
-              >
-                <div style={{ fontSize: '28px', marginBottom: '10px' }}>{prod.icon}</div>
-                <h3 style={{ color: '#1C2B2B', fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>{prod.name}</h3>
-                <p style={{ color: '#0ABAB5', fontSize: '10px', letterSpacing: '1.5px', textTransform: 'uppercase', margin: 0 }}>in {city.name}</p>
-              </Link>
-            ))}
+            {products.map(prod => {
+              const product = productData[prod.slug]
+              const image = product?.heroImage || product?.gallery?.[0] || city.heroImage
+
+              return (
+                <Link
+                  key={prod.slug}
+                  to={`/products/${prod.slug}`}
+                  style={{
+                    textDecoration: 'none',
+                    background: '#fff',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                    border: '1px solid rgba(10,186,181,0.15)',
+                    textAlign: 'center',
+                    transition: 'box-shadow 0.25s, transform 0.25s',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 8px 24px rgba(10,186,181,0.12)'; e.currentTarget.style.transform = 'translateY(-4px)' }}
+                  onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'none' }}
+                >
+                  <div style={{ position: 'relative', height: isMobile ? '140px' : '180px', overflow: 'hidden' }}>
+                    <img
+                      src={image}
+                      alt={`${prod.name} in ${city.name}`}
+                      loading="lazy"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(28,43,43,0.82) 0%, rgba(28,43,43,0.2) 100%)' }} />
+                  </div>
+                  <div style={{ padding: '20px 18px' }}>
+                    <h3 style={{ color: '#1C2B2B', fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>{prod.name}</h3>
+                    <p style={{ color: '#0ABAB5', fontSize: '10px', letterSpacing: '1.5px', textTransform: 'uppercase', margin: 0 }}>in {city.name}</p>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         </div>
 
-        {/* Why BDF */}
         <div style={{ background: '#1C2B2B', borderRadius: '16px', padding: isMobile ? '40px 24px' : '56px 64px' }}>
           <h2 style={{ color: '#F7F4F0', fontFamily: 'Cormorant Garamond, serif', fontSize: 'clamp(26px, 3vw, 38px)', fontWeight: 600, margin: '0 0 12px', textAlign: 'center' }}>
             Why Choose BDF Architectural in {city.name}?
@@ -189,8 +204,8 @@ export default function CityLanding() {
             {[
               { title: 'Free Survey & Quote', body: 'We visit your property, take precise measurements, and provide a detailed, no-obligation quote at no charge.' },
               { title: 'Supply & Install', body: 'Our directly employed teams handle everything from delivery to installation, ensuring a perfect result every time.' },
-              { title: 'Premium Systems', body: 'We supply Schuco, Cortizo, and other market-leading aluminium systems — the same products used on prestige commercial projects.' },
-              { title: 'Bespoke Made to Measure', body: 'Every product is manufactured to your exact specifications. No standard sizes — everything is built for your opening.' },
+              { title: 'Premium Systems', body: 'We supply Schuco, Cortizo, and other market-leading aluminium systems - the same products used on prestige commercial projects.' },
+              { title: 'Bespoke Made to Measure', body: 'Every product is manufactured to your exact specifications. No standard sizes - everything is built for your opening.' },
               { title: 'Aftersales Support', body: 'We are here after installation too. All our work is fully guaranteed and we offer comprehensive aftercare support.' },
               { title: 'Trusted Reviews', body: 'Our 5-star reviews reflect our commitment to quality, craftsmanship, and customer service on every project.' },
             ].map((item, i) => (
@@ -210,7 +225,6 @@ export default function CityLanding() {
             </Link>
           </div>
         </div>
-
       </div>
     </div>
   )
