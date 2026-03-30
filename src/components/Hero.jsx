@@ -22,6 +22,24 @@ export default function Hero() {
       <meta name="twitter:title" content="BDF Architectural | Bifold Doors, Sliding Doors & Windows" />
       <meta name="twitter:description" content="Premium bifold doors, sliding doors, aluminium windows and skylights. Supply & installation across the UK. Free quote: 01895 439 199." />
       <meta name="twitter:image" content="https://www.bdfa.uk/hero-poster.jpg" />
+      <script type="application/ld+json">{JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "BDF Architectural – Premium Bifold Doors, Sliding Doors & Windows",
+        "description": "BDF Architectural supply and install premium bifold doors, sliding doors, aluminium windows and skylights across London, Berkshire, Essex, Kent, Surrey & Sussex.",
+        "thumbnailUrl": "https://www.bdfa.uk/hero-poster.jpg",
+        "uploadDate": "2024-01-01",
+        "contentUrl": "https://www.bdfa.uk/hero1.mp4",
+        "embedUrl": "https://www.bdfa.uk/",
+        "publisher": {
+          "@type": "Organization",
+          "name": "BDF Architectural",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.bdfa.uk/logo.png"
+          }
+        }
+      })}</script>
     </Helmet>
     <section id="about" className="relative min-h-screen flex items-center bg-bdf-black overflow-hidden">
 
