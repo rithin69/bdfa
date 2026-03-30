@@ -20,7 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "react-snap"
+    "postbuild": "react-snap || true"
   },
   "reactSnap": {
     "source": "build",
