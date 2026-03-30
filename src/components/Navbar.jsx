@@ -141,7 +141,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${onHero ? '' : 'backdrop-blur-sm'} ${scrolled && !onHero ? 'py-1' : 'py-2'}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${onHero ? '' : 'backdrop-blur-sm'} ${scrolled && !onHero ? 'py-2' : 'py-3'}`}
       style={{ background: navBg, borderBottom: navBorder }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between gap-4">
@@ -153,10 +153,11 @@ export default function Navbar() {
             src="/bdfa-logo.webp"
             alt="BDF Architectural"
             style={{
-              height: isMobile ? '70px' : '90px',
+              height: isMobile ? '42px' : '52px',
               width: 'auto',
               filter: onHero ? 'brightness(0) invert(1)' : 'none',
               transition: 'filter 0.5s',
+              objectFit: 'contain',
             }}
           />
         </button>
