@@ -153,7 +153,7 @@ export default function Navbar() {
             src="/bdfa-logo.webp"
             alt="BDF Architectural"
             style={{
-              height: isMobile ? '62px' : '78px',
+              height: isMobile ? '70px' : '90px',
               width: 'auto',
               filter: onHero ? 'brightness(0) invert(1)' : 'none',
               transition: 'filter 0.5s',
