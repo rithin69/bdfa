@@ -141,7 +141,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${onHero ? '' : 'backdrop-blur-sm'} ${scrolled && !onHero ? 'py-4' : 'py-6'}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${onHero ? '' : 'backdrop-blur-sm'} ${scrolled && !onHero ? 'py-1' : 'py-2'}`}
       style={{ background: navBg, borderBottom: navBorder }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between gap-4">
@@ -149,10 +149,16 @@ export default function Navbar() {
         {/* Logo */}
         <button onClick={() => navigate('/')}
           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-          <div className="flex flex-col leading-none">
-            <span style={{ fontFamily: 'ErasMedium, sans-serif', fontWeight: 700, fontSize: isMobile ? '18px' : '20px', letterSpacing: '0.3em', color: onHero ? '#F7F4F0' : '#1C2B2B', transition: 'color 0.5s' }}>BDF</span>
-            <span style={{ fontFamily: 'ErasMedium, sans-serif', fontWeight: 300, fontSize: '8px', letterSpacing: '0.4em', color: '#0ABAB5', marginTop: '2px' }}>ARCHITECTURAL</span>
-          </div>
+          <img
+            src="/bdfa-logo.webp"
+            alt="BDF Architectural"
+            style={{
+              height: isMobile ? '62px' : '78px',
+              width: 'auto',
+              filter: onHero ? 'brightness(0) invert(1)' : 'none',
+              transition: 'filter 0.5s',
+            }}
+          />
         </button>
 
         {/* Desktop Links */}

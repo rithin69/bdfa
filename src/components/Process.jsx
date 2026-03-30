@@ -171,7 +171,7 @@ export function Footer() {
         {/* RIGHT — CONTACT INFO */}
         <div style={{ ...S, paddingLeft: isMobile ? '0' : '72px', display: 'flex', flexDirection: 'column', justifyContent: 'center', fontStyle: 'normal' }}>
           <div style={{ marginBottom: '32px' }}>
-            <div style={{ ...S, fontSize: '18px', fontWeight: 600, color: '#F4F7FB', letterSpacing: '0.2px', lineHeight: 1.2, marginBottom: '8px', fontStyle: 'normal' }}>BDF Architectural</div>
+            <img src="/bdfa-logo.webp" alt="BDF Architectural" style={{ height: '100px', width: 'auto', marginBottom: '8px', filter: 'brightness(0) invert(1)' }} />
             <div style={{ ...S, fontSize: '10px', letterSpacing: '4px', color: '#0ABAB5' }}>EST. 2013 · BUILDING EXCELLENCE</div>
           </div>
 
