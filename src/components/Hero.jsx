@@ -9,7 +9,7 @@ export default function Hero() {
   return (
     <>
     <Helmet>
-      <title>BDF Architectural | Bifold Doors, Sliding Doors & Windows | West Drayton</title>
+      <title>BDF Architectural</title>
       <meta name="description" content="BDF Architectural supply and install premium bifold doors, sliding doors, aluminium windows and skylights across London, Berkshire, Essex, Kent, Surrey & Sussex. Call 01895 439 199 for a free quote." />
       <link rel="canonical" href="https://www.bdfa.uk/" />
       <meta property="og:url" content="https://www.bdfa.uk/" />
