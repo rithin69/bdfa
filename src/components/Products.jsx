@@ -78,6 +78,10 @@ const categories = [
     products: [
       { slug: 'schuco-front-doors', name: 'Schuco Front Doors', desc: 'Contemporary range with stunning designs. Highest thermal insulation values with full protection against wind, water and severe weather.' },
       { slug: 'cortizo-entrance-doors', name: 'Cortizo Entrance Doors', desc: 'Premium entrance doors from Cortizo aluminium systems, combining slim sightlines with exceptional performance.' },
+      { slug: 'aluprof-mb79n-panel-door', name: 'Aluprof MB-79N Panel Door', desc: 'Economical panel door system allowing large structures with high thermal performance. Available in wood-effect and concrete finishes.' },
+      { slug: 'aluprof-mb86n-panel-door', name: 'Aluprof MB-86N Panel Door', desc: 'Wide thermal breaks delivering excellent insulation and energy savings. Smart home compatible with fingerprint and keypad access.' },
+      { slug: 'aluprof-mb104-passive-panel-door', name: 'Aluprof MB-104 Passive Panel Door', desc: 'Passive House Institute certified — the highest thermal insulation available in an aluminium panel door system.' },
+      { slug: 'aluprof-mb86n-pivot-door', name: 'Aluprof MB-86N Pivot Door', desc: 'Dramatic pivot entrance door up to 2m wide and 3.4m high. A statement piece for high-end residential and commercial projects.' },
       { slug: 'bdf-glazed-and-commercial-doors', name: 'BDF Glazed and Commercial Doors', desc: 'Glazed and commercial door solutions from BDF — ideal for offices, retail spaces and high-end commercial projects.' },
     ],
   },

@@ -27,7 +27,7 @@ const productCategories = [
   {
     name: 'Entrance Doors',
     id: 'entrance',
-    items: ['Schuco Front Doors', 'Cortizo Entrance Doors', 'BDF Glazed & Commercial Doors'],
+    items: ['Schuco Front Doors', 'Cortizo Entrance Doors', 'Aluprof MB-79N Panel Door', 'Aluprof MB-86N Panel Door', 'Aluprof MB-104 Passive Panel Door', 'Aluprof MB-86N Pivot Door', 'BDF Glazed & Commercial Doors'],
   },
 ]
 
