@@ -20,13 +20,10 @@ jobs:
           submodules: true
           lfs: false
 
-      - name: Install Chrome dependencies for react-snap
+      - name: Install Google Chrome
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 \
-            libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 \
-            libasound2t64 libatk1.0-0 libgtk-3-0 libgbm1
+          wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -40,6 +37,7 @@ jobs:
         run: npm run build
         env:
           CI: false
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
 
       - name: Build And Deploy
         id: builddeploy
