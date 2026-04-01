@@ -28,7 +28,7 @@ export default function Hero() {
         "name": "BDF Architectural – Premium Bifold Doors, Sliding Doors & Windows",
         "description": "BDF Architectural supply and install premium bifold doors, sliding doors, aluminium windows and skylights across London, Berkshire, Essex, Kent, Surrey & Sussex.",
         "thumbnailUrl": "https://www.bdfa.uk/hero-poster.jpg",
-        "uploadDate": "2024-01-01",
+        "uploadDate": "2024-01-01T00:00:00+00:00",
         "contentUrl": "https://www.bdfa.uk/hero1.mp4",
         "embedUrl": "https://www.bdfa.uk/",
         "publisher": {

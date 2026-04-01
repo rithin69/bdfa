@@ -76,9 +76,46 @@ export default function ProductDetail() {
           "offers": {
             "@type": "Offer",
             "availability": "https://schema.org/InStock",
+            "price": product.categoryId === 'bifold' ? "2500" : product.categoryId === 'sliding' ? "2000" : product.categoryId === 'entrance' ? "1500" : product.categoryId === 'windows' ? "800" : product.categoryId === 'roof' ? "1500" : "800",
             "priceCurrency": "GBP",
+            "priceValidUntil": "2026-12-31",
             "url": `https://www.bdfa.uk/products/${slug}`,
-            "seller": { "@type": "Organization", "name": "BDF Architectural" }
+            "seller": { "@type": "Organization", "name": "BDF Architectural" },
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "0",
+                "currency": "GBP"
+              },
+              "shippingDestination": {
+                "@type": "DefinedRegion",
+                "addressCountry": "GB"
+              },
+              "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 2,
+                  "maxValue": 6,
+                  "unitCode": "WEE"
+                },
+                "transitTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 1,
+                  "maxValue": 3,
+                  "unitCode": "DAY"
+                }
+              }
+            },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "applicableCountry": "GB",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+              "merchantReturnDays": 14,
+              "returnMethod": "https://schema.org/ReturnByMail",
+              "returnFees": "https://schema.org/FreeReturn"
+            }
           }
         })}</script>
         <script type="application/ld+json">{JSON.stringify({
