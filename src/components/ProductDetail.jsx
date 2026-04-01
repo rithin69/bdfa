@@ -299,12 +299,12 @@ export default function ProductDetail() {
             {/* Gallery */}
             {allImages.length > 0 && (
               <div style={{ marginBottom: '48px' }}>
-                <div style={{ borderRadius: '12px', overflow: 'hidden', height: '320px', marginBottom: '12px' }}>
+                <div style={{ borderRadius: '12px', overflow: 'hidden', marginBottom: '12px', background: '#f0eeeb', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '220px', maxHeight: '420px' }}>
                   <img
                     src={allImages[activeImage]}
                     alt={`${product.name} ${activeImage + 1}`}
                     loading="lazy"
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'all 0.4s ease' }}
+                    style={{ width: '100%', height: 'auto', maxHeight: '420px', objectFit: 'contain', display: 'block', transition: 'all 0.4s ease' }}
                   />
                 </div>
                 {allImages.length > 1 && (
@@ -502,12 +502,12 @@ export default function ProductDetail() {
                     onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(10,186,181,0.12)' }}
                     onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none' }}
                   >
-                    <div style={{ height: '140px', overflow: 'hidden' }}>
+                    <div style={{ height: '140px', overflow: 'hidden', background: '#f0eeeb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <img
                         src={p.heroImage}
                         alt={p.name}
                         loading="lazy"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.4s' }}
+                        style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block', transition: 'transform 0.4s' }}
                       />
                     </div>
                     <div style={{ padding: '14px 16px' }}>

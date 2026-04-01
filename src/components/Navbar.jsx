@@ -1,33 +1,69 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { productData } from '../data/productData'
 import useResponsive from '../hooks/useResponsive'
 
 const productCategories = [
   {
     name: 'Bi-Fold Doors',
     id: 'bifold',
-    items: ['Aluminium Bifold Doors', 'Bi Folding Doors External', 'Bi Folding Internal Doors', 'Schuco AS FD 75/90.HI', 'Schuco ASS70.HI Bifold Doors', 'Schuco Cornerless Bifold Doors', 'Cortizo Bifold Doors', 'Cortizo Bifold Plus Doors', 'Trade Only Bifold Doors'],
+    items: [
+      { label: 'Aluminium Bifold Doors',       slug: 'aluminium-bifold-doors' },
+      { label: 'Bi Folding Doors External',     slug: 'bi-folding-doors-external' },
+      { label: 'Bi Folding Internal Doors',     slug: 'bi-folding-internal-doors' },
+      { label: 'Schuco AS FD 75/90.HI',        slug: 'schuco-as-fd-7590-hi' },
+      { label: 'Schuco ASS70.HI Bifold Doors', slug: 'schuco-ass70hi-bifold-doors' },
+      { label: 'Schuco Cornerless Bifold Doors',slug: 'schuco-cornerless-bifold-doors' },
+      { label: 'Cortizo Bifold Doors',          slug: 'cortizo-bifold-doors' },
+      { label: 'Cortizo Bifold Plus Doors',     slug: 'cortizo-bifold-plus-doors' },
+      { label: 'Trade Only Bifold Doors',       slug: 'trade-only-bifold-doors' },
+    ],
   },
   {
     name: 'Sliding Doors',
     id: 'sliding',
-    items: ['Schuco ASS 50 Sliding Door', 'Schuco ASE 60/80 Sliding Doors', 'Schuco ASS 70 Slimline', 'Schuco ASS 77 PD Panorama', 'Cortizo Cor Vision Sliding Doors', 'Cortizo Cor Vision Plus', 'Trade Only Sliding Doors'],
+    items: [
+      { label: 'Schuco ASS 50 Sliding Door',       slug: 'schuco-ass-50-sliding-door' },
+      { label: 'Schuco ASE 60/80 Sliding Doors',   slug: 'schuco-ase-6080-sliding-doors' },
+      { label: 'Schuco ASS 70 HI Slimline',        slug: 'schuco-ass-70-slimline-sliding-door' },
+      { label: 'Schuco ASS 77 PD Panorama',        slug: 'schuco-ass-77-pd-panorama-sliding-doors' },
+      { label: 'Cortizo Cor Vision Sliding Doors', slug: 'cortizo-cor-vision-sliding-doors' },
+      { label: 'Cortizo Cor Vision Plus',          slug: 'cortizo-cor-vision-plus-sliding-doors' },
+      { label: 'Trade Only Sliding Doors',         slug: 'trade-only-sliding-doors' },
+    ],
   },
   {
     name: 'Windows',
     id: 'windows',
-    items: ['Schuco AWS 70 High Insulated', 'Schuco AWS 70 Sc Slimline', 'Schuco AWS 70 Tilt & Turn', 'Cortizo Sliding Windows', 'Cortizo Arch Invisible Tilt & Turn'],
+    items: [
+      { label: 'Schuco AWS 70 High Insulated',          slug: 'schuco-aws-70-high-insulated-windows' },
+      { label: 'Schuco AWS 70 Sc Slimline',             slug: 'schuco-aws-70-sc-slimline' },
+      { label: 'Schuco AWS 70 Tilt & Turn',             slug: 'schuco-aws-70-tilt-and-turn-windows' },
+      { label: 'Cortizo Sliding Windows',               slug: 'cortizo-sliding-windows' },
+      { label: 'Cortizo Arch Invisible Tilt & Turn',    slug: 'cortizo-arch-invisible-tilt-turn-window' },
+    ],
   },
   {
     name: 'Roof Systems',
     id: 'roof',
-    items: ['BDF Lantern Skylight', 'BDF Flat Sky Light', 'Schuco CMC 50 HI Winter Gardens', 'Architectural Glass & Structural Glazing'],
+    items: [
+      { label: 'BDF Lantern Skylight',                    slug: 'bdf-lantern-skylight' },
+      { label: 'BDF Flat Sky Light',                      slug: 'bdf-flat-sky-light' },
+      { label: 'Schuco CMC 50 HI Winter Gardens',         slug: 'schuco-cmc-50-hi-winter-gardens' },
+      { label: 'Architectural Glass & Structural Glazing', slug: 'architectural-glass-structural-glazing' },
+    ],
   },
   {
     name: 'Entrance Doors',
     id: 'entrance',
-    items: ['Schuco Front Doors', 'Cortizo Entrance Doors', 'Aluprof MB-79N Panel Door', 'Aluprof MB-86N Panel Door', 'Aluprof MB-104 Passive Panel Door', 'Aluprof MB-86N Pivot Door', 'BDF Glazed & Commercial Doors'],
+    items: [
+      { label: 'Schuco Front Doors',             slug: 'schuco-front-doors' },
+      { label: 'Cortizo Entrance Doors',         slug: 'cortizo-entrance-doors' },
+      { label: 'Aluprof MB-79N Panel Door',      slug: 'aluprof-mb79n-panel-door' },
+      { label: 'Aluprof MB-86N Panel Door',      slug: 'aluprof-mb86n-panel-door' },
+      { label: 'Aluprof MB-104 Passive Panel Door', slug: 'aluprof-mb104-passive-panel-door' },
+      { label: 'Aluprof MB-86N Pivot Door',      slug: 'aluprof-mb86n-pivot-door' },
+      { label: 'BDF Glazed & Commercial Doors',  slug: 'bdf-glazed-and-commercial-doors' },
+    ],
   },
 ]
 
@@ -95,28 +131,6 @@ export default function Navbar() {
     }))
   }
 
-  const normalizeProductName = (value) =>
-    value
-      .toLowerCase()
-      .replace(/&/g, 'and')
-      .replace(/[^a-z0-9]+/g, ' ')
-      .trim()
-
-  const getProductPath = (categoryId, itemName) => {
-    const normalizedItem = normalizeProductName(itemName)
-    const entries = Object.entries(productData).filter(([, product]) => product.categoryId === categoryId)
-
-    const exactMatch = entries.find(([, product]) => normalizeProductName(product.name) === normalizedItem)
-    if (exactMatch) return `/products/${exactMatch[0]}`
-
-    const partialMatch = entries.find(([, product]) => {
-      const normalizedProduct = normalizeProductName(product.name)
-      return normalizedProduct.includes(normalizedItem) || normalizedItem.includes(normalizedProduct)
-    })
-    if (partialMatch) return `/products/${partialMatch[0]}`
-
-    return `/products#${categoryId}`
-  }
 
   const links = [
     { label: 'About',     path: '/about',   hash: null },
@@ -230,11 +244,11 @@ export default function Navbar() {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                           {cat.items.map((item, ii) => (
                             <button key={ii}
-                              onClick={() => { navigate(getProductPath(cat.id, item)); setProductsOpen(false) }}
+                              onClick={() => { navigate(`/products/${item.slug}`); setProductsOpen(false) }}
                               style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '3px 0', textAlign: 'left', fontSize: '11px', color: 'rgba(28,43,43,0.65)', fontFamily: 'ErasMedium, sans-serif', lineHeight: 1.4, transition: 'color 0.2s' }}
                               onMouseEnter={e => e.currentTarget.style.color = '#0ABAB5'}
                               onMouseLeave={e => e.currentTarget.style.color = 'rgba(28,43,43,0.65)'}>
-                              {item}
+                              {item.label}
                             </button>
                           ))}
                         </div>
@@ -316,10 +330,10 @@ export default function Navbar() {
                     {(expandedMobileCategories[cat.id] ? cat.items : cat.items.slice(0, 4)).map((item, i) => (
                       <button
                         key={i}
-                        onClick={() => { navigate(getProductPath(cat.id, item)); setMenuOpen(false) }}
+                        onClick={() => { navigate(`/products/${item.slug}`); setMenuOpen(false) }}
                         style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '3px 0', textAlign: 'left', fontSize: '11px', color: 'rgba(28,43,43,0.65)', fontFamily: 'ErasMedium, sans-serif', display: 'block', width: '100%' }}
                       >
-                        {item}
+                        {item.label}
                       </button>
                     ))}
                     {cat.items.length > 4 && (

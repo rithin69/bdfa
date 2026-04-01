@@ -55,12 +55,12 @@ const contactInfo = [
 ]
 
 const hours = [
-  { day: 'Monday',    time: '09:00 – 17:00' },
-  { day: 'Tuesday',   time: '09:00 – 17:00' },
-  { day: 'Wednesday', time: '09:00 – 17:00' },
-  { day: 'Thursday',  time: '09:00 – 17:00' },
-  { day: 'Friday',    time: '09:00 – 17:00' },
-  { day: 'Saturday',  time: '09:00 – 17:00' },
+  { day: 'Monday',    time: '09:00 – 17:30' },
+  { day: 'Tuesday',   time: '09:00 – 17:30' },
+  { day: 'Wednesday', time: '09:00 – 17:30' },
+  { day: 'Thursday',  time: '09:00 – 17:30' },
+  { day: 'Friday',    time: '09:00 – 17:30' },
+  { day: 'Saturday',  time: '09:00 – 17:30' },
   { day: 'Sunday',    time: 'Closed' },
 ]
 
@@ -178,8 +178,7 @@ export default function Contact() {
           "telephone": "+441895439199",
           "address": { "@type": "PostalAddress", "streetAddress": "Bingley, The Common", "addressLocality": "West Drayton", "addressRegion": "Middlesex", "postalCode": "UB7 7HQ", "addressCountry": "GB" },
           "openingHoursSpecification": [
-            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:30" },
-            { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "16:00" }
+            { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "17:30" }
           ],
           "priceRange": "££",
           "contactPoint": [
