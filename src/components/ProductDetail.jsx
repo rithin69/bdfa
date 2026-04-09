@@ -96,9 +96,9 @@ export default function ProductDetail() {
                 "@type": "ShippingDeliveryTime",
                 "handlingTime": {
                   "@type": "QuantitativeValue",
-                  "minValue": 2,
-                  "maxValue": 6,
-                  "unitCode": "WEE"
+                  "minValue": 14,
+                  "maxValue": 42,
+                  "unitCode": "DAY"
                 },
                 "transitTime": {
                   "@type": "QuantitativeValue",
