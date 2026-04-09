@@ -510,9 +510,8 @@ export const productData = {
     name: 'Schuco ASS 70 HI Slimline Sliding Doors',
     category: 'Sliding Doors',
     categoryId: 'sliding',
-    heroImage: '/products/GoogleDrive_Schuco-sliding-door-ASS70-hi-iver-e1687877668347.jpg',
+    heroImage: '/products/GoogleDrive_Schuco-sliding-door-ASS70-hi-iver-1024x600.jpg.webp',
     gallery: [
-      '/products/GoogleDrive_Schuco-sliding-door-ASS70-hi-iver-e1687877668347.jpg',
       '/products/GoogleDrive_Schuco-sliding-door-ASS70-hi-iver-1024x600.jpg.webp',
       '/products/Sliding-Doors-ALIUMINIUM-Schuco-Lift-and-slide-ASS-70-Hi-Zyle-Fenster-2-1024x575-1-950x575.png.webp',
       '/products/ass-70.jpg.webp',
