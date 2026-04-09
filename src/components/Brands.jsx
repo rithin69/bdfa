@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const brands = [
   {
@@ -116,26 +116,28 @@ export default function Brands() {
                 </div>
 
                 {/* CTA */}
-                <button
-                  onClick={() => navigate(`/products/${brand.slug}`)}
+                <Link
+                  to={`/products/${brand.slug}`}
                   style={{
                     fontFamily: 'ErasMedium, sans-serif',
-                    background: 'none',
+                    display: 'block',
+                    textDecoration: 'none',
+                    textAlign: 'center',
                     border: '1.5px solid rgba(10,186,181,0.4)',
                     color: '#0ABAB5',
                     fontSize: '10px',
                     letterSpacing: '2.5px',
                     padding: '12px 24px',
-                    cursor: 'pointer',
                     transition: 'all 0.25s',
                     width: '100%',
                     textTransform: 'uppercase',
+                    boxSizing: 'border-box',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.background = '#0ABAB5'; e.currentTarget.style.color = '#0D1B2A' }}
                   onMouseLeave={e => { e.currentTarget.style.background = 'none'; e.currentTarget.style.color = '#0ABAB5' }}
                 >
                   View {brand.name} Products
-                </button>
+                </Link>
               </div>
             </div>
           ))}

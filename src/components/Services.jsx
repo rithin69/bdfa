@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const services = [
   {
@@ -62,20 +62,21 @@ export default function Services() {
             style={{ fontSize: 'clamp(38px,4vw,58px)' }}>
             Our <span className="text-gold">Products</span>
           </h2>
-          <button
-            onClick={() => navigate('/products')}
+          <Link
+            to="/products"
             className="self-start md:self-auto text-[10px] tracking-[0.3em] text-gold border border-gold/40 hover:border-gold px-6 py-3 transition-colors duration-300"
-            style={{ fontFamily: 'ErasMedium, sans-serif' }}>
+            style={{ fontFamily: 'ErasMedium, sans-serif', textDecoration: 'none' }}>
             VIEW ALL PRODUCTS
-          </button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s) => (
-            <button
+            <Link
               key={s.num}
-              onClick={() => navigate(`/products/${s.slug}`)}
+              to={`/products/${s.slug}`}
               className="group text-left bg-transparent border border-white/8 hover:border-gold/50 transition-all duration-300 overflow-hidden rounded-sm"
+              style={{ textDecoration: 'none', display: 'block' }}
             >
               {/* Image */}
               <div className="relative h-48 overflow-hidden">
@@ -108,7 +109,7 @@ export default function Services() {
                   </svg>
                 </span>
               </div>
-            </button>
+            </Link>
           ))}
         </div>
 

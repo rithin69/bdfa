@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import useResponsive from '../hooks/useResponsive'
 
 const categories = [
@@ -87,20 +87,20 @@ const categories = [
   },
 ]
 
-function ProductRow({ product, onClick }) {
+function ProductRow({ product }) {
   const [hovered, setHovered] = useState(false)
   return (
-    <button
-      onClick={onClick}
+    <Link
+      to={`/products/${product.slug}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
         display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px',
-        padding: '16px 20px', width: '100%', textAlign: 'left', cursor: 'pointer', border: 'none',
+        padding: '16px 20px', width: '100%', textAlign: 'left', cursor: 'pointer',
         borderLeft: `3px solid ${hovered ? '#0ABAB5' : 'rgba(10,186,181,0.25)'}`,
         background: hovered ? 'rgba(10,186,181,0.06)' : 'rgba(28,43,43,0.03)',
         transition: 'all 0.25s ease', fontFamily: 'ErasMedium, sans-serif',
-        marginBottom: '2px',
+        marginBottom: '2px', textDecoration: 'none',
       }}>
       <div style={{ flex: 1 }}>
         <div style={{ fontSize: '12.5px', color: '#1C2B2B', fontWeight: 700, lineHeight: 1.4, marginBottom: product.desc ? '5px' : 0 }}>
@@ -116,7 +116,7 @@ function ProductRow({ product, onClick }) {
         width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0ABAB5" strokeWidth="2.5">
         <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
       </svg>
-    </button>
+    </Link>
   )
 }
 
@@ -338,7 +338,7 @@ export default function Products() {
                   <div>
                     <div className="products-product-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2px' }}>
                       {cat.products.map((p, pi) => (
-                        <ProductRow key={pi} product={p} onClick={() => navigate('/products/' + p.slug)} />
+                        <ProductRow key={pi} product={p} />
                       ))}
                     </div>
                     <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -368,7 +368,7 @@ export default function Products() {
                   <div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '2px' }}>
                       {cat.products.map((p, pi) => (
-                        <ProductRow key={pi} product={p} onClick={() => navigate('/products/' + p.slug)} />
+                        <ProductRow key={pi} product={p} />
                       ))}
                     </div>
                     <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '12px' }}>

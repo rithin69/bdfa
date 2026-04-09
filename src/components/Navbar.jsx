@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, Link } from 'react-router-dom'
 import useResponsive from '../hooks/useResponsive'
 
 const productCategories = [
@@ -161,8 +161,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex items-center justify-between gap-4">
 
         {/* Logo */}
-        <button onClick={() => navigate('/')}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+        <Link to="/" style={{ display: 'inline-block', lineHeight: 0 }}>
           <img
             src="/bdfa-logo.webp"
             alt="BDF Architectural"
@@ -174,7 +173,7 @@ export default function Navbar() {
               objectFit: 'contain',
             }}
           />
-        </button>
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
@@ -218,14 +217,15 @@ export default function Navbar() {
                       <div style={{ width: '32px', height: '1px', background: '#0ABAB5' }} />
                       <span style={{ fontSize: '9px', letterSpacing: '4px', color: '#0ABAB5', fontFamily: 'ErasMedium, sans-serif' }}>ALL PRODUCTS</span>
                     </div>
-                    <button
-                      onClick={() => { navigate('/products'); setProductsOpen(false) }}
-                      style={{ background: 'none', border: 'none', fontSize: '10px', letterSpacing: '2px', color: '#0ABAB5', cursor: 'pointer', fontFamily: 'ErasMedium, sans-serif', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <Link
+                      to="/products"
+                      onClick={() => setProductsOpen(false)}
+                      style={{ textDecoration: 'none', fontSize: '10px', letterSpacing: '2px', color: '#0ABAB5', cursor: 'pointer', fontFamily: 'ErasMedium, sans-serif', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '6px' }}>
                       VIEW ALL PRODUCTS
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#0ABAB5" strokeWidth="2.5">
                         <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
                       </svg>
-                    </button>
+                    </Link>
                   </div>
 
                   {/* Columns */}
@@ -243,13 +243,14 @@ export default function Navbar() {
                         <div style={{ width: '24px', height: '1px', background: '#0ABAB5', marginBottom: '14px' }} />
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                           {cat.items.map((item, ii) => (
-                            <button key={ii}
-                              onClick={() => { navigate(`/products/${item.slug}`); setProductsOpen(false) }}
-                              style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '3px 0', textAlign: 'left', fontSize: '11px', color: 'rgba(28,43,43,0.65)', fontFamily: 'ErasMedium, sans-serif', lineHeight: 1.4, transition: 'color 0.2s' }}
+                            <Link key={ii}
+                              to={`/products/${item.slug}`}
+                              onClick={() => setProductsOpen(false)}
+                              style={{ display: 'block', textDecoration: 'none', padding: '3px 0', fontSize: '11px', color: 'rgba(28,43,43,0.65)', fontFamily: 'ErasMedium, sans-serif', lineHeight: 1.4, transition: 'color 0.2s' }}
                               onMouseEnter={e => e.currentTarget.style.color = '#0ABAB5'}
                               onMouseLeave={e => e.currentTarget.style.color = 'rgba(28,43,43,0.65)'}>
                               {item.label}
-                            </button>
+                            </Link>
                           ))}
                         </div>
                       </div>
@@ -263,12 +264,12 @@ export default function Navbar() {
           {/* Other links */}
           {links.map(({ label, path, hash }) =>
             path ? (
-              <button key={label} onClick={() => navigate(path)}
-                style={linkStyle(path)}
+              <Link key={label} to={path}
+                style={{ ...linkStyle(path), textDecoration: 'none' }}
                 onMouseEnter={e => e.currentTarget.style.color = '#0ABAB5'}
                 onMouseLeave={e => e.currentTarget.style.color = isActive(path) ? '#0ABAB5' : defaultLinkColor}>
                 {label.toUpperCase()}
-              </button>
+              </Link>
             ) : (
               <button key={label} onClick={goToPortfolio}
                 type="button"
@@ -328,13 +329,14 @@ export default function Navbar() {
                       {cat.name.toUpperCase()}
                     </button>
                     {(expandedMobileCategories[cat.id] ? cat.items : cat.items.slice(0, 4)).map((item, i) => (
-                      <button
+                      <Link
                         key={i}
-                        onClick={() => { navigate(`/products/${item.slug}`); setMenuOpen(false) }}
-                        style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '3px 0', textAlign: 'left', fontSize: '11px', color: 'rgba(28,43,43,0.65)', fontFamily: 'ErasMedium, sans-serif', display: 'block', width: '100%' }}
+                        to={`/products/${item.slug}`}
+                        onClick={() => setMenuOpen(false)}
+                        style={{ display: 'block', textDecoration: 'none', padding: '3px 0', fontSize: '11px', color: 'rgba(28,43,43,0.65)', fontFamily: 'ErasMedium, sans-serif' }}
                       >
                         {item.label}
-                      </button>
+                      </Link>
                     ))}
                     {cat.items.length > 4 && (
                       <button
@@ -354,10 +356,10 @@ export default function Navbar() {
           {/* Other links */}
           {links.map(({ label, path, hash }) =>
             path ? (
-              <button key={label} onClick={() => { navigate(path); setMenuOpen(false) }}
-                style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0', textAlign: 'left', color: isActive(path) ? '#0ABAB5' : '#1C2B2B', fontSize: '13px', letterSpacing: '0.18em', fontWeight: '700', fontFamily: 'ErasMedium, sans-serif', fontStyle: 'normal' }}>
+              <Link key={label} to={path} onClick={() => setMenuOpen(false)}
+                style={{ display: 'block', textDecoration: 'none', padding: '4px 0', color: isActive(path) ? '#0ABAB5' : '#1C2B2B', fontSize: '13px', letterSpacing: '0.18em', fontWeight: '700', fontFamily: 'ErasMedium, sans-serif', fontStyle: 'normal' }}>
                 {label.toUpperCase()}
-              </button>
+              </Link>
             ) : (
               <button key={label} onClick={goToPortfolio}
                 type="button"

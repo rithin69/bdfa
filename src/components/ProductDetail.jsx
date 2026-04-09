@@ -27,12 +27,12 @@ export default function ProductDetail() {
           Product Not Found
         </h1>
         <p style={{ color: '#1C2B2B', fontSize: '15px', margin: 0 }}>This product doesn't exist or the link may be incorrect.</p>
-        <button
-          onClick={() => navigate('/products')}
-          style={{ background: '#0ABAB5', border: 'none', padding: '14px 32px', color: '#F7F4F0', fontSize: '11px', letterSpacing: '2.5px', fontWeight: 700, cursor: 'pointer', textTransform: 'uppercase' }}
+        <Link
+          to="/products"
+          style={{ background: '#0ABAB5', padding: '14px 32px', color: '#F7F4F0', fontSize: '11px', letterSpacing: '2.5px', fontWeight: 700, textTransform: 'uppercase', textDecoration: 'none', display: 'inline-block' }}
         >
           Back to Products
-        </button>
+        </Link>
       </div>
     )
   }
@@ -455,18 +455,18 @@ export default function ProductDetail() {
             </p>
           </div>
           <div className="product-detail-cta-actions" style={{ display: 'flex', gap: '16px', flexShrink: 0, flexWrap: 'wrap' }}>
-            <button
-              onClick={() => navigate('/products')}
+            <Link
+              to="/products"
               style={{
                 border: '1.5px solid #0ABAB5', background: 'transparent', color: '#0ABAB5',
                 padding: '14px 28px', fontSize: '10px', letterSpacing: '2.5px', fontWeight: 700,
-                textTransform: 'uppercase', cursor: 'pointer', transition: 'all 0.25s',
+                textTransform: 'uppercase', transition: 'all 0.25s', textDecoration: 'none', display: 'inline-block',
               }}
               onMouseEnter={e => { e.currentTarget.style.background = '#0ABAB5'; e.currentTarget.style.color = '#F7F4F0' }}
               onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#0ABAB5' }}
             >
               All Products
-            </button>
+            </Link>
             <button
               onClick={() => navigate('/contact')}
               style={{

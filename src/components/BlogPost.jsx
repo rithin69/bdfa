@@ -73,9 +73,9 @@ export default function BlogPost() {
     return (
       <div style={{ minHeight: '100vh', background: '#F7F4F0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '24px' }}>
         <h1 style={{ color: '#1C2B2B', fontFamily: 'Cormorant Garamond, serif', fontSize: '36px', fontWeight: 600, margin: 0 }}>Article Not Found</h1>
-        <button onClick={() => navigate('/blog')} style={{ background: '#0ABAB5', border: 'none', padding: '14px 32px', color: '#1C2B2B', fontSize: '11px', letterSpacing: '2.5px', fontWeight: 700, cursor: 'pointer', textTransform: 'uppercase' }}>
+        <Link to="/blog" style={{ background: '#0ABAB5', padding: '14px 32px', color: '#1C2B2B', fontSize: '11px', letterSpacing: '2.5px', fontWeight: 700, textTransform: 'uppercase', textDecoration: 'none', display: 'inline-block' }}>
           Back to Blog
-        </button>
+        </Link>
       </div>
     )
   }

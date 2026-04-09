@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 export default function Hero() {
   const navigate = useNavigate()
   const videoRef = useRef(null)
@@ -120,11 +120,10 @@ export default function Hero() {
               style={{ fontFamily: 'ErasMedium, sans-serif', textDecoration: 'none', display: 'inline-block' }}>
               VIEW OUR WORK
             </a>
-            <button className="text-[9px] tracking-[0.28em] md:tracking-[0.35em] text-[#F7F4F0] border border-bdf-white/30 hover:border-gold hover:text-gold transition-all duration-300 px-7 md:px-9 py-4"
-              style={{ fontFamily: 'ErasMedium, sans-serif' }}
-              onClick={() => navigate('/about')}>
+            <Link to="/about" className="text-[9px] tracking-[0.28em] md:tracking-[0.35em] text-[#F7F4F0] border border-bdf-white/30 hover:border-gold hover:text-gold transition-all duration-300 px-7 md:px-9 py-4"
+              style={{ fontFamily: 'ErasMedium, sans-serif', textDecoration: 'none' }}>
               OUR STORY
-            </button>
+            </Link>
           </div>
         </div>
       </div>

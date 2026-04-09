@@ -36,8 +36,7 @@
     "crawl": true,
     "inlineCss": false,
     "saveAs": "html",
-    "skipThirdPartyRequests": true,
-    "exclude": ["/products/"]
+    "skipThirdPartyRequests": true
   },
   "browserslist": {
     "production": [
