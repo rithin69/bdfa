@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import useResponsive from '../hooks/useResponsive'
-import { submitWebsiteForm } from '../utils/formSubmission'
+import { submitCareersForm } from '../utils/formSubmission'
 
 const roles = [
   {
@@ -112,8 +112,8 @@ export default function Careers() {
     setError('')
 
     try {
-      await submitWebsiteForm(formElement, {
-        subject: 'New Careers application from bdfa.uk',
+      await submitCareersForm(formElement, {
+        subject: 'New Careers Application from bdfa.uk',
       })
       formElement.reset()
       setError('')

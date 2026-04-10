@@ -1,3 +1,4 @@
+// Quote + Contact → ClickUp
 export async function submitWebsiteForm(formElement, options = {}) {
   const token = process.env.REACT_APP_CLICKUP_API_TOKEN
   const listId = process.env.REACT_APP_CLICKUP_LIST_ID
@@ -21,7 +22,6 @@ export async function submitWebsiteForm(formElement, options = {}) {
     `Interested In: ${productList}\n\n` +
     `Message:\n${message || 'No message provided'}`
 
-  // Create the task without phone field
   const response = await fetch(`https://api.clickup.com/api/v2/list/${listId}/task`, {
     method: 'POST',
     headers: { 'Authorization': token, 'Content-Type': 'application/json' },
@@ -42,7 +42,6 @@ export async function submitWebsiteForm(formElement, options = {}) {
 
   if (!response.ok) throw new Error('Submission failed')
 
-  // Set phone separately after task creation
   if (phone) {
     const task = await response.json()
     let formattedPhone = phone.trim().replace(/\s+/g, '')
@@ -56,4 +55,25 @@ export async function submitWebsiteForm(formElement, options = {}) {
       body: JSON.stringify({ value: formattedPhone }),
     })
   }
+}
+
+// Careers → email via Web3Forms
+export async function submitCareersForm(formElement, options = {}) {
+  const accessKey = process.env.REACT_APP_WEB3FORMS_ACCESS_KEY
+
+  if (!accessKey) {
+    throw new Error('Missing Web3Forms access key')
+  }
+
+  const formData = new FormData(formElement)
+  formData.append('access_key', accessKey)
+  formData.append('subject', options.subject || 'New Careers Application from bdfa.uk')
+
+  const response = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    body: formData,
+  })
+
+  const data = await response.json()
+  if (!data.success) throw new Error('Submission failed')
 }

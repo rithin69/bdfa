@@ -48,7 +48,7 @@ export const productData = {
       '/products/bi-fold-12.jpg',
       '/products/Cover-Image-00-1920x600.jpg.webp',
       '/products/Block--950x726.jpg.webp',
-      '/products/ParkRoad-15-scaled-e1700599470569-950x726.jpg.webp',
+      '/products/ParkRoad-15-1-scaled.jpg',
       '/products/ParkRoad-4-950x726.jpg.webp',
     ],
     description: 'Open up your home to the outdoors with our premium bi folding doors external. Perfect for patios, gardens, or balconies, these folding door systems create a seamless connection between indoor and outdoor living. Available as made-to-measure systems for homeowners and trade professionals, with installation across London, Berkshire, Essex, Kent, Surrey, and Sussex.',
@@ -149,7 +149,7 @@ export const productData = {
     heroImage: '/products/bi-fold-25.jpg',
     gallery: [
       '/products/bi-fold-25.jpg',
-      '/products/ParkRoad-15-scaled-e1700599470569-950x726.jpg.webp',
+      '/products/ParkRoad-15-1-scaled.jpg',
       '/products/1B-Alverston-Road-331960-Rear-elevation_RGB-950x726.jpg',
       '/products/bi-fold-25.jpg',
     ],
